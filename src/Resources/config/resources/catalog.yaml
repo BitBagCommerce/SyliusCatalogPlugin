@@ -1,0 +1,7 @@
+sylius_resource:
+  resources:
+    acme_sylius_example_plugin.catalog:
+      driver: doctrine/orm
+      classes:
+        model: Acme\SyliusExamplePlugin\Entity\Catalog
+        interface: Acme\SyliusExamplePlugin\Entity\CatalogInterface

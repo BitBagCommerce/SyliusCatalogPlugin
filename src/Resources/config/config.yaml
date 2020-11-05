@@ -1,0 +1,3 @@
+imports:
+  - { resource: "@AcmeSyliusExamplePlugin/Resources/config/resources.yaml" }
+  - { resource: "@AcmeSyliusExamplePlugin/Resources/config/services.yaml" }
