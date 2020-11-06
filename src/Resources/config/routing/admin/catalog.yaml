@@ -1,0 +1,11 @@
+bitbag_sylius_catalog_plugin_catalog:
+  resource: |
+    alias: bitbag_sylius_catalog_plugin.catalog
+    section: admin
+    vars:
+      index:
+          icon: block layout
+      route:
+          parameters:
+              code: $type
+  type: sylius.resource

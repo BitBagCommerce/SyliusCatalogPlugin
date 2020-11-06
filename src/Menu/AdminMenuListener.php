@@ -21,11 +21,14 @@ class AdminMenuListener
         $menu = $event->getMenu();
 
         $newSubMenu = $menu
-            ->addChild('new')
+            ->addChild('bitbag_sylius_catalog_plugin.ui.catalogs')
             ->setLabel('Catalog');
 
         $newSubMenu
-            ->addChild('new-subitem')
-            ->setLabel('New catalog');
+            ->addChild('bitbag_sylius_catalog_plugin.ui.catalog', [
+                'route' => 'bitbag_sylius_catalog_plugin_admin_catalog_index'
+            ])
+            ->setLabel('New catalog')
+            ->setLabelAttribute('icon', 'catalog layout');
     }
 }

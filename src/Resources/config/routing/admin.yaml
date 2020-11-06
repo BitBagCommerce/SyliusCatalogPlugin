@@ -1,0 +1,2 @@
+bitbag_sylius_catalog_plugin_admin_catalog:
+  resource: "@BitBagSyliusCatalogPlugin/Resources/config/routing/admin/catalog.yaml"
