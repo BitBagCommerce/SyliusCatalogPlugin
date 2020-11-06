@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\Entity;
+namespace BitBag\SyliusCatalogPlugin\Entity;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 

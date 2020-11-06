@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\Menu;
+namespace BitBag\SyliusCatalogPlugin\Menu;
 
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 

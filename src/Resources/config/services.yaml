@@ -1,5 +1,5 @@
 services:
-  acme_sylius_example_plugin.listener.admin.menu_builder:
-    class: Acme\SyliusExamplePlugin\Menu\AdminMenuListener
+  bitbag_sylius_catalog_plugin.listener.admin.menu_builder:
+    class: BitBag\SyliusCatalogPlugin\Menu\AdminMenuListener
     tags:
       - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItem }

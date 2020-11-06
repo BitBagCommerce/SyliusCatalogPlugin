@@ -4,7 +4,7 @@ sylius_grid:
       driver:
         name: doctrine/orm
         options:
-          class: Acme\SyliusExamplePlugin\Entity\Catalog
+          class: BitBag\SyliusCatalogPlugin\Entity\Catalog
       fields:
         name:
           type: string

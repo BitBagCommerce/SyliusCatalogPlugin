@@ -4,7 +4,7 @@
         xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
         xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
 
-    <entity name="Acme\SyliusExamplePlugin\Entity\Catalog" table="bitbag_catalog_catalog">
+    <entity name="BitBag\SyliusCatalogPlugin\Entity\Catalog" table="bitbag_catalog_catalog">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>

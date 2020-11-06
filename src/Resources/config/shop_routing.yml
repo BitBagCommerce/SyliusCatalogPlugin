@@ -1,13 +1,13 @@
 # Delete these routes and define your own shop routes here
 
-acme_sylius_example_static_welcome:
+bitbag_sylius_catalog_static_welcome:
     path: /static-welcome/{name}
     defaults:
-        _controller: AcmeSyliusExamplePlugin:Greeting:staticallyGreet
+        _controller: BitBagSyliusCatalogPlugin:Greeting:staticallyGreet
         name: ~
 
-acme_sylius_example_dynamic_welcome:
+bitbag_sylius_catalog_dynamic_welcome:
     path: /dynamic-welcome/{name}
     defaults:
-        _controller: AcmeSyliusExamplePlugin:Greeting:dynamicallyGreet
+        _controller: BitBagSyliusCatalogPlugin:Greeting:dynamicallyGreet
         name: ~

@@ -1,0 +1,5 @@
+bitbag_sylius_catalog_plugin_catalog:
+  resource: |
+    alias: bitbag_sylius_catalog_plugin.catalog
+    section: admin
+  type: sylius.resource
