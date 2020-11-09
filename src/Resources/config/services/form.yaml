@@ -1,0 +1,9 @@
+services:
+  bitbag_sylius_catalog_plugin.form.type.catalog:
+    class: BitBag\SyliusCatalogPlugin\Form\Type\CatalogType
+    arguments:
+      - "%bitbag_sylius_catalog_plugin.model.catalog.class%"
+      - [ 'bitbag' ]
+    tags:
+      - { name: form.type }
+

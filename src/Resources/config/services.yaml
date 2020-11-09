@@ -1,10 +1,10 @@
+imports:
+  - { resource: services/form.yaml }
+
 services:
   bitbag_sylius_catalog_plugin.listener.admin.menu_builder:
     class: BitBag\SyliusCatalogPlugin\Menu\AdminMenuListener
     tags:
       - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItem }
 
-  bitbag_form.type.catalog:
-    class: BitBag\SyliusCatalogPlugin\Form\Type\CatalogType
-    tags:
-      - { name: form.type }
+
