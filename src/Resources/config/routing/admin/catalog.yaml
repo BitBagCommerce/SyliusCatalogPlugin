@@ -5,4 +5,5 @@ bitbag_sylius_catalog_plugin_admin_catalog:
     redirect: update
     templates: SyliusAdminBundle:Crud
     section: admin
+    grid: bitbag_sylius_catalog_plugin_admin_catalog
   type: sylius.resource
