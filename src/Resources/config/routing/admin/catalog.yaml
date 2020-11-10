@@ -6,4 +6,13 @@ bitbag_sylius_catalog_plugin_admin_catalog:
     templates: SyliusAdminBundle:Crud
     section: admin
     grid: bitbag_sylius_catalog_plugin_admin_catalog
+    vars:
+      all:
+          templates:
+              form: "@BitBagSyliusCatalogPlugin/Catalog/Catalog/_form.html.twig"
+      index:
+          icon: block layout
+      route:
+          parameters:
+              code: $type
   type: sylius.resource

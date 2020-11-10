@@ -6,3 +6,8 @@ sylius_resource:
         model: BitBag\SyliusCatalogPlugin\Entity\Catalog
         interface: BitBag\SyliusCatalogPlugin\Entity\CatalogInterface
         form: BitBag\SyliusCatalogPlugin\Form\Type\CatalogType
+      translation:
+        classes:
+          model: BitBag\SyliusCatalogPlugin\Entity\CatalogTranslation
+          interface: BitBag\SyliusCatalogPlugin\Entity\CatalogTranslationInterface
+          form: BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType

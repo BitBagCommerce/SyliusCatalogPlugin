@@ -12,13 +12,21 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Entity;
 
+use Sylius\Component\Resource\Model\TranslatableTrait;
+use Sylius\Component\Resource\Model\TranslationInterface;
+
 class Catalog implements CatalogInterface
 {
-    /** @var int|null */
-    private  $id;
+    use TranslatableTrait {
+        __construct as protected initializeTranslationsCollection;
+    }
 
-    /** @var string|null */
-    private $name;
+    public function __construct()
+    {
+        $this->initializeTranslationsCollection();
+    }
+
+    private  $id;
 
     public function getId(): ?int
     {
@@ -27,11 +35,22 @@ class Catalog implements CatalogInterface
 
     public function getName(): ?string
     {
-        return $this->name;
+        return $this->getCatalogTranslation()->getName();
     }
 
     public function setName(?string $name): void
     {
-        $this->name = $name;
+        $this->getCatalogTranslation()->setName($name);
+    }
+
+    /** @return CatalogTranslationInterface|TranslationInterface */
+    protected function getCatalogTranslation(): TranslationInterface
+    {
+        return  $this->getCatalogTranslation();
+    }
+
+    protected function createTranslation(): CatalogTranslation
+    {
+        return new CatalogTranslation();
     }
 }

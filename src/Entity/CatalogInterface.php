@@ -13,8 +13,9 @@ declare(strict_types=1);
 namespace BitBag\SyliusCatalogPlugin\Entity;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TranslatableInterface;
 
-interface CatalogInterface extends ResourceInterface
+interface CatalogInterface extends ResourceInterface, TranslatableInterface
 {
     public function getName(): ?string;
 
