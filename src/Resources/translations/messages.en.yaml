@@ -1,0 +1,7 @@
+bitbag_sylius_catalog_plugin:
+    ui:
+        edit_catalog: Edit catalog
+        new_catalog: Create new catalog
+        catalogs: Catalogs
+        catalog: Catalog
+        name: Name
