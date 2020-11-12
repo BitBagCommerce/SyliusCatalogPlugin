@@ -8,5 +8,7 @@
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
+        <field name="startDate" column="start_date" type="datetime" nullable="true"/>
+        <field name="endDate" column="end_date" type="datetime" nullable="true"/>
     </entity>
 </doctrine-mapping>

@@ -26,7 +26,46 @@ class Catalog implements CatalogInterface
         $this->initializeTranslationsCollection();
     }
 
+    /** @var int|null */
     private  $id;
+
+    /** @var  \DateTime|null */
+    private $startDate;
+
+    /** @var \DateTime|null */
+    private $endDate;
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getStartDate(): ?\DateTime
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param \DateTime|null $startDate
+     */
+    public function setStartDate(?\DateTime $startDate): void
+    {
+        $this->startDate = $startDate;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getEndDate(): ?\DateTime
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * @param \DateTime|null $endDate
+     */
+    public function setEndDate(?\DateTime $endDate): void
+    {
+        $this->endDate = $endDate;
+    }
 
     public function getId(): ?int
     {
@@ -46,7 +85,7 @@ class Catalog implements CatalogInterface
     /** @return CatalogTranslationInterface|TranslationInterface */
     protected function getCatalogTranslation(): TranslationInterface
     {
-        return  $this->getCatalogTranslation();
+        return  $this->getTranslation();
     }
 
     protected function createTranslation(): CatalogTranslation

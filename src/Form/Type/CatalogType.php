@@ -15,7 +15,7 @@ namespace BitBag\SyliusCatalogPlugin\Form\Type;
 use BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class CatalogType extends AbstractResourceType
@@ -23,6 +23,16 @@ class CatalogType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('startDate', DateTimeType::class, [
+                'label' => 'bitbag_sylius_catalog_plugin.ui.start_date',
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text'
+            ])
+            ->add('endDate', DateTimeType::class, [
+                'label' => 'bitbag_sylius_catalog_plugin.ui.end_date',
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text'
+            ])
             ->add('translations', ResourceTranslationsType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.catalog',
                 'entry_type' => CatalogTranslationType::class,

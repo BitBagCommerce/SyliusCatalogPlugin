@@ -5,3 +5,5 @@ bitbag_sylius_catalog_plugin:
         catalogs: Catalogs
         catalog: Catalog
         name: Name
+        start_date: Starts at
+        end_date: Ends at

@@ -20,4 +20,12 @@ interface CatalogInterface extends ResourceInterface, TranslatableInterface
     public function getName(): ?string;
 
     public function setName(?string $name): void;
+
+    public function getStartDate(): ?\DateTime;
+
+    public function setStartDate(?\DateTime $startDate): void;
+
+    public function getEndDate(): ?\DateTime;
+
+    public function setEndDate(?\DateTime $endDate): void;
 }
