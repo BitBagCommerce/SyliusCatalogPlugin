@@ -27,7 +27,7 @@ class Catalog implements CatalogInterface
         $this->initializeTranslationsCollection();
 
         /** @var ArrayCollection<array-key, CatalogRuleInterface> $this->ruleId */
-        $this->ruleId = new ArrayCollection();
+        $this->rules = new ArrayCollection();
     }
 
     /** @var int|null */
@@ -40,40 +40,40 @@ class Catalog implements CatalogInterface
     protected $endDate;
 
     /** @var CatalogRuleInterface|null */
-    protected $ruleId;
+    protected $rules;
 
-    public function getRuleId(): ?CatalogRuleInterface
+    public function getRules(): ?CatalogRuleInterface
     {
-        return $this->ruleId;
+        return $this->rules;
     }
 
-    public function setRuleId(?CatalogRuleInterface $ruleId): void
+    public function setRules(?CatalogRuleInterface $rules): void
     {
-        $this->ruleId = $ruleId;
+        $this->rules = $rules;
     }
 
     public function hasRuleId(): bool
     {
-        return !$this->ruleId->isEmpty();
+        return !$this->rules->isEmpty();
     }
 
     public function hasRule(CatalogRuleInterface $rule): bool
     {
-        return $this->ruleId->contains($rule);
+        return $this->rules->contains($rule);
     }
 
     public function addRuleId(CatalogRuleInterface $rule): void
     {
         if (!$this->hasRule($rule)) {
             $rule->setCatalog($this);
-            $this->ruleId->add($rule);
+            $this->rules->add($rule);
         }
     }
 
     public function removeRule(CatalogRuleInterface $rule): void
     {
         $rule->setCatalog(null);
-        $this->ruleId->removeElement($rule);
+        $this->rules->removeElement($rule);
     }
 
     public function getStartDate(): ?\DateTime

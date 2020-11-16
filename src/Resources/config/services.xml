@@ -8,5 +8,10 @@
         <service id="bitbag_sylius_catalog_plugin.listener.admin.menu_builder" class="BitBag\SyliusCatalogPlugin\Menu\AdminMenuListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addAdminMenuItem" />
         </service>
+        <service id="bitbag_sylius_catalog_plugin.registry_catalog_rule_checker" class="Sylius\Component\Registry\ServiceRegistry">
+            <argument>BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface</argument>
+            <argument>rule checker</argument>
+        </service>
+        <service id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" class="Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry"/>
     </services>
 </container>

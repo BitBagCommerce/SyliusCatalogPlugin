@@ -29,7 +29,7 @@ interface CatalogInterface extends ResourceInterface, TranslatableInterface
 
     public function setEndDate(?\DateTime $endDate): void;
 
-    public function getRuleId(): ?CatalogRuleInterface;
+    public function getRules(): ?CatalogRuleInterface;
 
-    public function setRuleId(?CatalogRuleInterface $ruleId): void;
+    public function setRules(?CatalogRuleInterface $rules): void;
 }
