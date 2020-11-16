@@ -17,10 +17,10 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 class CatalogTranslation extends AbstractTranslation implements CatalogTranslationInterface
 {
     /** @var int|null */
-    private  $id;
+    protected  $id;
 
     /** @var string|null */
-    private $name;
+    protected $name;
 
     public function getId(): ?int
     {

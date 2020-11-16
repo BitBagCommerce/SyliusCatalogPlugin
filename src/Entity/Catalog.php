@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
@@ -24,44 +25,72 @@ class Catalog implements CatalogInterface
     public function __construct()
     {
         $this->initializeTranslationsCollection();
+
+        /** @var ArrayCollection<array-key, CatalogRuleInterface> $this->ruleId */
+        $this->ruleId = new ArrayCollection();
     }
 
     /** @var int|null */
-    private  $id;
+    protected  $id;
 
     /** @var  \DateTime|null */
-    private $startDate;
+    protected $startDate;
 
     /** @var \DateTime|null */
-    private $endDate;
+    protected $endDate;
 
-    /**
-     * @return \DateTime|null
-     */
+    /** @var CatalogRuleInterface|null */
+    protected $ruleId;
+
+    public function getRuleId(): ?CatalogRuleInterface
+    {
+        return $this->ruleId;
+    }
+
+    public function setRuleId(?CatalogRuleInterface $ruleId): void
+    {
+        $this->ruleId = $ruleId;
+    }
+
+    public function hasRuleId(): bool
+    {
+        return !$this->ruleId->isEmpty();
+    }
+
+    public function hasRule(CatalogRuleInterface $rule): bool
+    {
+        return $this->ruleId->contains($rule);
+    }
+
+    public function addRuleId(CatalogRuleInterface $rule): void
+    {
+        if (!$this->hasRule($rule)) {
+            $rule->setCatalog($this);
+            $this->ruleId->add($rule);
+        }
+    }
+
+    public function removeRule(CatalogRuleInterface $rule): void
+    {
+        $rule->setCatalog(null);
+        $this->ruleId->removeElement($rule);
+    }
+
     public function getStartDate(): ?\DateTime
     {
         return $this->startDate;
     }
 
-    /**
-     * @param \DateTime|null $startDate
-     */
     public function setStartDate(?\DateTime $startDate): void
     {
         $this->startDate = $startDate;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getEndDate(): ?\DateTime
     {
         return $this->endDate;
     }
 
-    /**
-     * @param \DateTime|null $endDate
-     */
     public function setEndDate(?\DateTime $endDate): void
     {
         $this->endDate = $endDate;

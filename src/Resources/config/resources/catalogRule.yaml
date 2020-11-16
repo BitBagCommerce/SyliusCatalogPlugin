@@ -1,0 +1,6 @@
+sylius_resource:
+  resources:
+    bitbag_sylius_catalog_plugin.catalog_rule:
+      classes:
+        model: BitBag\SyliusCatalogPlugin\Entity\CatalogRule
+        interface: BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface

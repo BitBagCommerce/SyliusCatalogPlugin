@@ -1,3 +1,4 @@
 imports:
   - { resource: resources/catalog.yaml }
+  - { resource: resources/catalogRule.yaml }
 

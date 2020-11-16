@@ -10,5 +10,9 @@
         </id>
         <field name="startDate" column="start_date" type="datetime" nullable="true"/>
         <field name="endDate" column="end_date" type="datetime" nullable="true"/>
+        <many-to-one field="ruleId" target-entity="BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface" inversed-by="catalog">
+            <join-column name="ruleId" referenced-column-name="id" nullable="true" />
+        </many-to-one>
+
     </entity>
 </doctrine-mapping>
