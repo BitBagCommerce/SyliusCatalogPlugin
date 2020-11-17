@@ -18,7 +18,7 @@ use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CatalogType extends AbstractResourceType
+final class CatalogType extends AbstractResourceType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -41,5 +41,10 @@ class CatalogType extends AbstractResourceType
                 'label' => 'bitbag_sylius_Catalog_plugin.form.catalog.rules',
                 'button_add_label' => 'bitbag_sylius_catalog_plugin.form.catalog.add_rule',
             ]);
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return 'bitbag_sylius_catalog_plugin_catalog';
     }
 }

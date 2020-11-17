@@ -10,8 +10,8 @@
         </service>
         <service id="bitbag_sylius_catalog_plugin.registry_catalog_rule_checker" class="Sylius\Component\Registry\ServiceRegistry">
             <argument>BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface</argument>
-            <argument>rule checker</argument>
+            <argument>catalog action</argument>
         </service>
-        <service id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" class="Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry"/>
+        <service id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" class="Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry" />
     </services>
 </container>

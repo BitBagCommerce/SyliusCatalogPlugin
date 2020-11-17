@@ -30,36 +30,39 @@ abstract class AbstractConfigurationCollectionType extends AbstractType
         $this->registry = $registry;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-       $prototypes = [];
-       foreach (array_keys($this->registry->all()) as $type) {
-           $formBuilder = $builder->create(
-               $options['prototype_name'],
-               $options['entry_type'],
-               array_replace(
-                   $options['entry_options'],
-                   ['configuration_type' => $type]
-               )
-           );
+        $prototypes = [];
+        foreach (array_keys($this->registry->all()) as $type) {
+            $formBuilder = $builder->create(
+                $options['prototype_name'],
+                $options['entry_type'],
+                array_replace(
+                    $options['entry_options'],
+                    ['configuration_type' => $type]
+                )
+            );
 
-           $prototypes[$type] = $formBuilder->getForm();
-       }
+            $prototypes[$type] = $formBuilder->getForm();
+        }
 
-       $builder->setAttribute('prototypes', $prototypes);
+        $builder->setAttribute('prototypes', $prototypes);
     }
 
+    /**
+     * @psalm-suppress MissingPropertyType
+     */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['prototypes'] = [];
 
         foreach ($form->getConfig()->getAttribute('prototypes') as $type => $prototype) {
-
+            /** @var FormInterface $prototype */
             $view->vars['prototypes'][$type] = $prototype->createView($view);
         }
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'allow_add' => true,
