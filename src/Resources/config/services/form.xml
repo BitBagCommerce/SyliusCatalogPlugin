@@ -15,5 +15,21 @@
             <argument>bitbag</argument>
             <tag name="form.type" />
         </service>
+        <service id="bitbag_sylius_catalog_plugin.form.type.catalog_rule.collection" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogRuleCollectionType">
+            <argument type="service" id="bitbag_sylius_catalog.registry_catalog_rule_checker" />
+            <tag name="form.type" />
+        </service>
+        <service id="bitbag_sylius_catalog_plugin.form.type.catalog_rule.choice" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogRuleChoiceType">
+            <argument type="service" id="bitbag_sylius_catalog.registry_catalog_rule_checker" />
+            <tag name="form.type" />
+        </service>
+        <service id="bitbag_sylius_catalog_plugin.form.type.catalog_rule" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogRuleType">
+            <argument type="service" id="bitbag_sylius_catalog.registry_catalog_rule_checker" />
+            <tag name="form.type" />
+        </service>
+        <service id="bitbag_sylius_catalog_plugin.form.type.abstract_catalog_rule.collection" class="BitBag\SyliusCatalogPlugin\Form\Type\AbstractCatalogRuleCollectionType">
+            <argument type="service" id="bitbag_sylius_catalog.registry_catalog_rule_checker" />
+            <tag name="form.type" />
+        </service>
     </services>
 </container>

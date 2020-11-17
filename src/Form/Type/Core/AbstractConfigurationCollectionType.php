@@ -1,0 +1,76 @@
+<?php
+
+/*
+ * This file has been created by developers from BitBag.
+ * Feel free to contact us once you face any issues or want to start
+ * another great project.
+ * You can find more information about us on https://bitbag.shop and write us
+ * an email on mikolaj.krol@bitbag.pl.
+ */
+
+declare(strict_types=1);
+
+namespace BitBag\SyliusCatalogPlugin\Form\Type\Core;
+
+use Sylius\Component\Registry\ServiceRegistryInterface;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+abstract class AbstractConfigurationCollectionType extends AbstractType
+{
+    /** @var ServiceRegistryInterface */
+    protected $registry;
+
+    public function __construct(ServiceRegistryInterface $registry)
+    {
+        $this->registry = $registry;
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+       $prototypes = [];
+       foreach (array_keys($this->registry->all()) as $type) {
+           $formBuilder = $builder->create(
+               $options['prototype_name'],
+               $options['entry_type'],
+               array_replace(
+                   $options['entry_options'],
+                   ['configuration_type' => $type]
+               )
+           );
+
+           $prototypes[$type] = $formBuilder->getForm();
+       }
+
+       $builder->setAttribute('prototypes', $prototypes);
+    }
+
+    public function buildView(FormView $view, FormInterface $form, array $options): void
+    {
+        $view->vars['prototypes'] = [];
+
+        foreach ($form->getConfig()->getAttribute('prototypes') as $type => $prototype) {
+
+            $view->vars['prototypes'][$type] = $prototype->createView($view);
+        }
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'allow_add' => true,
+            'allow_delete' => true,
+            'by_reference' => false,
+            'error_bubbling' => false,
+        ]);
+    }
+
+    public function getParent(): string
+    {
+        return CollectionType::class;
+    }
+}

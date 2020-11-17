@@ -36,6 +36,10 @@ class CatalogType extends AbstractResourceType
             ->add('translations', ResourceTranslationsType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.catalog',
                 'entry_type' => CatalogTranslationType::class,
+            ])
+            ->add('rules', CatalogRuleCollectionType::class, [
+                'label' => 'bitbag_sylius_Catalog_plugin.form.catalog.rules',
+                'button_add_label' => 'bitbag_sylius_catalog_plugin.form.catalog.add_rule',
             ]);
     }
 }
