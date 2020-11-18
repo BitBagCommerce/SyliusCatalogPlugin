@@ -22,7 +22,7 @@ final class CatalogRuleType extends AbstractConfigurableCatalogElementType
 
         $builder
             ->add('type', CatalogRuleChoiceType::class, [
-                'label' => 'bitbag_sylius_catalog_plugin.form.catalog_rule.type',
+                'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.rule_type',
                 'attr' => [
                     'data-form-collection' => 'update',
                 ],

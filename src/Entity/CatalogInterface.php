@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
@@ -29,7 +30,13 @@ interface CatalogInterface extends ResourceInterface, TranslatableInterface
 
     public function setEndDate(?\DateTime $endDate): void;
 
-    public function getRules(): ?CatalogRuleInterface;
+    public function getRules(): Collection;
 
-    public function setRules(?CatalogRuleInterface $rules): void;
+    public function hasRules(): bool;
+
+    public function hasRule(CatalogRuleInterface $rule): bool;
+
+    public function addRule(CatalogRuleInterface $rule): void;
+
+    public function removeRule(CatalogRuleInterface $rule): void;
 }

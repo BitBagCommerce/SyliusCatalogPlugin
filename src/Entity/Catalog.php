@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace BitBag\SyliusCatalogPlugin\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
@@ -39,20 +40,15 @@ class Catalog implements CatalogInterface
     /** @var \DateTime|null */
     protected $endDate;
 
-    /** @var CatalogRuleInterface|null */
+    /** @var CatalogRuleInterface[]|Collection */
     protected $rules;
 
-    public function getRules(): ?CatalogRuleInterface
+    public function getRules(): Collection
     {
         return $this->rules;
     }
 
-    public function setRules(?CatalogRuleInterface $rules): void
-    {
-        $this->rules = $rules;
-    }
-
-    public function hasRuleId(): bool
+    public function hasRules(): bool
     {
         return !$this->rules->isEmpty();
     }
@@ -62,7 +58,7 @@ class Catalog implements CatalogInterface
         return $this->rules->contains($rule);
     }
 
-    public function addRuleId(CatalogRuleInterface $rule): void
+    public function addRule(CatalogRuleInterface $rule): void
     {
         if (!$this->hasRule($rule)) {
             $rule->setCatalog($this);

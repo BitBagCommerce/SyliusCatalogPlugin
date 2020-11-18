@@ -11,6 +11,9 @@
         <parameter key="bitbag_sylius_catalog_plugin.form.type.catalog_rule.validation_groups" type="collection">
             <parameter>sylius</parameter>
         </parameter>
+        <parameter key="bitbag_sylius_catalog_plugin.form.type.catalog_translation.validation_groups" type="collection">
+            <parameter>sylius</parameter>
+        </parameter>
     </parameters>
     <services>
         <defaults public="true" />
@@ -28,7 +31,7 @@
         </service>
         <service id="bitbag_sylius_catalog_plugin.form.type.translation.catalog" class="BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType">
             <argument>%bitbag_sylius_catalog_plugin.model.catalog_translation.class%</argument>
-            <argument>bitbag</argument>
+            <argument>%bitbag_sylius_catalog_plugin.form.type.catalog_translation.validation_groups%</argument>
             <tag name="form.type" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.form.type.catalog_rule.collection" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogRuleCollectionType">
