@@ -12,10 +12,9 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Form\Type;
 
-use BitBag\SyliusCatalogPlugin\Form\Type\Core\AbstractConfigurationCollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-final class CatalogRuleType extends AbstractConfigurationCollectionType
+final class CatalogRuleType extends AbstractConfigurableCatalogElementType
 {
     public function buildForm(FormBuilderInterface $builder, array $options = []): void
     {

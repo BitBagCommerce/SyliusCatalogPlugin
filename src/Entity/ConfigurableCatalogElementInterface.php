@@ -14,14 +14,8 @@ namespace BitBag\SyliusCatalogPlugin\Entity;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface CatalogRuleInterface extends ResourceInterface, ConfigurableCatalogInterface
+interface ConfigurableCatalogElementInterface extends ResourceInterface
 {
-    public function setType(?string $type): void;
-
-    public function setConfiguration(array $configuration): void;
-
-    public function setCatalog(?CatalogInterface $catalog): void;
-
     public function getType(): ?string;
 
     public function getConfiguration(): array;
