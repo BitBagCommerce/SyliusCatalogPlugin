@@ -13,9 +13,17 @@
         </parameter>
     </parameters>
     <services>
+        <defaults public="true" />
+
         <service id="bitbag_sylius_catalog_plugin.form.type.catalog" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogType">
             <argument>%bitbag_sylius_catalog_plugin.model.catalog.class%</argument>
             <argument>%bitbag_sylius_catalog_plugin.form.type.catalog.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+        <service id="bitbag_sylius_catalog_plugin.form.type.catalog_rule" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogRuleType">
+            <argument>%bitbag_sylius_catalog_plugin.model.catalog_rule.class%</argument>
+            <argument>%bitbag_sylius_catalog_plugin.form.type.catalog_rule.validation_groups%</argument>
+            <argument type="service" id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" />
             <tag name="form.type" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.form.type.translation.catalog" class="BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType">
@@ -29,12 +37,6 @@
         </service>
         <service id="bitbag_sylius_catalog_plugin.form.type.catalog_rule.choice" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogRuleChoiceType">
             <argument>%bitbag_sylius_catalog_plugin.catalog_rules%</argument>
-            <tag name="form.type" />
-        </service>
-        <service id="bitbag_sylius_catalog_plugin.form.type.catalog_rule" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogRuleType">
-            <argument>%bitbag_sylius_catalog_plugin.model.catalog_rule.class%</argument>
-            <argument>%bitbag_sylius_catalog_plugin.form.type.catalog_rule.validation_groups%</argument>
-            <argument type="service" id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" />
             <tag name="form.type" />
         </service>
     </services>

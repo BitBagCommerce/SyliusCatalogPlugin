@@ -12,13 +12,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Entity;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
-
-interface ConfigurableCatalogInterface extends ResourceInterface
+interface RuleCheckerInterface
 {
-    public function getType(): ?string;
-
-    public function getConfiguration(): array;
-
-    public function getCatalog(): ?CatalogInterface;
+    public function isEligible(CatalogSubjectInterface $subject, array $configuration): bool;
 }
