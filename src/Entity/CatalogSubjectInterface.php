@@ -21,7 +21,7 @@ interface CatalogSubjectInterface
     /**
      * @return Collection|CatalogInterface[]
      *
-     * @psalm-return Collection<array-key, PromotionInterface>
+     * @psalm-return Collection<array-key, CatalogInterface>
      */
     public function getCatalogs(): Collection;
 

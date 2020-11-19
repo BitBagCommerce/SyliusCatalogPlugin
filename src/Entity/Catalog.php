@@ -27,7 +27,7 @@ class Catalog implements CatalogInterface
     {
         $this->initializeTranslationsCollection();
 
-        /** @var ArrayCollection<array-key, CatalogRuleInterface> $this->ruleId */
+        /** @var ArrayCollection<array-key, CatalogRuleInterface> $this->rules */
         $this->rules = new ArrayCollection();
     }
 

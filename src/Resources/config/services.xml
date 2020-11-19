@@ -4,6 +4,7 @@
     <imports>
         <import resource="services/form.xml" />
         <import resource="services/catalog.xml" />
+        <import resource="services/twig.xml" />
     </imports>
     <services>
         <defaults public="true" />

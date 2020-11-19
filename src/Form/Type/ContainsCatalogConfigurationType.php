@@ -23,14 +23,6 @@ use Symfony\Component\Validator\Constraints\Type;
 
 final class ContainsCatalogConfigurationType extends AbstractType
 {
-    /** @var RepositoryInterface */
-    private $catalogRepository;
-
-    public function __construct(RepositoryInterface $catalogRepository)
-    {
-        $this->catalogRepository = $catalogRepository;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -41,10 +33,6 @@ final class ContainsCatalogConfigurationType extends AbstractType
                     new Type(['type' => 'string', 'groups' => ['sylius']]),
                 ]
             ]);
-
-        $builder->get('catalogCode')->addModelTransformer(
-            new ReversedTransformer(new ResourceToIdentifierTransformer($this->catalogRepository, 'code'))
-        );
     }
 
     public function getBlockPrefix(): string
