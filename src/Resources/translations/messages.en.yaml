@@ -7,11 +7,13 @@ bitbag_sylius_catalog_plugin:
         name: Name
         start_date: Starts at
         end_date: Ends at
+        configuration: Configuration
         form:
             catalog_rule:
                 contains_catalog: Contains catalog
             catalog:
-                rules: Catalog rules
+                rules: Rules
                 add_rule: Add rule
                 rule_type: Type
+                add_catalog_configuration: Configuration
 

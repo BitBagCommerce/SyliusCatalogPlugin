@@ -18,5 +18,12 @@ sylius_grid:
             type: update
           delete:
             type: delete
+sylius_product:
+  driver: doctrine/orm
+  resources:
+    product:
+      classes:
+        model: Sylius\Component\Core\Model\Product
+        repository: BitBag\SyliusCatalogPlugin\Repository\ProductRepository
 
 

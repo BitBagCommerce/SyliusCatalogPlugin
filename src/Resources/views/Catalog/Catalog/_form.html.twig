@@ -1,4 +1,5 @@
 {% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationForm %}
+{% form_theme form '@BitBagSyliusCatalogPlugin/Form/theme.html.twig' %}
 
 <div class="ui two column stackable grid">
         <div class="column" id="bitbag-block-image">
@@ -13,12 +14,15 @@
                         {{ form_row(form.endDate) }}
                 </div>
         </div>
-        <div class="column" id="bitbag-block-image">
-                {{ form_row(form.rules) }}
+        <div class="ui segment">
+                <h4 class="ui dividing header">{{ 'bitbag_sylius_catalog_plugin.ui.configuration'|trans }}</h4>
+                <div class="ui two column stackable grid">
+                        <div class="column" id="rules">
+                                {{ form_widget(form.rules) }}
+                        </div>
+                </div>
         </div>
-        <div>
-                <h1>{{ bitbag_render_product_catalog(form) }}</h1>
-        </div>
+        {{ bitbag_render_product_catalog() }}
 </div>
 
 

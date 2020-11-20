@@ -10,9 +10,11 @@
         </id>
         <field name="startDate" column="start_date" type="datetime" nullable="true"/>
         <field name="endDate" column="end_date" type="datetime" nullable="true"/>
-        <many-to-one field="rules" target-entity="BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface" inversed-by="catalog">
-            <join-column name="rules" referenced-column-name="id" nullable="true" />
-        </many-to-one>
+        <one-to-many field="rules" target-entity="BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface" mapped-by="catalog" orphan-removal="true">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
 
     </entity>
 </doctrine-mapping>

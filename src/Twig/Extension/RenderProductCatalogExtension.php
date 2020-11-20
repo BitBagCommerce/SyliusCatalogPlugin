@@ -12,10 +12,28 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Twig\Extension;
 
+use BitBag\SyliusCatalogPlugin\Repository\ProductCatalogRepository;
+use BitBag\SyliusCatalogPlugin\Repository\ProductRepository;
+use Symfony\Component\Templating\EngineInterface;
 use Twig\Extension\AbstractExtension;
 
 final class RenderProductCatalogExtension extends AbstractExtension
 {
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
+    /**
+     * @var EngineInterface
+     */
+    private $engine;
+
+    public function __construct(ProductRepository $productRepository, EngineInterface $engine)
+    {
+        $this->productRepository = $productRepository;
+        $this->engine = $engine;
+    }
+
     public function getFunctions(): array
     {
         return [
@@ -25,6 +43,14 @@ final class RenderProductCatalogExtension extends AbstractExtension
 
     public function renderProductCatalog(): string
     {
-        return "Hello!";
+        $products = $this->productRepository->FindProducts();
+
+        if ($products !== null) {
+            $template = $template ?? '@BitBagSyliusCatalogPlugin/Catalog/showProducts.html.twig';
+
+            return $this->engine->render($template, ['products' => $products]);
+        }
+
+        return ' ';
     }
 }

@@ -4,6 +4,7 @@
     <services>
         <service id="bitbag_sylius_catalog_plugin.twig.extension.product_catalog" class="BitBag\SyliusCatalogPlugin\Twig\Extension\RenderProductCatalogExtension" public="false">
             <tag name="twig.extension" />
+            <argument type="service" id="sylius.repository.product"/>
         </service>
     </services>
 </container>
