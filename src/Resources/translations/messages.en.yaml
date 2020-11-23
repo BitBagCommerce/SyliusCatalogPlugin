@@ -1,5 +1,6 @@
 bitbag_sylius_catalog_plugin:
     ui:
+        code: Code
         edit_catalog: Edit catalog
         new_catalog: Create new catalog
         catalogs: Catalogs

@@ -43,6 +43,19 @@ class Catalog implements CatalogInterface
     /** @var CatalogRuleInterface[]|Collection */
     protected $rules;
 
+    /** @var string|null */
+    protected $code;
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(?string $code): void
+    {
+        $this->code = $code;
+    }
+
     public function getRules(): Collection
     {
         return $this->rules;
