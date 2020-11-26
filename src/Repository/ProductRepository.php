@@ -16,13 +16,5 @@ use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository as BaseProductReposi
 
 class ProductRepository extends BaseProductRepository
 {
-    public function findProducts(string $code): array
-    {
-        return $this->createQueryBuilder('p')
-            ->where('p.code = :code')
-            ->andWhere('p.code like \'K%\'')
-            ->setParameter('code', $code)
-            ->getQuery()
-            ->getArrayResult();
-    }
+
 }

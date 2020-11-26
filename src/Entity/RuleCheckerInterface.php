@@ -12,7 +12,9 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Entity;
 
+use Doctrine\ORM\QueryBuilder;
+
 interface RuleCheckerInterface
 {
-    public function isEligible(CatalogSubjectInterface $subject, array $configuration): bool;
+    public function modifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder): void;
 }

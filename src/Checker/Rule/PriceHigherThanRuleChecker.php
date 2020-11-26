@@ -15,18 +15,16 @@ namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
 
-class ContainsCatalogRuleChecker implements RuleCheckerInterface
+class PriceHigherThanRuleChecker implements RuleCheckerInterface
 {
     /** @var int $i */
     private $i = 0;
 
-    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder): void
+    public function ModifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder): void
     {
         $parameterName = 'configuration'.$this->i;
-            $this->i++;
-            $queryBuilder
-                ->andWhere('p.code like :'.$parameterName)
-                ->setParameter($parameterName, $configuration['catalogCode'].'%');
-
+        $this->i++;
+        $queryBuilder
+            ->innerJoin();
     }
 }

@@ -4,8 +4,12 @@
     <services>
         <service id="bitbag_sylius_catalog_plugin.twig.extension.product_catalog" class="BitBag\SyliusCatalogPlugin\Twig\Extension\RenderProductCatalogExtension" public="false">
             <tag name="twig.extension" />
-            <argument type="service" id="sylius.repository.product" />
             <argument type="service" id="templating" />
+            <argument type="service" id="bitbag_sylius_catalog_plugin.registry_catalog_rule_checker" />
+            <argument type="service" id="sylius.repository.product" />
+            <argument type="service" id="bitbag.resolver.catalog.catalog_resource" />
+            <argument type="service" id="bitbag_sylius_catalog_plugin.repository.catalog_rule" />
+
         </service>
     </services>
 </container>
