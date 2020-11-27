@@ -11,6 +11,7 @@
         <field name="startDate" column="start_date" type="datetime" nullable="true"/>
         <field name="endDate" column="end_date" type="datetime" nullable="true"/>
         <field name="code" column="code" type="string" nullable="true"/>
+        <field name="connectingRules" column="connecting_rules" type="string" />
         <one-to-many field="rules" target-entity="BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface" mapped-by="catalog" orphan-removal="true">
             <cascade>
                 <cascade-all />

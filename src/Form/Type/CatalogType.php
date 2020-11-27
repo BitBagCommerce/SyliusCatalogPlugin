@@ -15,6 +15,7 @@ namespace BitBag\SyliusCatalogPlugin\Form\Type;
 use BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -44,6 +45,13 @@ final class CatalogType extends AbstractResourceType
             ->add('rules', CatalogRuleCollectionType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.rules',
                 'button_add_label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.add_rule',
+            ])
+            ->add('connectingRules', ChoiceType::class, [
+                'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.rule_connecting_rules',
+                'choices' => [
+                    'And' => 'And',
+                    'Or' => 'Or'
+                ]
             ]);
     }
 

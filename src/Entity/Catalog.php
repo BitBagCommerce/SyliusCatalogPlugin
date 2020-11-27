@@ -46,6 +46,19 @@ class Catalog implements CatalogInterface
     /** @var string|null */
     protected $code;
 
+    /** @var string|null */
+    protected $connectingRules;
+
+    public function getConnectingRules(): ?string
+    {
+        return $this->connectingRules;
+    }
+
+    public function setConnectingRules(?string $connectingRules): void
+    {
+        $this->connectingRules = $connectingRules;
+    }
+
     public function getCode(): ?string
     {
         return $this->code;

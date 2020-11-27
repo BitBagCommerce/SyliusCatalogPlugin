@@ -13,6 +13,7 @@ bitbag_sylius_catalog_plugin:
             catalog_rule:
                 contains_catalog: Contains catalog
                 price_higher_than: Price higher than
+                sort_by_name: Sort by name
             catalog:
                 rules: Rules
                 add_rule: Add rule

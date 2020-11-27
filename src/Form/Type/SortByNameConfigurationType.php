@@ -18,22 +18,22 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
-final class ContainsCatalogConfigurationType extends AbstractType
+final class SortByNameConfigurationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('catalogCode', TextType::class, [
+            ->add('catalogName', TextType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.add_catalog_configuration',
                 'constraints' => [
                     new NotBlank(['groups' => ['sylius']]),
-                    new Type(['type' => 'string', 'groups' => ['sylius']]),
+                    new Type(['type' => 'string', 'groups' => ['sylius']])
                 ]
             ]);
     }
 
     public function getBlockPrefix(): string
     {
-        return 'bitbag_sylius_catalog_plugin_catalog_rule_contains_catalog_configuration';
+        return 'bitbag_sylius_catalog_plugin_catalog_rule_sort_by_name_configuration';
     }
 }
