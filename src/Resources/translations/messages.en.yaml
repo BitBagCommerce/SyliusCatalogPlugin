@@ -12,9 +12,11 @@ bitbag_sylius_catalog_plugin:
         form:
             catalog_rule:
                 contains_catalog: Contains catalog
+                price_higher_than: Price higher than
             catalog:
                 rules: Rules
                 add_rule: Add rule
                 rule_type: Type
                 add_catalog_configuration: Configuration
+
 

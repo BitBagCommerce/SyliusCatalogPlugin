@@ -8,7 +8,7 @@
             <argument type="service" id="sylius.repository.product" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.price_higher_than" class="BitBag\SyliusCatalogPlugin\Checker\Rule\PriceHigherThanRuleChecker">
-            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="price_higher_than" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.price_higher_than" form-type="BitBag\SyliusCatalogPlugin\Form\Type\PriceHigherThanConfigurationType"/>
+            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="price_higher_than" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.price_higher_than" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ChannelBasedPriceHigherThanConfigurationType"/>
         </service>
     </services>
 </container>

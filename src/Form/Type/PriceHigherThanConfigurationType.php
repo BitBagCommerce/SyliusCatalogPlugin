@@ -12,9 +12,10 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Form\Type;
 
+use Sylius\Bundle\MoneyBundle\Form\Type\MoneyType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
@@ -28,8 +29,17 @@ final class PriceHigherThanConfigurationType extends AbstractType
                 'constraints' => [
                     new NotBlank(['groups' => ['sylius']]),
                     new Type(['type' => 'numeric', 'groups' => ['sylius']]),
-                ]
+                ],
+                'currency' => $options['currency']
             ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver
+            ->setRequired('currency')
+            ->setAllowedTypes('currency', 'string')
+        ;
     }
 
     public function getBlockPrefix(): string

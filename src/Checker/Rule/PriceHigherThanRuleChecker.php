@@ -25,6 +25,9 @@ class PriceHigherThanRuleChecker implements RuleCheckerInterface
         $parameterName = 'configuration'.$this->i;
         $this->i++;
         $queryBuilder
-            ->innerJoin();
+            ->leftJoin('p.variants', 'variant'.$this->i)
+            ->leftJoin('variant'.$this->i.'.channelPricings', 'price'.$this->i)
+            ->andWhere('price'.$this->i.'.price > :'.$parameterName)
+            ->setParameter($parameterName, $configuration['FASHION_WEB']['amount']);
     }
 }
