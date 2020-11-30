@@ -9,6 +9,7 @@
         </service>
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.price_higher_than" class="BitBag\SyliusCatalogPlugin\Checker\Rule\PriceHigherThanRuleChecker">
             <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="price_higher_than" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.price_higher_than" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ChannelBasedPriceHigherThanConfigurationType"/>
+            <argument type="service" id="sylius.context.channel" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.sort_by_name" class="BitBag\SyliusCatalogPlugin\Checker\Rule\SortByNameRuleChecker">
             <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="sort_by_name" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.sort_by_name" form-type="BitBag\SyliusCatalogPlugin\Form\Type\SortByNameConfigurationType"/>
