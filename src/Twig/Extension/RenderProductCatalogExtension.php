@@ -18,6 +18,7 @@ use BitBag\SyliusCatalogPlugin\Entity\CatalogRule;
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use BitBag\SyliusCatalogPlugin\Repository\ProductRepository;
 use BitBag\SyliusCatalogPlugin\Resolver\CatalogResourceResolverInterface;
+use BitBag\SyliusCatalogPlugin\Resolver\ProductResolverInterface;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Registry\ServiceRegistry;
 use Symfony\Component\Templating\EngineInterface;
@@ -31,25 +32,16 @@ final class RenderProductCatalogExtension extends AbstractExtension
     /** @var CatalogResourceResolverInterface */
     private $catalogResolver;
 
-    /** @var EntityRepository */
-    private $catalogRuleRepository;
+    /** @var ProductResolverInterface */
+    private $productResolver;
 
-    /** @var ServiceRegistry */
-    private $serviceRegistry;
-
-    /** @var ProductRepository */
-    private $productRepository;
-
-    public function __construct(EngineInterface $engine, ServiceRegistry $serviceRegistry, ProductRepository $productRepository,
-                                CatalogResourceResolverInterface $catalogResolver, EntityRepository $catalogRuleRepository)
+    public function __construct(EngineInterface $engine, CatalogResourceResolverInterface $catalogResolver,
+                                ProductResolverInterface $productResolver)
     {
-        $this->productRepository = $productRepository;
-        $this->catalogRuleRepository = $catalogRuleRepository;
+        $this->productResolver = $productResolver;
         $this->engine = $engine;
         $this->catalogResolver = $catalogResolver;
-        $this->serviceRegistry = $serviceRegistry;
     }
-
     public function getFunctions(): array
     {
         return [
@@ -62,24 +54,7 @@ final class RenderProductCatalogExtension extends AbstractExtension
         /** @var Catalog $catalog */
         $catalog = $this->catalogResolver->findOrLog($code);
 
-        $connectingRules = $catalog->getConnectingRules();
-
-        /** @var CatalogRule $rules */
-        $rules = $catalog->getRules();
-
-        $qb = $this->productRepository->createQueryBuilder('p');
-        foreach ($rules as $rule) {
-            $type = $rule->getType();
-
-            /** @var RuleCheckerInterface $ruleChecker */
-            $ruleChecker = $this->serviceRegistry->get($type);
-
-            $sortByCodeConfiguration = $rule->getConfiguration();
-
-            $ruleChecker->modifyQueryBuilder($sortByCodeConfiguration, $qb, $connectingRules);
-        }
-        $products = $qb
-            ->getQuery()->getResult();
+        $products = $this->productResolver->findMatchingProducts($code, $catalog);
 
         if ($products !== null && $catalog !== null) {
             $template = $template ?? '@BitBagSyliusCatalogPlugin/Catalog/showProducts.html.twig';

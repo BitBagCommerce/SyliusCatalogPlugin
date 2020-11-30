@@ -36,18 +36,14 @@ class SortByNameRuleChecker implements RuleCheckerInterface
         $locale = $this->localeContext->getLocaleCode();
         $this->i++;
 
-        $queryBuilder
-            ->leftJoin('p.translations', 'name'.$this->i)
-            ->leftJoin('p.attributes', 'atr'.$this->i);
-
         if ($connectingRules === self::OR) {
             $queryBuilder
-                ->andWhere('atr'.$this->i.'.localeCode =:locale')
-                ->orWhere('name'.$this->i.'.name like :'.$parameterName);
+                ->andWhere('atr.localeCode =:locale')
+                ->orWhere('name.name like :'.$parameterName);
         } else {
             $queryBuilder
-                ->andWhere('name'.$this->i.'.name like :'.$parameterName)
-                ->andWhere('atr'.$this->i.'.localeCode =:locale');
+                ->andWhere('name.name like :'.$parameterName)
+                ->andWhere('atr.localeCode =:locale');
         }
 
         $queryBuilder

@@ -6,6 +6,7 @@
         <import resource="services/catalog.xml" />
         <import resource="services/twig.xml" />
         <import resource="services/resolver/catalog.xml" />
+        <import resource="services/resolver/product.xml" />
     </imports>
     <services>
         <defaults public="true" />

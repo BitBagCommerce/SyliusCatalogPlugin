@@ -38,17 +38,16 @@ class PriceHigherThanRuleChecker implements RuleCheckerInterface
         $currentChannel = $this->channelContext->getChannel()->getCode();
 
         $queryBuilder
-            ->leftJoin('p.variants', 'variant'.$this->i)
-            ->leftJoin('variant'.$this->i.'.channelPricings', 'price'.$this->i)
-            ->andWhere('price'.$this->i.'.channelCode =:currentChannel')
+
+            ->andWhere('price.channelCode =:currentChannel')
             ->setParameter('currentChannel', $currentChannel);
 
         if ($connectingRules == self::OR) {
             $queryBuilder
-                ->orWhere('price'.$this->i.'.price > :'.$parameterName);
+                ->orWhere('price.price > :'.$parameterName);
         } else {
             $queryBuilder
-                ->andWhere('price'.$this->i.'.price > :'.$parameterName);
+                ->andWhere('price.price > :'.$parameterName);
         }
         $queryBuilder
             ->setParameter($parameterName, $configuration['FASHION_WEB']['amount']);
