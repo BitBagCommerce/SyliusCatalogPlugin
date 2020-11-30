@@ -9,12 +9,15 @@ bitbag_sylius_catalog_plugin:
         start_date: Starts at
         end_date: Ends at
         configuration: Configuration
+
         form:
             catalog_rule:
                 contains_catalog: Contains catalog
                 price_higher_than: Price higher than
                 sort_by_name: Sort by name
             catalog:
+                connecting_rules: Connecting rules
+                rule_connecting_rules: Connecting rules
                 rules: Rules
                 add_rule: Add rule
                 rule_type: Type

@@ -20,14 +20,22 @@ class PriceHigherThanRuleChecker implements RuleCheckerInterface
     /** @var int $i */
     private $i = 0;
 
-    public function ModifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder): void
+    public function ModifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
         $parameterName = 'configuration'.$this->i;
         $this->i++;
         $queryBuilder
             ->leftJoin('p.variants', 'variant'.$this->i)
-            ->leftJoin('variant'.$this->i.'.channelPricings', 'price'.$this->i)
-            ->andWhere('price'.$this->i.'.price > :'.$parameterName)
+            ->leftJoin('variant'.$this->i.'.channelPricings', 'price'.$this->i);
+
+        if ($connectingRules == "Or") {
+            $queryBuilder
+                ->orWhere('price'.$this->i.'.price > :'.$parameterName);
+        } else {
+            $queryBuilder
+            ->andWhere('price'.$this->i.'.price > :'.$parameterName);
+        }
+        $queryBuilder
             ->setParameter($parameterName, $configuration['FASHION_WEB']['amount']);
     }
 }

@@ -16,5 +16,5 @@ use Doctrine\ORM\QueryBuilder;
 
 interface RuleCheckerInterface
 {
-    public function modifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder): void;
+    public function modifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void;
 }

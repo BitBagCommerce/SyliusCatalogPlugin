@@ -20,13 +20,19 @@ class ContainsCatalogRuleChecker implements RuleCheckerInterface
     /** @var int $i */
     private $i = 0;
 
-    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder): void
+    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
         $parameterName = 'configuration'.$this->i;
             $this->i++;
-            $queryBuilder
-                ->andWhere('p.code like :'.$parameterName)
-                ->setParameter($parameterName, $configuration['catalogCode'].'%');
 
+            if ($connectingRules == "Or") {
+               $queryBuilder
+                   ->orWhere('p.code like :'.$parameterName);
+            } else {
+                $queryBuilder
+                    ->andWhere('p.code like :'.$parameterName);
+            }
+            $queryBuilder
+                ->setParameter($parameterName, $configuration['catalogCode'].'%');
     }
 }

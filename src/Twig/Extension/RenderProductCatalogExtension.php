@@ -62,6 +62,8 @@ final class RenderProductCatalogExtension extends AbstractExtension
         /** @var Catalog $catalog */
         $catalog = $this->catalogResolver->findOrLog($code);
 
+        $connectingRules = $catalog->getConnectingRules();
+
         /** @var CatalogRule $rules */
         $rules = $catalog->getRules();
 
@@ -74,7 +76,7 @@ final class RenderProductCatalogExtension extends AbstractExtension
 
             $containsCatalogConfiguration = $rule->getConfiguration();
 
-            $ruleChecker->modifyQueryBuilder($containsCatalogConfiguration, $qb);
+            $ruleChecker->modifyQueryBuilder($containsCatalogConfiguration, $qb, $connectingRules);
         }
         $products = $qb
             ->getQuery()->getResult();

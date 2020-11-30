@@ -21,14 +21,24 @@ class SortByNameRuleChecker implements RuleCheckerInterface
     /** @var int $i */
     private $i = 0;
 
-    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder): void
+    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
         $parameterName = 'configuration'.$this->i;
 
         $this->i++;
+
         $queryBuilder
-            ->leftJoin('p.translations', 'name'.$this->i)
-            ->andWhere('name'.$this->i.'.name like :'.$parameterName)
+        ->leftJoin('p.translations', 'name'.$this->i);
+
+        if ($connectingRules == "Or") {
+            $queryBuilder
+                ->orWhere('name'.$this->i.'.name like :'.$parameterName);
+        } else {
+            $queryBuilder
+                ->andWhere('name'.$this->i.'.name like :'.$parameterName);
+        }
+
+        $queryBuilder
             ->setParameter($parameterName, $configuration['catalogName'].'%');
     }
 }
