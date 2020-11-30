@@ -15,30 +15,43 @@ namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
 
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Sylius\Component\Locale\Context\LocaleContextInterface;
 
 class SortByNameRuleChecker implements RuleCheckerInterface
 {
     /** @var int $i */
     private $i = 0;
 
+    /** @var LocaleContextInterface */
+    private $localeContext;
+
+    public function __construct(LocaleContextInterface $localeContext)
+    {
+        $this-> localeContext = $localeContext;
+    }
+
     public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
-        $parameterName = 'configuration'.$this->i;
-
+        $parameterName = 'configurationName'.$this->i;
+        $locale = $this->localeContext->getLocaleCode();
         $this->i++;
 
         $queryBuilder
-        ->leftJoin('p.translations', 'name'.$this->i);
+            ->leftJoin('p.translations', 'name'.$this->i)
+            ->leftJoin('p.attributes', 'atr'.$this->i);
 
-        if ($connectingRules == "Or") {
+        if ($connectingRules === self::OR) {
             $queryBuilder
+                ->andWhere('atr'.$this->i.'.localeCode =:locale')
                 ->orWhere('name'.$this->i.'.name like :'.$parameterName);
         } else {
             $queryBuilder
-                ->andWhere('name'.$this->i.'.name like :'.$parameterName);
+                ->andWhere('name'.$this->i.'.name like :'.$parameterName)
+                ->andWhere('atr'.$this->i.'.localeCode =:locale');
         }
 
         $queryBuilder
-            ->setParameter($parameterName, $configuration['catalogName'].'%');
+            ->setParameter($parameterName, $configuration['catalogName'].'%')
+            ->setParameter('locale', $locale);
     }
 }

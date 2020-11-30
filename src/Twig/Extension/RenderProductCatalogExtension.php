@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Twig\Extension;
 
-use BitBag\SyliusCatalogPlugin\Checker\Rule\ContainsCatalogRuleChecker;
+use BitBag\SyliusCatalogPlugin\Checker\Rule\SortByCodeRuleChecker;
 use BitBag\SyliusCatalogPlugin\Entity\Catalog;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogRule;
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
@@ -74,9 +74,9 @@ final class RenderProductCatalogExtension extends AbstractExtension
             /** @var RuleCheckerInterface $ruleChecker */
             $ruleChecker = $this->serviceRegistry->get($type);
 
-            $containsCatalogConfiguration = $rule->getConfiguration();
+            $sortByCodeConfiguration = $rule->getConfiguration();
 
-            $ruleChecker->modifyQueryBuilder($containsCatalogConfiguration, $qb, $connectingRules);
+            $ruleChecker->modifyQueryBuilder($sortByCodeConfiguration, $qb, $connectingRules);
         }
         $products = $qb
             ->getQuery()->getResult();

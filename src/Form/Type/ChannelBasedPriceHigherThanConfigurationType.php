@@ -27,7 +27,7 @@ class ChannelBasedPriceHigherThanConfigurationType extends AbstractType
             'entry_type' => ItemTotalConfigurationType::class,
             'entry_options' => function (ChannelInterface $channel) {
             return [
-                'label' => 'bitbag_sylius_catalog_plugin.ui.catalog_rule.channel',
+                'label' => $channel->getCode(),
                 'currency' => $channel->getBaseCurrency()->getCode()
             ];
             }

@@ -15,17 +15,17 @@ namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
 
-class ContainsCatalogRuleChecker implements RuleCheckerInterface
+class SortByCodeRuleChecker implements RuleCheckerInterface
 {
     /** @var int $i */
     private $i = 0;
 
     public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
-        $parameterName = 'configuration'.$this->i;
+        $parameterName = 'configurationCode'.$this->i;
             $this->i++;
 
-            if ($connectingRules == "Or") {
+            if ($connectingRules === self::OR) {
                $queryBuilder
                    ->orWhere('p.code like :'.$parameterName);
             } else {

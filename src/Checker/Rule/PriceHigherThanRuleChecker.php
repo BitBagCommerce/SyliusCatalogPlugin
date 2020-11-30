@@ -14,41 +14,41 @@ namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
 
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
-use Sylius\Component\Channel\Context\RequestBased\ChannelContext;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
 
 class PriceHigherThanRuleChecker implements RuleCheckerInterface
 {
     /** @var int $i */
     private $i = 0;
 
-    /** @var ChannelContext */
+    /** @var ChannelContextInterface */
     private $channelContext;
 
-    public function __construct(ChannelContext $channelContext)
+    public function __construct(ChannelContextInterface $channelContext)
     {
         $this->channelContext = $channelContext;
     }
 
-    public function ModifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
+    public function modifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
-        $parameterName = 'configuration'.$this->i;
+        $parameterName = 'configurationPrice'.$this->i;
         $this->i++;
 
-        /** @var ChannelContext $currentChannel */
+        /** @var ChannelContextInterface $currentChannel */
         $currentChannel = $this->channelContext->getChannel()->getCode();
 
         $queryBuilder
             ->leftJoin('p.variants', 'variant'.$this->i)
             ->leftJoin('variant'.$this->i.'.channelPricings', 'price'.$this->i)
-            ->andWhere('price.channel_code =:currentChannel')
+            ->andWhere('price'.$this->i.'.channelCode =:currentChannel')
             ->setParameter('currentChannel', $currentChannel);
 
-        if ($connectingRules == "Or") {
+        if ($connectingRules == self::OR) {
             $queryBuilder
                 ->orWhere('price'.$this->i.'.price > :'.$parameterName);
         } else {
             $queryBuilder
-            ->andWhere('price'.$this->i.'.price > :'.$parameterName);
+                ->andWhere('price'.$this->i.'.price > :'.$parameterName);
         }
         $queryBuilder
             ->setParameter($parameterName, $configuration['FASHION_WEB']['amount']);

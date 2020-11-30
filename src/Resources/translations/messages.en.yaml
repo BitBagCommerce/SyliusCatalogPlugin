@@ -9,10 +9,10 @@ bitbag_sylius_catalog_plugin:
         start_date: Starts at
         end_date: Ends at
         configuration: Configuration
-
+        catalog_rule.channel: Channel
         form:
             catalog_rule:
-                contains_catalog: Contains catalog
+                sort_by_code: Sort by code
                 price_higher_than: Price higher than
                 sort_by_name: Sort by name
             catalog:

@@ -16,5 +16,8 @@ use Doctrine\ORM\QueryBuilder;
 
 interface RuleCheckerInterface
 {
+    public const OR = 'Or';
+    public const AND = 'And';
+
     public function modifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void;
 }

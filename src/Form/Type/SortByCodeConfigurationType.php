@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
-final class ContainsCatalogConfigurationType extends AbstractType
+final class SortByCodeConfigurationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -34,6 +34,6 @@ final class ContainsCatalogConfigurationType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'bitbag_sylius_catalog_plugin_catalog_rule_contains_catalog_configuration';
+        return 'bitbag_sylius_catalog_plugin_catalog_rule_sort_by_code_configuration';
     }
 }
