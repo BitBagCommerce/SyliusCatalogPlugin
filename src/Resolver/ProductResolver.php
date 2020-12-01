@@ -12,12 +12,11 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Resolver;
 
-use BitBag\SyliusCatalogPlugin\Entity\Catalog;
+use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogRule;
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
-use BitBag\SyliusCatalogPlugin\Repository\ProductRepository;
+use Sylius\Bundle\ProductBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Registry\ServiceRegistry;
-use function Amp\Promise\rethrow;
 
 class ProductResolver implements ProductResolverInterface
 {
@@ -34,7 +33,7 @@ class ProductResolver implements ProductResolverInterface
         $this->productRepository = $productRepository;
     }
 
-    public function findMatchingProducts(?string $code, $catalog)
+    public function findMatchingProducts(?string $code, CatalogInterface $catalog)
     {
         $connectingRules = $catalog->getConnectingRules();
 
@@ -43,7 +42,6 @@ class ProductResolver implements ProductResolverInterface
 
         $qb = $this->productRepository->createQueryBuilder('p')
             ->leftJoin('p.translations', 'name')
-            ->leftJoin('p.attributes', 'atr')
             ->leftJoin('p.variants', 'variant')
             ->leftJoin('variant.channelPricings', 'price');
         foreach ($rules as $rule) {
@@ -52,13 +50,11 @@ class ProductResolver implements ProductResolverInterface
             /** @var RuleCheckerInterface $ruleChecker */
             $ruleChecker = $this->serviceRegistry->get($type);
 
-            $sortByCodeConfiguration = $rule->getConfiguration();
+            $ruleConfiguration = $rule->getConfiguration();
 
-            $ruleChecker->modifyQueryBuilder($sortByCodeConfiguration, $qb, $connectingRules);
+            $ruleChecker->modifyQueryBuilder($ruleConfiguration, $qb, $connectingRules);
         }
         return $qb
             ->getQuery()->getResult();
-
-
     }
 }

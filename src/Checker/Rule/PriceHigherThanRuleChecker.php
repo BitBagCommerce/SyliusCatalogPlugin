@@ -29,7 +29,7 @@ class PriceHigherThanRuleChecker implements RuleCheckerInterface
         $this->channelContext = $channelContext;
     }
 
-    public function modifyQueryBuilder( array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
+    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
         $parameterName = 'configurationPrice'.$this->i;
         $this->i++;
@@ -50,6 +50,6 @@ class PriceHigherThanRuleChecker implements RuleCheckerInterface
                 ->andWhere('price.price > :'.$parameterName);
         }
         $queryBuilder
-            ->setParameter($parameterName, $configuration['FASHION_WEB']['amount']);
+            ->setParameter($parameterName, $configuration[$currentChannel]['amount']);
     }
 }

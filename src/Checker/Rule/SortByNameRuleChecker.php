@@ -38,12 +38,12 @@ class SortByNameRuleChecker implements RuleCheckerInterface
 
         if ($connectingRules === self::OR) {
             $queryBuilder
-                ->andWhere('atr.localeCode =:locale')
+                ->andWhere('name.locale =:locale')
                 ->orWhere('name.name like :'.$parameterName);
         } else {
             $queryBuilder
                 ->andWhere('name.name like :'.$parameterName)
-                ->andWhere('atr.localeCode =:locale');
+                ->andWhere('name.locale =:locale');
         }
 
         $queryBuilder

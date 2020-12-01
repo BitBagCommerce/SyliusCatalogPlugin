@@ -12,15 +12,9 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Twig\Extension;
 
-use BitBag\SyliusCatalogPlugin\Checker\Rule\SortByCodeRuleChecker;
 use BitBag\SyliusCatalogPlugin\Entity\Catalog;
-use BitBag\SyliusCatalogPlugin\Entity\CatalogRule;
-use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
-use BitBag\SyliusCatalogPlugin\Repository\ProductRepository;
 use BitBag\SyliusCatalogPlugin\Resolver\CatalogResourceResolverInterface;
 use BitBag\SyliusCatalogPlugin\Resolver\ProductResolverInterface;
-use Doctrine\ORM\EntityRepository;
-use Sylius\Component\Registry\ServiceRegistry;
 use Symfony\Component\Templating\EngineInterface;
 use Twig\Extension\AbstractExtension;
 
