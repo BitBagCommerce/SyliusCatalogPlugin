@@ -14,6 +14,7 @@ namespace BitBag\SyliusCatalogPlugin\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
@@ -29,6 +30,7 @@ class Catalog implements CatalogInterface
 
         /** @var ArrayCollection<array-key, CatalogRuleInterface> $this->rules */
         $this->rules = new ArrayCollection();
+        $this->associatedProducts = new ArrayCollection();
     }
 
     /** @var int|null */
@@ -48,6 +50,9 @@ class Catalog implements CatalogInterface
 
     /** @var string|null */
     protected $connectingRules;
+
+    /** @var ProductInterface[]|Collection */
+    protected $associatedProducts;
 
     public function getConnectingRules(): ?string
     {
@@ -142,5 +147,30 @@ class Catalog implements CatalogInterface
     protected function createTranslation(): CatalogTranslation
     {
         return new CatalogTranslation();
+    }
+
+
+    public function getAssociatedProducts(): Collection
+    {
+        return $this->associatedProducts;
+    }
+
+    public function hasAssociatedProduct(ProductInterface $product): bool
+    {
+        return $this->associatedProducts->contains($product);
+    }
+
+    public function addAssociatedProduct(ProductInterface $product): void
+    {
+        if (!$this->hasAssociatedProduct($product)) {
+            $this->associatedProducts->add($product);
+        }
+    }
+
+    public function removeAssociatedProduct(ProductInterface $product): void
+    {
+        if ($this->hasAssociatedProduct($product)) {
+            $this->associatedProducts->removeElement($product);
+        }
     }
 }

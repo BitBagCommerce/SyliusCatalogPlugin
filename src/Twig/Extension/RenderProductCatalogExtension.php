@@ -47,8 +47,11 @@ final class RenderProductCatalogExtension extends AbstractExtension
     {
         /** @var Catalog $catalog */
         $catalog = $this->catalogResolver->findOrLog($code);
+        $products = [];
 
-        $products = $this->productResolver->findMatchingProducts($code, $catalog);
+        if ($catalog) {
+            $products = $this->productResolver->findMatchingProducts($code, $catalog);
+        }
 
         if ($products !== null && $catalog !== null) {
             $template = $template ?? '@BitBagSyliusCatalogPlugin/Catalog/showProducts.html.twig';

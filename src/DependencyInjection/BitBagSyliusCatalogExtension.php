@@ -32,4 +32,24 @@ final class BitBagSyliusCatalogExtension extends Extension
     {
         return new Configuration();
     }
+
+
+    public function prepend(ContainerBuilder $container): void
+    {
+        if (!$container->hasExtension('doctrine_migrations') || !$container->hasExtension('sylius_labs_doctrine_migrations_extra')) {
+            return;
+        }
+
+        $container->prependExtensionConfig('doctrine_migrations', [
+            'migrations_paths' => [
+                'BitBag\SyliusCatalogPlugin\Migrations' => '@BitBagSyliusCatalogPlugin/Migrations',
+            ],
+        ]);
+
+        $container->prependExtensionConfig('sylius_labs_doctrine_migrations_extra', [
+            'migrations' => [
+                'BitBag\SyliusCatalogPlugin\Migrations' => ['Sylius\Bundle\CoreBundle\Migrations'],
+            ],
+        ]);
+    }
 }
