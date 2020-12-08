@@ -27,4 +27,6 @@ final class BitBagSyliusCatalogPlugin extends Bundle
 
         $container->addCompilerPass(new CatalogRuleCheckersPass());
     }
+
+
 }

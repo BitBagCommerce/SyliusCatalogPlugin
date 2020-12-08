@@ -12,11 +12,13 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
 
+use App\Entity\Product\ProductVariant;
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 
-class PriceHigherThanRuleChecker implements RuleCheckerInterface
+class PriceHigherThanRuleChecker extends AbstractRule implements RuleCheckerInterface
 {
     /** @var int $i */
     private $i = 0;
@@ -31,25 +33,36 @@ class PriceHigherThanRuleChecker implements RuleCheckerInterface
 
     public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
-        $parameterName = 'configurationPrice'.$this->i;
-        $this->i++;
+        $priceParameter = $this->generateParameterName();
+        $channelCodeParameter = $this->generateParameterName();
 
         /** @var ChannelContextInterface $currentChannel */
         $currentChannel = $this->channelContext->getChannel()->getCode();
 
-        $queryBuilder
+        $subquery = $queryBuilder->getEntityManager()->createQueryBuilder()
+            ->select('cp.price')
+            ->from(ProductVariant::class, 'pv')
+            ->join('pv.channelPricings', 'cp')
+            ->where('pv.product = p')
+            ->andWhere('cp.channelCode = :' . $channelCodeParameter)
+            ->andWhere('cp.price <= :'.$priceParameter)
 
-            ->andWhere('price.channelCode =:currentChannel')
-            ->setParameter('currentChannel', $currentChannel);
+            ->getQuery();
 
-        if ($connectingRules == self::OR) {
-            $queryBuilder
-                ->orWhere('price.price > :'.$parameterName);
-        } else {
-            $queryBuilder
-                ->andWhere('price.price > :'.$parameterName);
-        }
+        $rule = $queryBuilder->expr()
+            ->not($queryBuilder->expr()->exists($subquery->getDQL()))
+        ;
+        $this->addRule($connectingRules, $queryBuilder, $rule);
+
         $queryBuilder
-            ->setParameter($parameterName, $configuration[$currentChannel]['amount']);
+            ->setParameter($priceParameter, $configuration[$currentChannel]['amount'])
+            ->setParameter($channelCodeParameter, $currentChannel)
+
+        ;
+    }
+
+    private function generateParameterName(): string
+    {
+        return 'productPriceHigher' . $this->i++;
     }
 }

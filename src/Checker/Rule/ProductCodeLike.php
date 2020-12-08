@@ -15,24 +15,29 @@ namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
 
-class SortByCodeRuleChecker implements RuleCheckerInterface
+class ProductCodeLike extends AbstractRule implements RuleCheckerInterface
 {
+    const PRODUCT_ALIAS = 'p';
+
     /** @var int $i */
     private $i = 0;
 
     public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
-        $parameterName = 'configurationCode'.$this->i;
-            $this->i++;
+        $parameterName = $this->generateParameterName();
 
-            if ($connectingRules === self::OR) {
-               $queryBuilder
-                   ->orWhere('p.code like :'.$parameterName);
-            } else {
-                $queryBuilder
-                    ->andWhere('p.code like :'.$parameterName);
-            }
-            $queryBuilder
-                ->setParameter($parameterName, $configuration['catalogCode'].'%');
+        $rule = $queryBuilder->expr()
+            ->like(sprintf("%s.code", self::PRODUCT_ALIAS), ':'.$parameterName);
+
+        $this->addRule($connectingRules, $queryBuilder, $rule);
+
+        $queryBuilder
+            ->setParameter($parameterName, '%' . $configuration['productCodePrefix'] . '%');
     }
+
+    private function generateParameterName(): string
+    {
+        return 'productCodeLike' . $this->i++;
+    }
+
 }

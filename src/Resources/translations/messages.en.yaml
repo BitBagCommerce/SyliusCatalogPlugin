@@ -12,7 +12,7 @@ bitbag_sylius_catalog_plugin:
         catalog_rule.channel: Channel
         form:
             catalog_rule:
-                sort_by_code: Sort by code
+                sort_by_code: Product code like
                 price_higher_than: Price higher than
                 sort_by_name: Sort by name
             catalog:
@@ -22,5 +22,4 @@ bitbag_sylius_catalog_plugin:
                 add_rule: Add rule
                 rule_type: Type
                 add_catalog_configuration: Configuration
-
-
+                product_code_prefix: Phrase to match code

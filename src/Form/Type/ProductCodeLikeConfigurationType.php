@@ -18,13 +18,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
-final class SortByCodeConfigurationType extends AbstractType
+final class ProductCodeLikeConfigurationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('catalogCode', TextType::class, [
-                'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.add_catalog_configuration',
+            ->add('productCodePrefix', TextType::class, [
+                'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.product_code_prefix',
                 'constraints' => [
                     new NotBlank(['groups' => ['sylius']]),
                     new Type(['type' => 'string', 'groups' => ['sylius']]),
