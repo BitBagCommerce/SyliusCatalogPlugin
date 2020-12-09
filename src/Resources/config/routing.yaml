@@ -1,3 +1,8 @@
 bitbag_sylius_catalog_plugin_admin:
   resource: "@BitBagSyliusCatalogPlugin/Resources/config/routing/admin.yaml"
   prefix: /admin
+
+bitbag_sylius_catalog_plugin_shop:
+  resource: "@BitBagSyliusCatalogPlugin/Resources/config/routing/shop.yaml"
+
+

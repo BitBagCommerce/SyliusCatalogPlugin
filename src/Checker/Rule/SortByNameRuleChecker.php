@@ -3,15 +3,13 @@
 /*
  * This file has been created by developers from BitBag.
  * Feel free to contact us once you face any issues or want to start
- * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on mikolaj.krol@bitbag.pl.
+ * You can find more information about us on https://bitbag.io and write us
+ * an email on hello@bitbag.io.
  */
 
 declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
-
 
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -27,27 +25,27 @@ class SortByNameRuleChecker implements RuleCheckerInterface
 
     public function __construct(LocaleContextInterface $localeContext)
     {
-        $this-> localeContext = $localeContext;
+        $this->localeContext = $localeContext;
     }
 
     public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {
-        $parameterName = 'configurationName'.$this->i;
+        $parameterName = 'configurationName' . $this->i;
         $locale = $this->localeContext->getLocaleCode();
-        $this->i++;
+        ++$this->i;
 
         if ($connectingRules === self::OR) {
             $queryBuilder
                 ->andWhere('name.locale =:locale')
-                ->orWhere('name.name like :'.$parameterName);
+                ->orWhere('name.name like :' . $parameterName);
         } else {
             $queryBuilder
-                ->andWhere('name.name like :'.$parameterName)
+                ->andWhere('name.name like :' . $parameterName)
                 ->andWhere('name.locale =:locale');
         }
 
         $queryBuilder
-            ->setParameter($parameterName, $configuration['catalogName'].'%')
+            ->setParameter($parameterName, $configuration['catalogName'] . '%')
             ->setParameter('locale', $locale);
     }
 }

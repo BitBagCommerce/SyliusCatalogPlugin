@@ -34,9 +34,9 @@ class Catalog implements CatalogInterface
     }
 
     /** @var int|null */
-    protected  $id;
+    protected $id;
 
-    /** @var  \DateTime|null */
+    /** @var \DateTime|null */
     protected $startDate;
 
     /** @var \DateTime|null */
@@ -53,6 +53,11 @@ class Catalog implements CatalogInterface
 
     /** @var ProductInterface[]|Collection */
     protected $associatedProducts;
+
+    /** @var CatalogRuleInterface[]|Collection */
+    protected $productAssociationRules;
+
+    protected $productAssociationConnectingRules;
 
     public function getConnectingRules(): ?string
     {
@@ -149,7 +154,6 @@ class Catalog implements CatalogInterface
         return new CatalogTranslation();
     }
 
-
     public function getAssociatedProducts(): Collection
     {
         return $this->associatedProducts;
@@ -172,5 +176,44 @@ class Catalog implements CatalogInterface
         if ($this->hasAssociatedProduct($product)) {
             $this->associatedProducts->removeElement($product);
         }
+    }
+
+    public function getProductAssociationRules(): Collection
+    {
+        return $this->productAssociationRules;
+    }
+
+    public function hasProductAssociationRules(): bool
+    {
+        return !$this->productAssociationRules->isEmpty();
+    }
+
+    public function hasProductAssociationRule(CatalogRuleInterface $rule): bool
+    {
+        return $this->productAssociationRules->contains($rule);
+    }
+
+    public function addProductAssociationRule(CatalogRuleInterface $rule): void
+    {
+        if (!$this->hasProductAssociationRule($rule)) {
+            $rule->setCatalog($this);
+            $this->productAssociationRules->add($rule);
+        }
+    }
+
+    public function removeProductAssociationRule(CatalogRuleInterface $rule): void
+    {
+        $rule->setCatalog(null);
+        $this->productAssociationRules->removeElement($rule);
+    }
+
+    public function getProductAssociationConnectingRules()
+    {
+        return $this->productAssociationConnectingRules;
+    }
+
+    public function setProductAssociationConnectingRules($productAssociationConnectingRules): void
+    {
+        $this->productAssociationConnectingRules = $productAssociationConnectingRules;
     }
 }

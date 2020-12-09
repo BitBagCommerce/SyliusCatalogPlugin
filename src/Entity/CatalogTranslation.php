@@ -17,7 +17,7 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 class CatalogTranslation extends AbstractTranslation implements CatalogTranslationInterface
 {
     /** @var int|null */
-    protected  $id;
+    protected $id;
 
     /** @var string|null */
     protected $name;

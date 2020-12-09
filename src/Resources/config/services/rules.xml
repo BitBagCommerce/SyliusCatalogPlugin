@@ -3,11 +3,11 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <defaults public="true" />
-        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.sort_by_code" class="BitBag\SyliusCatalogPlugin\Checker\Rule\ProductCodeLike">
-            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="product_code_like" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.sort_by_code" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ProductCodeLikeConfigurationType" />
+        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.product_code" class="BitBag\SyliusCatalogPlugin\Checker\Rule\ProductCodeLike">
+            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="product_code" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.sort_by_code" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ProductCodeLikeConfigurationType" />
         </service>
-        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.price_higher_than" class="BitBag\SyliusCatalogPlugin\Checker\Rule\PriceHigherThanRuleChecker">
-            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="price_higher_than" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.price_higher_than" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ChannelBasedPriceHigherThanConfigurationType"/>
+        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.price" class="BitBag\SyliusCatalogPlugin\Checker\Rule\PriceRule">
+            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="price" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.price_higher_than" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ChannelBasedRulePricing" />
             <argument type="service" id="sylius.context.channel" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.sort_by_name" class="BitBag\SyliusCatalogPlugin\Checker\Rule\SortByNameRuleChecker">

@@ -27,8 +27,8 @@ final class SortByNameConfigurationType extends AbstractType
                 'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.add_catalog_configuration',
                 'constraints' => [
                     new NotBlank(['groups' => ['sylius']]),
-                    new Type(['type' => 'string', 'groups' => ['sylius']])
-                ]
+                    new Type(['type' => 'string', 'groups' => ['sylius']]),
+                ],
             ]);
     }
 

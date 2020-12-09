@@ -12,30 +12,34 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Form\Type;
 
-use Sylius\Bundle\CoreBundle\Form\Type\ChannelCollectionType;
-use Sylius\Bundle\PromotionBundle\Form\Type\Rule\ItemTotalConfigurationType;
-
-use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ChannelBasedPriceHigherThanConfigurationType extends AbstractType
+final class ProductAssociationRuleChoiceType extends AbstractType
 {
+    /** @var array */
+    private $rules;
+
+    public function __construct(array $rules)
+    {
+        $this->rules = $rules;
+    }
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'entry_type' => ItemTotalConfigurationType::class,
-            'entry_options' => function (ChannelInterface $channel) {
-            return [
-                'label' => $channel->getCode(),
-                'currency' => $channel->getBaseCurrency()->getCode()
-            ];
-            }
+            'choices' => array_flip($this->rules),
         ]);
     }
 
     public function getParent(): string
     {
-        return ChannelCollectionType::class;
+        return ChoiceType::class;
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return 'bitbag_sylius_catalog_plugin_product_association_rule_choice';
     }
 }

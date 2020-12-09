@@ -12,11 +12,18 @@
         <field name="endDate" column="end_date" type="datetime" nullable="true"/>
         <field name="code" column="code" type="string" nullable="true"/>
         <field name="connectingRules" column="connecting_rules" type="string" />
-        <one-to-many field="rules" target-entity="BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface" mapped-by="catalog" orphan-removal="true">
+        <one-to-many field="rules" target-entity="\BitBag\SyliusCatalogPlugin\Entity\CatalogRule" mapped-by="catalog" orphan-removal="true">
             <cascade>
                 <cascade-all />
             </cascade>
         </one-to-many>
+
+        <one-to-many field="productAssociationRules" target-entity="BitBag\SyliusCatalogPlugin\Entity\ProductAssociationRule" mapped-by="catalog" orphan-removal="true">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
+
 
         <many-to-many field="associatedProducts" target-entity="Sylius\Component\Core\Model\ProductInterface" >
             <join-table name="bitbag_catalog_catalog_products">

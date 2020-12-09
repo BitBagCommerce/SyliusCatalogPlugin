@@ -16,5 +16,5 @@ use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
 
 interface CatalogResourceResolverInterface
 {
-     public function findOrLog(?string $code): ?CatalogInterface;
+    public function findOrLog(?string $code): ?CatalogInterface;
 }

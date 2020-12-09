@@ -25,7 +25,7 @@ class AdminMenuListener
 
         $newSubMenu
             ->addChild('bitbag_sylius_catalog_plugin.ui.catalog', [
-                'route' => 'bitbag_sylius_catalog_plugin_admin_catalog_index'
+                'route' => 'bitbag_sylius_catalog_plugin_admin_catalog_index',
             ])
             ->setLabelAttribute('icon', 'catalog layout');
     }

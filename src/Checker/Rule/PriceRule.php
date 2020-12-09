@@ -3,9 +3,8 @@
 /*
  * This file has been created by developers from BitBag.
  * Feel free to contact us once you face any issues or want to start
- * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on mikolaj.krol@bitbag.pl.
+ * You can find more information about us on https://bitbag.io and write us
+ * an email on hello@bitbag.io.
  */
 
 declare(strict_types=1);
@@ -14,14 +13,29 @@ namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
 
 use App\Entity\Product\ProductVariant;
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
-use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 
-class PriceHigherThanRuleChecker extends AbstractRule implements RuleCheckerInterface
+class PriceRule extends AbstractRule implements RuleCheckerInterface
 {
     /** @var int $i */
     private $i = 0;
+
+    public const OPERATOR_ALL_GTE = 'all_gte';
+
+    public const OPERATOR_ALL_GT = 'all_gt';
+
+    public const OPERATOR_ALL_LT = 'all_lt';
+
+    public const OPERATOR_ALL_LTE = 'all_lte';
+
+    public const OPERATOR_ANY_GTE = 'any_gte';
+
+    public const OPERATOR_ANY_GT = 'any_gt';
+
+    public const OPERATOR_ANY_LT = 'any_lt';
+
+    public const OPERATOR_ANY_LTE = 'any_lte';
 
     /** @var ChannelContextInterface */
     private $channelContext;
@@ -45,7 +59,7 @@ class PriceHigherThanRuleChecker extends AbstractRule implements RuleCheckerInte
             ->join('pv.channelPricings', 'cp')
             ->where('pv.product = p')
             ->andWhere('cp.channelCode = :' . $channelCodeParameter)
-            ->andWhere('cp.price <= :'.$priceParameter)
+            ->andWhere('cp.price <= :' . $priceParameter)
 
             ->getQuery();
 
@@ -55,7 +69,7 @@ class PriceHigherThanRuleChecker extends AbstractRule implements RuleCheckerInte
         $this->addRule($connectingRules, $queryBuilder, $rule);
 
         $queryBuilder
-            ->setParameter($priceParameter, $configuration[$currentChannel]['amount'])
+            ->setParameter($priceParameter, $configuration[$currentChannel]['price'])
             ->setParameter($channelCodeParameter, $currentChannel)
 
         ;

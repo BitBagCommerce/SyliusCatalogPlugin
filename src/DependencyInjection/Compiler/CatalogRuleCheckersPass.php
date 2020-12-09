@@ -20,7 +20,7 @@ final class CatalogRuleCheckersPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        if(!$container->has('bitbag_sylius_catalog_plugin.registry_catalog_rule_checker') || !$container
+        if (!$container->has('bitbag_sylius_catalog_plugin.registry_catalog_rule_checker') || !$container
                 ->has('bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker')) {
             return;
         }
@@ -42,5 +42,6 @@ final class CatalogRuleCheckersPass implements CompilerPassInterface
         }
 
         $container->setParameter('bitbag_sylius_catalog_plugin.catalog_rules', $catalogRuleCheckerTypeToLabelMap);
+        $container->setParameter('bitbag_sylius_catalog_plugin.product_association_rules', $catalogRuleCheckerTypeToLabelMap);
     }
 }

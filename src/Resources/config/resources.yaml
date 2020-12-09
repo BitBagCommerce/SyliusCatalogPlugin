@@ -1,4 +1,5 @@
 imports:
   - { resource: resources/catalog.yaml }
   - { resource: resources/catalogRule.yaml }
+  - { resource: resources/productAssociationRule.yaml }
 

@@ -10,7 +10,7 @@
                 <div class="column stackable grid">
                         {{ form_row(form.code) }}
                 </div>
-        <h4 class="ui dividing header">{{ 'sylius.ui.start_date'|trans }} && {{ 'sylius.ui.end_date'|trans }}</h4>
+        <h4 class="ui dividing header">{{ 'sylius.ui.start_date'|trans }} &amp; {{ 'sylius.ui.end_date'|trans }}</h4>
 
                 <div class="two fields">
                         {{ form_row(form.startDate) }}
@@ -27,6 +27,19 @@
                         <div class="column" id="rules">
                                 <h5>{{ 'bitbag_sylius_catalog_plugin.ui.form.catalog.connecting_rules' | trans }}</h5>
                                 {{ form_widget(form.connectingRules) }}
+                        </div>
+                </div>
+        </div>
+        <div class="ui segment">
+                <h4 class="ui dividing header">{{ 'bitbag_sylius_catalog_plugin.ui.product_association_rules'|trans }}</h4>
+                <div class="ui two column stackable grid">
+                        <div class="column" id="rules">
+                                {{ form_widget(form.productAssociationRules) }}
+                        </div>
+
+                        <div class="column" id="rules">
+                                <h5>{{ 'bitbag_sylius_catalog_plugin.ui.form.catalog.product_association_connecting_rules' | trans }}</h5>
+                                {{ form_widget(form.productAssociationConnectingRules) }}
                         </div>
                 </div>
         </div>

@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Form\Type;
 
+use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
@@ -26,17 +27,17 @@ final class CatalogType extends AbstractResourceType
     {
         $builder
             ->add('code', TextType::class, [
-                'label' => 'bitbag_sylius_catalog_plugin.ui.code'
+                'label' => 'bitbag_sylius_catalog_plugin.ui.code',
             ])
             ->add('startDate', DateTimeType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.start_date',
                 'date_widget' => 'single_text',
-                'time_widget' => 'single_text'
+                'time_widget' => 'single_text',
             ])
             ->add('endDate', DateTimeType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.end_date',
                 'date_widget' => 'single_text',
-                'time_widget' => 'single_text'
+                'time_widget' => 'single_text',
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.catalog',
@@ -46,13 +47,25 @@ final class CatalogType extends AbstractResourceType
                 'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.rules',
                 'button_add_label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.add_rule',
             ])
-            ->add('connectingRules', ChoiceType::class, [
+            ->add('connectingRules', CatalogRuleChoiceType::class, [
+                'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.rule_connecting_rules',
+                'choices' => [
+                    'And' => RuleCheckerInterface::AND,
+                    'Or' => RuleCheckerInterface::OR,
+                ],
+            ])
+            ->add('productAssociationRules', ProductAssociationRuleCollectionType::class, [
+                'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.product_rules',
+                'button_add_label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.add_rule',
+            ])
+            ->add('productAssociationConnectingRules', ChoiceType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.rule_connecting_rules',
                 'choices' => [
                     'And' => 'And',
-                    'Or' => 'Or'
-                ]
-            ]);
+                    'Or' => 'Or',
+                ],
+            ])
+        ;
     }
 
     public function getBlockPrefix(): string

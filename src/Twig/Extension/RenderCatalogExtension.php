@@ -18,7 +18,7 @@ use BitBag\SyliusCatalogPlugin\Resolver\ProductResolverInterface;
 use Symfony\Component\Templating\EngineInterface;
 use Twig\Extension\AbstractExtension;
 
-final class RenderProductCatalogExtension extends AbstractExtension
+final class RenderCatalogExtension extends AbstractExtension
 {
     /** @var EngineInterface */
     private $engine;
@@ -36,10 +36,11 @@ final class RenderProductCatalogExtension extends AbstractExtension
         $this->engine = $engine;
         $this->catalogResolver = $catalogResolver;
     }
+
     public function getFunctions(): array
     {
         return [
-            new \Twig_Function('bitbag_render_product_catalog', [$this, 'renderProductCatalog'], ['is_safe' => ['html']])
+            new \Twig_Function('bitbag_render_product_catalog', [$this, 'renderProductCatalog'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -50,10 +51,10 @@ final class RenderProductCatalogExtension extends AbstractExtension
         $products = [];
 
         if ($catalog) {
-            $products = $this->productResolver->findMatchingProducts($code, $catalog);
+            $products = $this->productResolver->findMatchingProducts($catalog);
         }
 
-        if ($products !== null && $catalog !== null) {
+        if (empty($products) !== null && $catalog !== null) {
             $template = $template ?? '@BitBagSyliusCatalogPlugin/Catalog/showProducts.html.twig';
 
             return $this->engine->render($template, ['products' => $products, 'catalog' => $catalog]);
