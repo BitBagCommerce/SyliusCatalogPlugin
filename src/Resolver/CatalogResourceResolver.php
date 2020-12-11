@@ -13,36 +13,36 @@ declare(strict_types=1);
 namespace BitBag\SyliusCatalogPlugin\Resolver;
 
 use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
-use BitBag\SyliusCatalogPlugin\Repository\ProductRepository;
 use Psr\Log\LoggerInterface;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class CatalogResourceResolver implements CatalogResourceResolverInterface
 {
     /** @var LoggerInterface */
     private $logger;
 
-    /** @var ProductRepository */
-    private $productRepository;
+    /** @var EntityRepository */
+    private $catalogRepository;
 
-    public function __construct(ProductRepository $productRepository, LoggerInterface $logger)
+    public function __construct(LoggerInterface $logger, EntityRepository $catalogRepository)
     {
-        $this->productRepository = $productRepository;
         $this->logger = $logger;
+        $this->catalogRepository = $catalogRepository;
     }
 
     public function findOrLog(?string $code): ?CatalogInterface
     {
-        $product= $this->productRepository->findProducts($code);
+        $catalog = $this->catalogRepository->findOneBy(['code' => $code]);
 
-        if (false === $product instanceof CatalogInterface) {
+        if (false === $catalog instanceof CatalogInterface) {
             $this->logger->warning(sprintf(
-                'Product with "%s" code was not found in the database.',
+                'Catalog with "%s" code was not found in the database.',
                 $code
             ));
 
             return null;
         }
 
-        return $product;
+        return $catalog;
     }
 }

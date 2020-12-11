@@ -8,13 +8,34 @@ bitbag_sylius_catalog_plugin:
         name: Name
         start_date: Starts at
         end_date: Ends at
-        configuration: Configuration
+        configuration: Rules - which products should be included inside catalog
+        catalog_rule.channel: Channel
+        product_association_rules: Rules - in which products catalog should be shown
         form:
             catalog_rule:
-                contains_catalog: Contains catalog
+                sort_by_code: Product code like
+                price_higher_than: Price higher than
+                sort_by_name: Sort by name
             catalog:
+                connecting_rules: Connecting rules
+                product_association_connecting_rules: How to connect rules
+                rule_connecting_rules: Connecting rules
                 rules: Rules
                 add_rule: Add rule
                 rule_type: Type
                 add_catalog_configuration: Configuration
+                product_code_phrase: Phrase to match code
+                product_code_exact: exact match
+                product_code_prefix: match prefix
+                product_code_suffix: match sufix
+                product_code_like: match anywhere
+                product_price_all_greater: all variant prices greater
+                product_price_all_greater_equal: all variant prices greater or equal
+                product_price_all_less: all variant prices smaller
+                product_price_all_less_equal: all variant prices smaller or equal
+                product_price_any_greater: any variant price greater
+                product_price_any_greater_equal: any variant price greater or equal
+                product_price_any_less: any variant price smaller
+                product_price_any_less_equal: any variant price smaller or equal
+
 

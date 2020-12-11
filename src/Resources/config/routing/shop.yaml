@@ -1,0 +1,7 @@
+bitbag_sylius_catalog_plugin_shop_show_catalog:
+    path: /{_locale}/catalog/{code}
+    defaults:
+        _controller: bitbag_sylius_catalog_plugin.controller.action.shop.show_catalog
+        template: "@BitBagSyliusCatalogPlugin/Shop/Catalog/show.html.twig"
+    requirements:
+        code: .+

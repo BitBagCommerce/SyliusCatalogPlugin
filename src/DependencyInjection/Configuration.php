@@ -19,7 +19,7 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('acme_sylius_example_plugin');
+        $treeBuilder = new TreeBuilder('bitbag_sylius_catalog_plugin');
         $rootNode = $treeBuilder->getRootNode();
 
         return $treeBuilder;

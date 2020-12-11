@@ -12,7 +12,13 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Entity;
 
+use Doctrine\ORM\QueryBuilder;
+
 interface RuleCheckerInterface
 {
-    public function isEligible(CatalogSubjectInterface $subject, array $configuration): bool;
+    public const OR = 'Or';
+
+    public const AND = 'And';
+
+    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void;
 }

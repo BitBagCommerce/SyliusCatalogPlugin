@@ -1,0 +1,48 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% import '@SyliusUi/Macro/messages.html.twig' as messages %}
+{% import '@SyliusUi/Macro/pagination.html.twig' as pagination %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% include 'SyliusUiBundle::_stylesheets.html.twig' with {'path': 'bundles/bitbagsyliuselasticsearchplugin/css/bitbag-autocomplete-search.css'} %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="ui monster section dividing header">
+        {{ catalog.name }}
+    </h1>
+    <div class="ui stackable grid">
+        <div class="twelve wide column">
+            <div class="ui segment">
+                <div class="ui stackable grid">
+                    <div class="five wide column">
+                    </div>
+                    <div class="eleven wide column">
+                        <div class="ui search" id="products-search">
+                            <div class="ui fluid large left icon input">
+                                <i class="search icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if products|length > 0 %}
+                <div class="ui three column stackable grid" id="products">
+                    {% for product in products %}
+                        <div class="column">
+                            {% include '@SyliusShop/Product/_box.html.twig' %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="ui hidden divider"></div>
+
+                {{ pagination.simple(products) }}
+            {% else %}
+                {{ messages.info('sylius.ui.no_results_to_display') }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

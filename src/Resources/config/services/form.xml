@@ -42,5 +42,26 @@
             <argument>%bitbag_sylius_catalog_plugin.catalog_rules%</argument>
             <tag name="form.type" />
         </service>
+        <service id="bitbag_sylius_catalog_plugin.form.type.channel_pricing" class="BitBag\SyliusCatalogPlugin\Form\Type\ChannelBasedRulePricing">
+            <argument>%bitbag_sylius_catalog_plugin.catalog_rules%</argument>
+            <tag name="form.type" />
+        </service>
+        <service id="bitbag_sylius_catalog_plugin.form.type.product_association_rule" class="BitBag\SyliusCatalogPlugin\Form\Type\ProductAssociationRuleType">
+            <argument>%bitbag_sylius_catalog_plugin.model.product_association_rule.class%</argument>
+<!--            <argument>%bitbag_sylius_catalog_plugin.form.type.product_association_rule.validation_groups%</argument>-->
+            <argument type="collection"></argument>
+            <argument type="service" id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" />
+            <tag name="form.type" />
+        </service>
+        <service id="bitbag_sylius_catalog_plugin.form.type.product_association_rule.collection" class="BitBag\SyliusCatalogPlugin\Form\Type\ProductAssociationRuleCollectionType">
+            <argument type="service" id="bitbag_sylius_catalog_plugin.registry_catalog_rule_checker" />
+            <tag name="form.type" />
+        </service>
+        <service id="bitbag_sylius_catalog_plugin.form.type.product_association_rule.choice" class="BitBag\SyliusCatalogPlugin\Form\Type\ProductAssociationRuleChoiceType">
+            <argument>%bitbag_sylius_catalog_plugin.product_association_rules%</argument>
+            <tag name="form.type" />
+        </service>
+
+
     </services>
 </container>

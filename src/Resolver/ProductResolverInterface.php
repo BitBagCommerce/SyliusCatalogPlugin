@@ -10,11 +10,11 @@
 
 declare(strict_types=1);
 
-namespace BitBag\SyliusCatalogPlugin\Repository;
+namespace BitBag\SyliusCatalogPlugin\Resolver;
 
-use Sylius\Component\Core\Repository\ProductRepositoryInterface as BaseProductRepositoryInterface;
+use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
 
-interface ProductRepositoryInterface extends BaseProductRepositoryInterface
+interface ProductResolverInterface
 {
-    public function findProducts(): array;
+    public function findMatchingProducts(CatalogInterface $catalog);
 }

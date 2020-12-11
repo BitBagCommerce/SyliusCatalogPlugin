@@ -43,4 +43,8 @@ interface CatalogInterface extends ResourceInterface, TranslatableInterface
     public function addRule(CatalogRuleInterface $rule): void;
 
     public function removeRule(CatalogRuleInterface $rule): void;
+
+    public function setConnectingRules(?string $connectingRules): void;
+
+    public function getConnectingRules(): ?string;
 }

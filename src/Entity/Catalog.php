@@ -14,6 +14,7 @@ namespace BitBag\SyliusCatalogPlugin\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
@@ -29,12 +30,13 @@ class Catalog implements CatalogInterface
 
         /** @var ArrayCollection<array-key, CatalogRuleInterface> $this->rules */
         $this->rules = new ArrayCollection();
+        $this->associatedProducts = new ArrayCollection();
     }
 
     /** @var int|null */
-    protected  $id;
+    protected $id;
 
-    /** @var  \DateTime|null */
+    /** @var \DateTime|null */
     protected $startDate;
 
     /** @var \DateTime|null */
@@ -45,6 +47,27 @@ class Catalog implements CatalogInterface
 
     /** @var string|null */
     protected $code;
+
+    /** @var string|null */
+    protected $connectingRules;
+
+    /** @var ProductInterface[]|Collection */
+    protected $associatedProducts;
+
+    /** @var CatalogRuleInterface[]|Collection */
+    protected $productAssociationRules;
+
+    protected $productAssociationConnectingRules;
+
+    public function getConnectingRules(): ?string
+    {
+        return $this->connectingRules;
+    }
+
+    public function setConnectingRules(?string $connectingRules): void
+    {
+        $this->connectingRules = $connectingRules;
+    }
 
     public function getCode(): ?string
     {
@@ -129,5 +152,68 @@ class Catalog implements CatalogInterface
     protected function createTranslation(): CatalogTranslation
     {
         return new CatalogTranslation();
+    }
+
+    public function getAssociatedProducts(): Collection
+    {
+        return $this->associatedProducts;
+    }
+
+    public function hasAssociatedProduct(ProductInterface $product): bool
+    {
+        return $this->associatedProducts->contains($product);
+    }
+
+    public function addAssociatedProduct(ProductInterface $product): void
+    {
+        if (!$this->hasAssociatedProduct($product)) {
+            $this->associatedProducts->add($product);
+        }
+    }
+
+    public function removeAssociatedProduct(ProductInterface $product): void
+    {
+        if ($this->hasAssociatedProduct($product)) {
+            $this->associatedProducts->removeElement($product);
+        }
+    }
+
+    public function getProductAssociationRules(): Collection
+    {
+        return $this->productAssociationRules;
+    }
+
+    public function hasProductAssociationRules(): bool
+    {
+        return !$this->productAssociationRules->isEmpty();
+    }
+
+    public function hasProductAssociationRule(CatalogRuleInterface $rule): bool
+    {
+        return $this->productAssociationRules->contains($rule);
+    }
+
+    public function addProductAssociationRule(CatalogRuleInterface $rule): void
+    {
+        if (!$this->hasProductAssociationRule($rule)) {
+            $rule->setCatalog($this);
+            $this->productAssociationRules->add($rule);
+        }
+    }
+
+    public function removeProductAssociationRule(CatalogRuleInterface $rule): void
+    {
+        $rule->setCatalog(null);
+        $this->productAssociationRules->removeElement($rule);
+    }
+
+    public function getProductAssociationConnectingRules()
+    {
+        return $this->productAssociationConnectingRules;
+    }
+
+    public function setProductAssociationConnectingRules($productAssociationConnectingRules): void
+    {
+        $this->productAssociationConnectingRules = $productAssociationConnectingRules;
     }
 }

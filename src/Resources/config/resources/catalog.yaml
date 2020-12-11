@@ -4,6 +4,7 @@ sylius_resource:
       driver: doctrine/orm
       classes:
         model: BitBag\SyliusCatalogPlugin\Entity\Catalog
+        repository: BitBag\SyliusCatalogPlugin\Repository\CatalogRepository
         interface: BitBag\SyliusCatalogPlugin\Entity\CatalogInterface
         form: BitBag\SyliusCatalogPlugin\Form\Type\CatalogType
       translation:
