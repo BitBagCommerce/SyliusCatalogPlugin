@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
+namespace BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine;
 
 use App\Entity\Product\ProductVariant;
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;

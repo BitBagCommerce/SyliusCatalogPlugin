@@ -42,6 +42,8 @@ class ProductResolver implements ProductResolverInterface
         $qb = $this->productRepository->createQueryBuilder('p')
             ->leftJoin('p.translations', 'name')
             ->leftJoin('p.variants', 'variant')
+            ->leftJoin('p.productTaxons', 'productTaxon')
+            ->leftJoin('productTaxon.taxon', 'taxon')
             ->leftJoin('variant.channelPricings', 'price');
 
         foreach ($rules as $rule) {

@@ -29,6 +29,7 @@ final class ProductCatalogResolver implements ProductCatalogResolverInterface
 
     /** @var ServiceRegistry */
     private $serviceRegistry;
+
     /** @var ProductRepositoryInterface */
     private $productRepository;
 
@@ -50,17 +51,20 @@ final class ProductCatalogResolver implements ProductCatalogResolverInterface
         $activeCatalogs = $this->catalogRepository->findActive($on);
         $result = [];
 
+        /** @var Catalog $activeCatalog */
         foreach ($activeCatalogs as $activeCatalog) {
-            $connectingRules = $catalog->getConnectingRules();
+            $connectingRules = $activeCatalog->getConnectingRules();
 
             /** @var AbstractCatalogRule $rules */
-            $rules = $activeCatalog->getRules();
+            $rules = $activeCatalog->getProductAssociationRules();
 
             /** @var QueryBuilder $qb */
             $qb = $this->productRepository->createQueryBuilder('p')
                 ->select('count(p.code)')
                 ->leftJoin('p.translations', 'name')
                 ->leftJoin('p.variants', 'variant')
+                ->leftJoin('p.productTaxons', 'productTaxon')
+                ->leftJoin('productTaxon.taxon', 'taxon')
                 ->leftJoin('variant.channelPricings', 'price')
                 ->andWhere('p.code = :productCode')
                 ->setParameter('productCode', $product->getCode());

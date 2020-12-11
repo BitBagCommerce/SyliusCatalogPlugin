@@ -3,16 +3,23 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <defaults public="true" />
-        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.product_code" class="BitBag\SyliusCatalogPlugin\Checker\Rule\ProductCodeLike">
+        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.product_code" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\ProductCodeLike">
             <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="product_code" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.sort_by_code" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ProductCodeLikeConfigurationType" />
         </service>
-        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.price" class="BitBag\SyliusCatalogPlugin\Checker\Rule\PriceRule">
+        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.price" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\PriceRule">
             <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="price" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.price_higher_than" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ChannelBasedRulePricing" />
             <argument type="service" id="sylius.context.channel" />
         </service>
-        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.sort_by_name" class="BitBag\SyliusCatalogPlugin\Checker\Rule\SortByNameRuleChecker">
+        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.sort_by_name" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\SortByNameRuleChecker">
             <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="sort_by_name" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.sort_by_name" form-type="BitBag\SyliusCatalogPlugin\Form\Type\SortByNameConfigurationType"/>
             <argument type="service" id="sylius.context.locale" />
+        </service>
+        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.taxon" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\TaxonRule">
+            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker"
+                 type="taxon"
+                 label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.taxon"
+                 form-type="BitBag\SyliusCatalogPlugin\Form\Type\TaxonConfigurationType" />
+            <argument type="service" id="sylius.context.channel" />
         </service>
     </services>
 </container>

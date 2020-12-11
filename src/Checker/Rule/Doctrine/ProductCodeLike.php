@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace BitBag\SyliusCatalogPlugin\Checker\Rule;
+namespace BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine;
 
 use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;

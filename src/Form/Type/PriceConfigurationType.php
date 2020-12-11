@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Form\Type;
 
-use BitBag\SyliusCatalogPlugin\Checker\Rule\PriceRule;
+use BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\PriceRule;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

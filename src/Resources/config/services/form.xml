@@ -61,5 +61,7 @@
             <argument>%bitbag_sylius_catalog_plugin.product_association_rules%</argument>
             <tag name="form.type" />
         </service>
+
+
     </services>
 </container>
