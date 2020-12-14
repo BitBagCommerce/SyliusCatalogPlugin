@@ -11,7 +11,7 @@
             <argument type="service" id="sylius.context.channel" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.sort_by_name" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\SortByNameRuleChecker">
-            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="sort_by_name" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.sort_by_name" form-type="BitBag\SyliusCatalogPlugin\Form\Type\SortByNameConfigurationType"/>
+            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="sort_by_name" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.sort_by_name" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ProductNameConfigurationType"/>
             <argument type="service" id="sylius.context.locale" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.taxon" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\TaxonRule">

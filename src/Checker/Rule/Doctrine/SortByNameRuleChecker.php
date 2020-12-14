@@ -11,11 +11,10 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine;
 
-use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 
-class SortByNameRuleChecker implements RuleCheckerInterface
+class SortByNameRuleChecker extends AbstractRule
 {
     /** @var int $i */
     private $i = 0;

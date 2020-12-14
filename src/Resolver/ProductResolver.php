@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Resolver;
 
+use BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\RuleInterface;
 use BitBag\SyliusCatalogPlugin\Entity\AbstractCatalogRule;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
-use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Sylius\Bundle\ProductBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Registry\ServiceRegistry;
 
@@ -49,7 +49,7 @@ class ProductResolver implements ProductResolverInterface
         foreach ($rules as $rule) {
             $type = $rule->getType();
 
-            /** @var RuleCheckerInterface $ruleChecker */
+            /** @var RuleInterface $ruleChecker */
             $ruleChecker = $this->serviceRegistry->get($type);
 
             $ruleConfiguration = $rule->getConfiguration();

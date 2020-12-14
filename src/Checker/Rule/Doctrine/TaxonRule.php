@@ -11,11 +11,10 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine;
 
-use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 
-class TaxonRule extends AbstractRule implements RuleCheckerInterface
+class TaxonRule extends AbstractRule
 {
     /** @var int $i */
     private $i = 0;

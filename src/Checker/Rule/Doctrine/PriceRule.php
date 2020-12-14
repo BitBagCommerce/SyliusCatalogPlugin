@@ -12,11 +12,10 @@ declare(strict_types=1);
 namespace BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine;
 
 use App\Entity\Product\ProductVariant;
-use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 
-class PriceRule extends AbstractRule implements RuleCheckerInterface
+class PriceRule extends AbstractRule
 {
     /** @var int $i */
     private $i = 0;

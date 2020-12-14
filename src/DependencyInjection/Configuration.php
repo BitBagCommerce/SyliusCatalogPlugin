@@ -22,6 +22,14 @@ final class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('bitbag_sylius_catalog_plugin');
         $rootNode = $treeBuilder->getRootNode();
 
+        $rootNode
+            ->children()
+            ->enumNode('driver')
+            ->values(['doctrine', 'elasticsearch'])
+            ->defaultValue('doctrine')
+            ->end()
+        ;
+
         return $treeBuilder;
     }
 }

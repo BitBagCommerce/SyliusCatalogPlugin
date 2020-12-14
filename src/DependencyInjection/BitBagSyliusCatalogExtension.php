@@ -25,6 +25,33 @@ final class BitBagSyliusCatalogExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $loader->load('services.xml');
+
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (array_key_exists('BitBagSyliusElasticsearchPlugin', $bundles)) {
+            $loader->load('services/integrations/elasticsearch.xml');
+        }
+
+        $container->setAlias('bitbag_sylius_catalog_plugin.registry_catalog_rule_checker', sprintf('bitbag_sylius_catalog_plugin.registry_catalog_rule_checker.%s', $config['driver']));
+        $container->setAlias('bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker', sprintf('bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker.%s', $config['driver']));
+
+        $container->setDefinition(
+            'bitbag_sylius_catalog_plugin.form.type.catalog_rule.choice',
+            $container->getDefinition('bitbag_sylius_catalog_plugin.form.type.catalog_rule.choice')
+                ->setArgument(0, sprintf('%%bitbag_sylius_catalog_plugin.catalog_rules.%s%%', $config['driver']))
+        );
+
+        $container->setDefinition(
+            'bitbag_sylius_catalog_plugin.form.type.channel_pricing',
+            $container->getDefinition('bitbag_sylius_catalog_plugin.form.type.channel_pricing')
+                ->setArgument(0, sprintf('%%bitbag_sylius_catalog_plugin.catalog_rules.%s%%', $config['driver']))
+        );
+
+        $container->setDefinition(
+            'bitbag_sylius_catalog_plugin.form.type.product_association_rule.choice',
+            $container->getDefinition('bitbag_sylius_catalog_plugin.form.type.product_association_rule.choice')
+                ->setArgument(0, sprintf('%%bitbag_sylius_catalog_plugin.product_association_rules.%s%%', $config['driver']))
+        );
     }
 
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface

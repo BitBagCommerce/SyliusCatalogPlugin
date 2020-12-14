@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Form\Type;
 
-use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
+use BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\RuleInterface;
 use BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
@@ -50,8 +50,8 @@ final class CatalogType extends AbstractResourceType
             ->add('connectingRules', CatalogRuleChoiceType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.form.catalog.rule_connecting_rules',
                 'choices' => [
-                    'And' => RuleCheckerInterface::AND,
-                    'Or' => RuleCheckerInterface::OR,
+                    'And' => RuleInterface::AND,
+                    'Or' => RuleInterface::OR,
                 ],
             ])
             ->add('productAssociationRules', ProductAssociationRuleCollectionType::class, [

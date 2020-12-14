@@ -11,19 +11,18 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine;
 
-use BitBag\SyliusCatalogPlugin\Entity\RuleCheckerInterface;
 use Doctrine\ORM\QueryBuilder;
 
-abstract class AbstractRule
+abstract class AbstractRule implements RuleInterface
 {
     protected function addRule(string $connectingRules, QueryBuilder $queryBuilder, $rule): void
     {
         switch ($connectingRules) {
-            case RuleCheckerInterface:: AND:
+            case RuleInterface:: AND:
                 $queryBuilder->andWhere($rule);
 
                 break;
-            case RuleCheckerInterface:: OR:
+            case RuleInterface:: OR:
                 $queryBuilder->orWhere($rule);
 
                 break;
