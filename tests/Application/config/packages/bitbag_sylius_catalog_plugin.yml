@@ -27,3 +27,6 @@ sylius_fixtures:
                 rules_operator: And
                 associated_products_rules: []
                 associated_products_rules_operator: And
+                template: '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig'
+                sorting_type: 'newest'
+                display_products: 12

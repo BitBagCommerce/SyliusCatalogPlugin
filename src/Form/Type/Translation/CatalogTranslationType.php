@@ -20,6 +20,9 @@ class CatalogTranslationType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, ['label' => 'bitbag_sylius_catalog_plugin.ui.name']);
+            ->add('name', TextType::class, [
+                'label' => 'bitbag_sylius_catalog_plugin.ui.name',
+            ])
+        ;
     }
 }

@@ -66,6 +66,10 @@ final class CatalogFixtureFactory
             $catalog->setEndDate(new \DateTime($catalogData['ends_at']));
         }
 
+        if (!empty($catalogData['template'])) {
+            $catalog->setTemplate($catalogData['template']);
+        }
+
         foreach ($catalogData['translations'] as $localeCode => $translation) {
             /** @var CatalogTranslationInterface $catalogTranslation */
             $catalogTranslation = $this->catalogTranslationFactory->createNew();
@@ -84,6 +88,9 @@ final class CatalogFixtureFactory
         foreach ($catalogData['associated_products_rules'] as $rule) {
             $this->createRule($rule, CatalogRule::TARGET_PRODUCT_ASSOCIATION, $catalog);
         }
+
+        $catalog->setSortingType(($catalogData['sorting_type']));
+        $catalog->setDisplayProducts(($catalogData['display_products']));
 
         $this->catalogRepository->add($catalog);
     }

@@ -65,7 +65,7 @@
             <tag name="bitbag_sylius_catalog_plugin.catalog_sort_checker" type="most_expensive" label="bitbag_sylius_catalog_plugin.ui.form.catalog.most_expensive" />
         </service>
 
-        <service id="bit_bag.sylius_catalog_plugin.checker.sort.elasticsearch.newest_sort" class="BitBag\SyliusCatalogPlugin\Checker\Sort\Elasticsearch\NewestSort">
+        <service id="bitbag_sylius_catalog_plugin.checker.sort.elasticsearch.newest_sort" class="BitBag\SyliusCatalogPlugin\Checker\Sort\Elasticsearch\NewestSort">
             <argument>%bitbag_es_shop_product_created_at%</argument>
             <tag name="bitbag_sylius_catalog_plugin.catalog_sort_checker" type="newest" label="bitbag_sylius_catalog_plugin.ui.form.catalog.newest" />
         </service>

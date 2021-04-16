@@ -10,7 +10,7 @@
         </id>
         <field name="startDate" column="start_date" type="datetime" nullable="true"/>
         <field name="endDate" column="end_date" type="datetime" nullable="true"/>
-        <field name="code" column="code" type="string" nullable="true"/>
+        <field name="code" column="code" nullable="true" unique="true"/>
         <field name="connectingRules" column="connecting_rules" type="string" />
         <field name="productAssociationConnectingRules" column="product_connecting_rules" type="string" />
         <field name="template" column="template" />
@@ -26,5 +26,6 @@
                 <cascade-all />
             </cascade>
         </one-to-many>
+
     </mapped-superclass>
 </doctrine-mapping>
