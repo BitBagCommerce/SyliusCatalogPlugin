@@ -23,6 +23,7 @@
 
         <service id="bitbag_sylius_catalog_plugin.form.type.catalog" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogType">
             <argument>%bitbag_sylius_catalog_plugin.model.catalog.class%</argument>
+            <argument>%%</argument>
             <argument>%bitbag_sylius_catalog_plugin.form.type.catalog.validation_groups%</argument>
             <tag name="form.type" />
         </service>
