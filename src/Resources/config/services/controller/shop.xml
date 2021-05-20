@@ -5,7 +5,7 @@
         <service id="bitbag_sylius_catalog_plugin.controller.action.shop.show_catalog" class="BitBag\SyliusCatalogPlugin\Controller\Shop\ShowCatalogAction">
             <argument type="service" id="bitbag_sylius_catalog_plugin.repository.catalog" />
             <argument type="service" id="bitbag.resolver.catalog.product_resource" />
-            <argument type="service" id="templating" />
+            <argument type="service" id="twig" />
             <tag name="controller.service_arguments" />
         </service>
 

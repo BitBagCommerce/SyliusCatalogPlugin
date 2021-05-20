@@ -13,14 +13,14 @@ namespace BitBag\SyliusCatalogPlugin\Controller\Shop;
 
 use BitBag\SyliusCatalogPlugin\Resolver\ProductsInsideCatalogResolverInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Twig\Environment;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 final class ShowCatalogAction
 {
-    /** @var EngineInterface */
-    private $templatingEngine;
+    /** @var Environment */
+    private $twig;
 
     /** @var RepositoryInterface */
     private $catalogRepository;
@@ -31,9 +31,9 @@ final class ShowCatalogAction
     public function __construct(
         RepositoryInterface $catalogRepository,
         ProductsInsideCatalogResolverInterface $productResolver,
-        EngineInterface $templatingEngine
+        Environment $twig
     ) {
-        $this->templatingEngine = $templatingEngine;
+        $this->twig = $twig;
         $this->catalogRepository = $catalogRepository;
         $this->productResolver = $productResolver;
     }
@@ -45,9 +45,9 @@ final class ShowCatalogAction
 
         $template = $request->get('template');
 
-        return $this->templatingEngine->renderResponse($template, [
+        return new Response($this->twig->render($template, [
             'catalog' => $catalog,
             'products' => $products,
-        ]);
+        ]));
     }
 }
