@@ -16,8 +16,7 @@ final class Catalog
     public static function getTemplates(): array
     {
         return [
-            'bitbag_sylius_catalog_plugin.ui.form.catalog.default_template' =>
-                '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig',
+            'bitbag_sylius_catalog_plugin.ui.form.catalog.default_template' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig',
         ];
     }
 }

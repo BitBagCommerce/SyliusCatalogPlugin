@@ -14,7 +14,6 @@ namespace BitBag\SyliusCatalogPlugin\Resolver\Elasticsearch;
 use BitBag\SyliusCatalogPlugin\Checker\Sort\Doctrine\SortInterface;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
 use BitBag\SyliusCatalogPlugin\QueryBuilder\ProductQueryBuilderInterface;
-use BitBag\SyliusCatalogPlugin\Resolver\ProductResolverInterface;
 use BitBag\SyliusCatalogPlugin\Resolver\ProductsInsideCatalogResolverInterface;
 use Elastica\Query\BoolQuery;
 use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
@@ -22,14 +21,11 @@ use Sylius\Component\Registry\ServiceRegistry;
 
 final class ProductsInsideCatalogResolver implements ProductsInsideCatalogResolverInterface
 {
-    /** @var ProductQueryBuilderInterface */
-    private $productQueryBuilder;
+    private ProductQueryBuilderInterface $productQueryBuilder;
 
-    /** @var PaginatedFinderInterface */
-    private $productFinder;
+    private PaginatedFinderInterface $productFinder;
 
-    /** @var ServiceRegistry */
-    private $sortServiceRegistry;
+    private ServiceRegistry $sortServiceRegistry;
 
     public function __construct(
         ProductQueryBuilderInterface $productQueryBuilder,

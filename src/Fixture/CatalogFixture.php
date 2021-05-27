@@ -20,8 +20,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 final class CatalogFixture extends AbstractFixture implements FixtureInterface
 {
-    /** @var CatalogFixtureFactory */
-    private $catalogFixtureFactory;
+    private CatalogFixtureFactory $catalogFixtureFactory;
 
     public function __construct(CatalogFixtureFactory $catalogFixtureFactory)
     {

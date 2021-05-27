@@ -16,7 +16,7 @@
         <field name="template" column="template" />
         <field name="sortingType" column="sorting_type" />
         <field name="displayProducts" column="display_products" type="integer" />
-        <one-to-many field="rules" target-entity="\BitBag\SyliusCatalogPlugin\Entity\CatalogRule" mapped-by="catalog" orphan-removal="true">
+        <one-to-many field="rules" target-entity="BitBag\SyliusCatalogPlugin\Entity\CatalogRule" mapped-by="catalog" orphan-removal="true">
             <cascade>
                 <cascade-all />
             </cascade>

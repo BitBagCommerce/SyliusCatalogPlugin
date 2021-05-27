@@ -8,11 +8,11 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * @deprecated Since bitbag/catalog-plugin 1.0: Doctrine migrations existing in a bundle will be removed, move migrations to the project directory.
  */
 final class Version20210219121134 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '';
     }

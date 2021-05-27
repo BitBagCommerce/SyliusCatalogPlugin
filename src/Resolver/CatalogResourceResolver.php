@@ -17,11 +17,9 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class CatalogResourceResolver implements CatalogResourceResolverInterface
 {
-    /** @var LoggerInterface */
-    private $logger;
+    private LoggerInterface $logger;
 
-    /** @var EntityRepository */
-    private $catalogRepository;
+    private EntityRepository $catalogRepository;
 
     public function __construct(LoggerInterface $logger, EntityRepository $catalogRepository)
     {

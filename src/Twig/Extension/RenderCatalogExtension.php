@@ -20,14 +20,11 @@ use Twig\TwigFunction;
 
 final class RenderCatalogExtension extends AbstractExtension
 {
-    /** @var Environment */
-    private $engine;
+    private Environment $engine;
 
-    /** @var CatalogResourceResolverInterface */
-    private $catalogResolver;
+    private CatalogResourceResolverInterface $catalogResolver;
 
-    /** @var ProductsInsideCatalogResolverInterface */
-    private $productResolver;
+    private ProductsInsideCatalogResolverInterface $productResolver;
 
     public function __construct(
         Environment $engine,

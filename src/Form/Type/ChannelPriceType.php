@@ -16,11 +16,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\Validator\Constraints\PositiveOrZero;
 use Symfony\Component\Validator\Constraints\Type;
 
-final class ChannelPriceType  extends AbstractType
+final class ChannelPriceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -30,7 +29,7 @@ final class ChannelPriceType  extends AbstractType
                 'constraints' => [
                     new NotBlank(['groups' => ['sylius']]),
                     new Type(['type' => 'numeric', 'groups' => ['sylius']]),
-                    new PositiveOrZero(['groups' => ['sylius']])
+                    new PositiveOrZero(['groups' => ['sylius']]),
                 ],
                 'currency' => $options['currency'],
             ])

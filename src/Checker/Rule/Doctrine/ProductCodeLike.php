@@ -24,8 +24,7 @@ final class ProductCodeLike extends AbstractRule implements RuleInterface
 
     public const OPERATOR_EXACT = 'exact';
 
-    /** @var int $i */
-    private $i = 0;
+    private int $i = 0;
 
     public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
     {

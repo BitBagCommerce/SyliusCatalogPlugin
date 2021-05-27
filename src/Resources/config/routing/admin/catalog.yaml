@@ -3,7 +3,7 @@ bitbag_sylius_catalog_plugin_admin_catalog:
     alias: bitbag_sylius_catalog_plugin.catalog
     except: ['show']
     redirect: update
-    templates: SyliusAdminBundle:Crud
+    templates: "@SyliusAdmin\\Crud"
     section: admin
     grid: bitbag_sylius_catalog_plugin_admin_catalog
     vars:

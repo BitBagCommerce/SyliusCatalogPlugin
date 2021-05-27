@@ -21,17 +21,13 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class CatalogFixtureFactory
 {
-    /** @var FactoryInterface */
-    private $catalogFactory;
+    private FactoryInterface $catalogFactory;
 
-    /** @var CatalogRepositoryInterface */
-    private $catalogRepository;
+    private CatalogRepositoryInterface $catalogRepository;
 
-    /** @var FactoryInterface */
-    private $catalogTranslationFactory;
+    private FactoryInterface $catalogTranslationFactory;
 
-    /** @var FactoryInterface */
-    private $catalogRuleFactory;
+    private FactoryInterface $catalogRuleFactory;
 
     public function __construct(
         FactoryInterface $catalogFactory,

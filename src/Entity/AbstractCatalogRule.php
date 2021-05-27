@@ -13,24 +13,27 @@ namespace BitBag\SyliusCatalogPlugin\Entity;
 
 abstract class AbstractCatalogRule
 {
-    /** @var int|null */
-    protected $id;
+    protected ?int $id;
 
-    /** @var string|null */
-    protected $type;
+    protected ?string $type;
 
-    /** @var array */
-    protected $configuration = [];
+    protected array $configuration = [];
 
-    /** @var CatalogInterface|null */
-    protected $catalog;
+    protected ?CatalogInterface $catalog;
 
-    /** @var string|null */
-    protected $target;
+    protected ?string $target;
+
+    public function __construct()
+    {
+        $this->id = null;
+        $this->type = null;
+        $this->target = null;
+        $this->configuration = [];
+    }
 
     public function getId(): ?int
     {
-        return $this->type;
+        return $this->id;
     }
 
     public function getType(): ?string

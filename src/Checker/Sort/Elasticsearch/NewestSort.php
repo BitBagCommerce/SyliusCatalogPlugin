@@ -16,8 +16,7 @@ use Elastica\Query\BoolQuery;
 
 final class NewestSort implements SortInterface
 {
-    /** @var string */
-    private $productCreatedAdProperty;
+    private string $productCreatedAdProperty;
 
     public function __construct(string $productCreatedAdProperty)
     {

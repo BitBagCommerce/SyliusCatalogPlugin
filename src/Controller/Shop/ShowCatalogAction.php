@@ -11,22 +11,21 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Controller\Shop;
 
+use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
 use BitBag\SyliusCatalogPlugin\Resolver\ProductsInsideCatalogResolverInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Twig\Environment;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Twig\Environment;
 
 final class ShowCatalogAction
 {
-    /** @var Environment */
-    private $twig;
+    private Environment $twig;
 
-    /** @var RepositoryInterface */
-    private $catalogRepository;
+    private RepositoryInterface $catalogRepository;
 
-    /** @var ProductResolverInterface */
-    private $productResolver;
+    private ProductsInsideCatalogResolverInterface $productResolver;
 
     public function __construct(
         RepositoryInterface $catalogRepository,
@@ -40,7 +39,13 @@ final class ShowCatalogAction
 
     public function __invoke(Request $request): Response
     {
+        /** @var null|CatalogInterface $catalog */
         $catalog = $this->catalogRepository->findOneBy(['code' => $request->get('code')]);
+
+        if (null === $catalog) {
+            throw new NotFoundHttpException();
+        }
+
         $products = $this->productResolver->findMatchingProducts($catalog);
 
         $template = $request->get('template');

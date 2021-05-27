@@ -15,11 +15,14 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 class CatalogTranslation extends AbstractTranslation implements CatalogTranslationInterface
 {
-    /** @var int|null */
-    protected $id;
+    protected ?int $id;
 
-    /** @var string|null */
-    protected $name;
+    protected ?string $name;
+
+    public function __construct()
+    {
+        $this->id = null;
+    }
 
     public function getId(): ?int
     {

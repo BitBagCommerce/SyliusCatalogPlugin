@@ -24,8 +24,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class CatalogType extends AbstractResourceType
 {
-    /** @var array */
-    private $attributeChoices;
+    private array $attributeChoices;
 
     public function __construct(string $dataClass, array $attributeChoices, array $validationGroups = [])
     {

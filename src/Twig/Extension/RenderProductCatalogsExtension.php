@@ -19,11 +19,9 @@ use Twig\TwigFunction;
 
 final class RenderProductCatalogsExtension extends AbstractExtension
 {
-    /** @var Environment */
-    private $engine;
+    private Environment $engine;
 
-    /** @var CatalogsForProductResolverInterface */
-    private $productCatalogResolver;
+    private CatalogsForProductResolverInterface $productCatalogResolver;
 
     public function __construct(
         Environment $engine,
@@ -48,7 +46,7 @@ final class RenderProductCatalogsExtension extends AbstractExtension
                 'catalogs' => $this->productCatalogResolver->resolveProductCatalogs(
                     $product,
                     new \DateTimeImmutable($date ?? 'now')
-                )
+                ),
             ]
         );
     }

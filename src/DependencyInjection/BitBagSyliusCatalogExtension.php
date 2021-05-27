@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\DependencyInjection;
 
+use Sylius\Bundle\CoreBundle\DependencyInjection\PrependDoctrineMigrationsTrait;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -19,6 +20,8 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 final class BitBagSyliusCatalogExtension extends Extension
 {
+    use PrependDoctrineMigrationsTrait;
+
     public function load(array $config, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
@@ -69,20 +72,22 @@ final class BitBagSyliusCatalogExtension extends Extension
 
     public function prepend(ContainerBuilder $container): void
     {
-        if (!$container->hasExtension('doctrine_migrations') || !$container->hasExtension('sylius_labs_doctrine_migrations_extra')) {
-            return;
-        }
+        trigger_deprecation('bitbag/catalog-plugin', '1.0', 'Doctrine migrations existing in a bundle will be removed, move migrations to the project directory.');
+        $this->prependDoctrineMigrations($container);
+    }
 
-        $container->prependExtensionConfig('doctrine_migrations', [
-            'migrations_paths' => [
-                'BitBag\SyliusCatalogPlugin\Migrations' => '@BitBagSyliusCatalogPlugin/Migrations',
-            ],
-        ]);
+    protected function getMigrationsNamespace(): string
+    {
+        return 'BitBag\SyliusCatalogPlugin\Migrations';
+    }
 
-        $container->prependExtensionConfig('sylius_labs_doctrine_migrations_extra', [
-            'migrations' => [
-                'BitBag\SyliusCatalogPlugin\Migrations' => ['Sylius\Bundle\CoreBundle\Migrations'],
-            ],
-        ]);
+    protected function getMigrationsDirectory(): string
+    {
+        return '@BitBagSyliusCatalogPlugin/Migrations';
+    }
+
+    protected function getNamespacesOfMigrationsExecutedBefore(): array
+    {
+        return ['Sylius\Bundle\CoreBundle\Migrations'];
     }
 }

@@ -17,8 +17,7 @@ use Sylius\Component\Core\Model\Taxon;
 
 final class TaxonRule implements RuleInterface
 {
-    /** @var string */
-    private $taxonsProperty;
+    private string $taxonsProperty;
 
     public function __construct(string $taxonsProperty)
     {

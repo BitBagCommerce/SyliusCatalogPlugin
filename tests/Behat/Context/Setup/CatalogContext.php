@@ -23,17 +23,13 @@ use Tests\BitBag\SyliusCatalogPlugin\Behat\Service\RandomStringGeneratorInterfac
 
 final class CatalogContext implements Context
 {
-    /** @var SharedStorageInterface */
-    private $sharedStorage;
+    private SharedStorageInterface $sharedStorage;
 
-    /** @var FactoryInterface */
-    private $catalogFactory;
+    private FactoryInterface $catalogFactory;
 
-    /** @var CatalogRepositoryInterface */
-    private $catalogRepository;
+    private CatalogRepositoryInterface $catalogRepository;
 
-    /** @var RandomStringGeneratorInterface */
-    private $randomStringGenerator;
+    private RandomStringGeneratorInterface $randomStringGenerator;
 
     public function __construct(
         SharedStorageInterface $sharedStorage,

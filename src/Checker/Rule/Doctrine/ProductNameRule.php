@@ -16,11 +16,9 @@ use Sylius\Component\Locale\Context\LocaleContextInterface;
 
 final class ProductNameRule extends AbstractRule
 {
-    /** @var int $i */
-    private $i = 0;
+    private int $i = 0;
 
-    /** @var LocaleContextInterface */
-    private $localeContext;
+    private LocaleContextInterface $localeContext;
 
     public function __construct(LocaleContextInterface $localeContext)
     {

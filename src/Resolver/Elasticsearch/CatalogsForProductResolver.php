@@ -23,14 +23,11 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 final class CatalogsForProductResolver implements CatalogsForProductResolverInterface
 {
-    /** @var RepositoryInterface */
-    private $catalogRepository;
+    private RepositoryInterface $catalogRepository;
 
-    /** @var ProductQueryBuilderInterface */
-    private $productQueryBuilder;
+    private ProductQueryBuilderInterface $productQueryBuilder;
 
-    /** @var PaginatedFinderInterface */
-    private $paginatedFinder;
+    private PaginatedFinderInterface $paginatedFinder;
 
     public function __construct(
         CatalogRepositoryInterface $catalogRepository,

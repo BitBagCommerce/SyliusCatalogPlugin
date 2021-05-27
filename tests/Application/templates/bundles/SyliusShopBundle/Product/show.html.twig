@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% include 'SyliusUiBundle::_stylesheets.html.twig' with {'path': 'bundles/bitbagsyliuscatalogplugin/css/bitbag-catalog.css'} %}
+    {% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/bitbagsyliuscatalogplugin/css/bitbag-catalog.css'} %}
 {% endblock %}
 
 {% block content %}

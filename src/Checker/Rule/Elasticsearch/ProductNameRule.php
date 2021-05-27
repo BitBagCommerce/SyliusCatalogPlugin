@@ -17,14 +17,11 @@ use Sylius\Component\Locale\Context\LocaleContextInterface;
 
 final class ProductNameRule implements RuleInterface
 {
-    /** @var LocaleContextInterface */
-    private $localeContext;
+    private LocaleContextInterface $localeContext;
 
-    /** @var ConcatedNameResolverInterface */
-    private $productNameNameResolver;
+    private ConcatedNameResolverInterface $productNameNameResolver;
 
-    /** @var string */
-    private $namePropertyPrefix;
+    private string $namePropertyPrefix;
 
     public function __construct(
         LocaleContextInterface $localeContext,

@@ -16,11 +16,9 @@ use Sylius\Component\Core\Model\ProductInterface;
 
 final class CompleteCatalogsForProductResolver implements CatalogsForProductResolverInterface
 {
-    /** @var CatalogsForProductResolverInterface */
-    private $wrappedResolver;
+    private CatalogsForProductResolverInterface $wrappedResolver;
 
-    /** @var ProductsInsideCatalogResolverInterface */
-    private $catalogResolver;
+    private ProductsInsideCatalogResolverInterface $catalogResolver;
 
     public function __construct(
         CatalogsForProductResolverInterface $wrappedResolver,

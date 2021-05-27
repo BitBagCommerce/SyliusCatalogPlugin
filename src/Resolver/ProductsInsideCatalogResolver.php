@@ -21,14 +21,11 @@ use Sylius\Component\Registry\ServiceRegistry;
 
 class ProductsInsideCatalogResolver implements ProductsInsideCatalogResolverInterface
 {
-    /** @var ProductRepository */
-    private $productRepository;
+    private ProductRepository $productRepository;
 
-    /** @var ServiceRegistry */
-    private $ruleServiceRegistry;
+    private ServiceRegistry $ruleServiceRegistry;
 
-    /** @var ServiceRegistry */
-    private $sortServiceRegistry;
+    private ServiceRegistry $sortServiceRegistry;
 
     public function __construct(
         ProductRepository $productRepository,

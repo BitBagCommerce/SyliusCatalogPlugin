@@ -19,11 +19,9 @@ use Sylius\Component\Registry\ServiceRegistry;
 
 final class ProductQueryBuilder implements ProductQueryBuilderInterface
 {
-    /** @var ServiceRegistry */
-    private $serviceRegistry;
+    private ServiceRegistry $serviceRegistry;
 
-    /** @var QueryBuilderInterface */
-    private $hasChannelQueryBuilder;
+    private QueryBuilderInterface $hasChannelQueryBuilder;
 
     public function __construct(ServiceRegistry $serviceRegistry, QueryBuilderInterface $hasChannelQueryBuilder)
     {
@@ -51,7 +49,7 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
             case RuleInterface::OR:
                 foreach ($subQueries as $subQuery) {
                     $query->addShould($subQuery);
-                    $query->setMinimumShouldMatch(1);   
+                    $query->setMinimumShouldMatch(1);
                 }
 
                 break;

@@ -19,11 +19,9 @@ use Sylius\Component\Channel\Context\ChannelContextInterface;
 
 final class PriceRule implements RuleInterface
 {
-    /** @var ChannelContextInterface */
-    private $channelContext;
+    private ChannelContextInterface $channelContext;
 
-    /** @var ConcatedNameResolverInterface */
-    private $propertyNameResolver;
+    private ConcatedNameResolverInterface $propertyNameResolver;
 
     public function __construct(
         ConcatedNameResolverInterface $propertyNameResolver,

@@ -16,11 +16,9 @@ use Sylius\Component\Channel\Context\ChannelContextInterface;
 
 class TaxonRule extends AbstractRule
 {
-    /** @var int $i */
-    private $i = 0;
+    private int $i = 0;
 
-    /** @var ChannelContextInterface */
-    private $channelContext;
+    private ChannelContextInterface $channelContext;
 
     public function __construct(ChannelContextInterface $channelContext)
     {

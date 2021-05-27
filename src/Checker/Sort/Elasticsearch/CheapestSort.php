@@ -19,11 +19,9 @@ use Sylius\Component\Core\Model\ChannelInterface;
 
 final class CheapestSort implements SortInterface
 {
-    /** @var ConcatedNameResolverInterface */
-    private $channelPricingNameResolver;
+    private ConcatedNameResolverInterface $channelPricingNameResolver;
 
-    /** @var ChannelContextInterface */
-    private $channelContext;
+    private ChannelContextInterface $channelContext;
 
     public function __construct(
         ConcatedNameResolverInterface $channelPricingNameResolver,

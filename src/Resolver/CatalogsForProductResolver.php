@@ -23,14 +23,11 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 final class CatalogsForProductResolver implements CatalogsForProductResolverInterface
 {
-    /** @var RepositoryInterface */
-    private $catalogRepository;
+    private RepositoryInterface $catalogRepository;
 
-    /** @var ServiceRegistry */
-    private $serviceRegistry;
+    private ServiceRegistry $serviceRegistry;
 
-    /** @var ProductRepositoryInterface */
-    private $productRepository;
+    private ProductRepositoryInterface $productRepository;
 
     public function __construct(
         CatalogRepositoryInterface $catalogRepository,

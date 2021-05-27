@@ -16,8 +16,7 @@ use Elastica\Query\BoolQuery;
 
 final class SoldUnitsSort implements SortInterface
 {
-    /** @var string */
-    private $soldUnitsProperty;
+    private string $soldUnitsProperty;
 
     public function __construct(string $soldUnitsProperty)
     {

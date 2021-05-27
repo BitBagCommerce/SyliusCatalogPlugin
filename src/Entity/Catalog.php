@@ -22,50 +22,47 @@ class Catalog implements CatalogInterface
         __construct as protected initializeTranslationsCollection;
     }
 
-    public function __construct()
-    {
-        $this->initializeTranslationsCollection();
+    protected ?int $id;
 
-        /** @var ArrayCollection<array-key, CatalogRuleInterface> $this->rules */
-        $this->rules = new ArrayCollection();
-        $this->productAssociationRules = new ArrayCollection();
-    }
+    protected ?\DateTime $startDate;
 
-    /** @var int|null */
-    protected $id;
-
-    /** @var \DateTime|null */
-    protected $startDate;
-
-    /** @var \DateTime|null */
-    protected $endDate;
+    protected ?\DateTime $endDate;
 
     /** @var CatalogRuleInterface[]|Collection */
     protected $rules;
 
-    /** @var string|null */
-    protected $code;
+    protected ?string $code;
 
-    /** @var string|null */
-    protected $connectingRules;
+    protected ?string $connectingRules;
 
     /** @var CatalogRuleInterface[]|Collection */
     protected $productAssociationRules;
 
-    /** @var string */
-    protected $productAssociationConnectingRules;
+    protected string $productAssociationConnectingRules;
 
-    /** @var string|null */
-    protected $template;
+    protected ?string $template;
 
-    /** @var int|null */
-    protected $displayProducts;
+    protected ?int $displayProducts;
 
-    /** @var string|null */
-    protected $sortBy;
+    protected ?string $sortBy;
 
-    /** @var string|null */
-    protected $sortingType;
+    protected ?string $sortingType;
+
+    public function __construct()
+    {
+        $this->initializeTranslationsCollection();
+
+        $this->id = null;
+        $this->code = null;
+        $this->connectingRules = null;
+        $this->template = null;
+        $this->displayProducts = null;
+        $this->sortBy = null;
+        $this->sortingType = null;
+        /** @var ArrayCollection<array-key, CatalogRuleInterface> $this->rules */
+        $this->rules = new ArrayCollection();
+        $this->productAssociationRules = new ArrayCollection();
+    }
 
     public function getConnectingRules(): ?string
     {

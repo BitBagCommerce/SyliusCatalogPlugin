@@ -1,17 +1,5 @@
 {% extends '@SyliusUi/Form/theme.html.twig' %}
 
-{% block bitbag_sylius_catalog_plugin_catalog_rule_widget %}
-    <div class="ui segment">
-        {{ form_widget(form) }}
-    </div>
-{% endblock %}
-
-{% block bitbag_sylius_catalog_plugin_product_association_rule_widget %}
-    <div class="ui segment">
-        {{ form_widget(form) }}
-    </div>
-{% endblock %}
-
 {% block sylius_taxon_autocomplete_choice_row %}
     {{ form_row(form, {'remote_url': path('sylius_admin_ajax_taxon_by_name_phrase'), 'load_edit_url': path('sylius_admin_ajax_taxon_by_code')}) }}
 {% endblock %}
