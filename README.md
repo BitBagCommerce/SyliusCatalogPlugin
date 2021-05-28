@@ -62,6 +62,7 @@ This **open-source plugin was developed to help the Sylius community** and make 
 ```yml
 $ bin/console debug:container --parameters | grep bitbag
 $ bin/console debug:container --parameters | grep catalog
+$ bin/console debug:container bitbag_sylius_catalog_plugin
 ```
 
 # About us
