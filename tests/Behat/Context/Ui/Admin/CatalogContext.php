@@ -7,21 +7,20 @@
 * an email on hello@bitbag.io.
 */
 
-
 declare(strict_types=1);
 
 namespace Tests\BitBag\SyliusCatalogPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
-use Sylius\Behat\NotificationType;
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPageInterface;
+use Sylius\Behat\NotificationType;
 use Sylius\Behat\Service\NotificationCheckerInterface;
 use Sylius\Behat\Service\Resolver\CurrentPageResolverInterface;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Tests\BitBag\SyliusCatalogPlugin\Behat\Page\Admin\Catalog\CreatePageInterface;
-use Tests\BitBag\SyliusCatalogPlugin\Behat\Page\Admin\Catalog\UpdatePageInterface;
 use Tests\BitBag\SyliusCatalogPlugin\Behat\Page\Admin\Catalog\IndexPageInterface;
+use Tests\BitBag\SyliusCatalogPlugin\Behat\Page\Admin\Catalog\UpdatePageInterface;
 
 final class CatalogContext implements Context
 {

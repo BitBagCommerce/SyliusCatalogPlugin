@@ -39,7 +39,7 @@ final class ShowCatalogAction
 
     public function __invoke(Request $request): Response
     {
-        /** @var null|CatalogInterface $catalog */
+        /** @var CatalogInterface|null $catalog */
         $catalog = $this->catalogRepository->findOneBy(['code' => $request->get('code')]);
 
         if (null === $catalog) {
