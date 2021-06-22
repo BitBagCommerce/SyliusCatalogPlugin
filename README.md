@@ -1,43 +1,47 @@
-# [![](https://bitbag.io/wp-content/uploads/2021/06/catalog.png)](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_catalog)
+# [![](https://bitbag.io/wp-content/uploads/2021/06/SyliusCatalogPlugin.png)](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_catalog)
 
 # BitBag SyliusCatalogPlugin
 
 ----
 
-[![](https://img.shields.io/packagist/l/bitbag/catalog-plugin.svg) ](https://packagist.org/packages/bitbag/catalog-plugin "License") [ ![](https://img.shields.io/packagist/v/bitbag/catalog-plugin.svg) ](https://packagist.org/packages/bitbag/catalog-plugin "Version") [ ![](https://img.shields.io/travis/BitBagCommerce/SyliusCatalogPlugin/master.svg) ](http://travis-ci.org/BitBagCommerce/SyliusCatalogPlugin "Build status") [ ![](https://img.shields.io/scrutinizer/g/BitBagCommerce/SyliusCatalogPlugin.svg) ](https://scrutinizer-ci.com/g/BitBagCommerce/SyliusCatalogPlugin/ "Scrutinizer") [![](https://poser.pugx.org/bitbag/catalog-plugin/downloads)](https://packagist.org/packages/bitbag/catalog-plugin "Total Downloads") [![Slack](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)](http://sylius-devs.slack.com) [![Support](https://img.shields.io/badge/support-contact%20author-blue])](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_catalog)
-
-<p>
- <img src="https://sylius.com/assets/badge-approved-by-sylius.png" width="85">
-</p>
+[![](https://img.shields.io/packagist/l/bitbag/catalog-plugin.svg)](https://packagist.org/packages/bitbag/catalog-plugin "License")
+[![](https://img.shields.io/packagist/v/bitbag/catalog-plugin.svg)](https://packagist.org/packages/bitbag/catalog-plugin "Version")
+[![](https://img.shields.io/travis/BitBagCommerce/SyliusCatalogPlugin/master.svg)](http://travis-ci.org/BitBagCommerce/SyliusCatalogPlugin "Build status")
+[![](https://poser.pugx.org/bitbag/catalog-plugin/downloads)](https://packagist.org/packages/bitbag/catalog-plugin "Total Downloads")
+[![Slack](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)](http://sylius-devs.slack.com)
+[![Support](https://img.shields.io/badge/support-contact%20author-blue])](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_catalog)
 
 At BitBag we do believe in open source. However, we are able to do it just because of our awesome clients, who are kind enough to share some parts of our work with the community. Therefore, if you feel like there is a possibility for us working together, feel free to reach us out. You will find out more about our professional services, technologies and contact details at [https://bitbag.io/](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_catalog).
-
-## BitBag SyliusCatalogPlugin
-
-Allows for displaying catalog with products - calculated dynamically with rules. 
-
-For catalog You can configure:
-
- * code 
- * names, when it should be shown
- * when it should be shown - this is useful for time restricted special offers or promotions
- * there is set of rules that restrict which products will be shown inside, they can be combined using AND or OR.
- * there is another set of rules - used to restrict products associated with given catalog - it can be shown on product details page
 
 ## Table of Content
 
 ***
 
-* [Overview](#bitbag-syliuscatalogplugin)
-* [Support](#we-are-here-to-help)
+* [Overview](#overview)
 * [Installation](doc/installation.md)
-    * [Testing & running the plugin](doc/installation.md#testing-&-running-the-plugin)
+    * [Testing & running the plugin](doc/installation.md#testing--running-the-plugin)
+* [Usage]($usage)
+* [Support](#we-are-here-to-help)
 * [About us](#about-us)
     * [Community](#community)
 * [Demo Sylius shop](#demo-sylius-shop)
 * [Additional Sylius resources for developers](#additional-resources-for-developers)
 * [License](#license)
 * [Contact](#contact)
+
+# Overview
+
+***
+
+BitBag SyliusCatalogPlugin Allows for displaying catalog with products - calculated dynamically with rules.
+
+For catalog You can configure:
+
+* code
+* names, when it should be shown
+* when it should be shown - this is useful for time restricted special offers or promotions
+* there is set of rules that restrict which products will be shown inside, they can be combined using AND or OR.
+* there is another set of rules - used to restrict products associated with given catalog - it can be shown on product details page
 
 ## Usage
 
@@ -48,22 +52,15 @@ Plugin provides 2 new twig functions which can be used inside templates:
 ```
  * for rendering all catalogs active for given product
 ```html
-        {{ bitbag_render_product_catalogs(product) }}
+    {{ bitbag_render_product_catalogs(product) }}
 ```
 
 ## We are here to help
-This **open-source plugin was developed to help the Sylius community** and make Mollie payments platform available to any Sylius store. If you have any additional questions, would like help with installing or configuring the plugin or need any assistance with your Sylius project - let us know!
+This **open-source plugin was developed to help the Sylius community**. If you have any additional questions, would like help with installing or configuring the plugin or need any assistance with your Sylius project - let us know!
 
 [![](https://bitbag.io/wp-content/uploads/2020/10/button-contact.png)](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_catalog)
 
-
-
-### Parameters you can override in your parameters.yml(.dist) file
-```yml
-$ bin/console debug:container --parameters | grep bitbag
-$ bin/console debug:container --parameters | grep catalog
-$ bin/console debug:container bitbag_sylius_catalog_plugin
-```
+Read more about  [BitBag Sylius Catalog Plugin](https://bitbag.io/blog/customize-sales-in-sylius-based-ecommerce-sylius-catalog-plugin/?utm_source=github&utm_medium=referral&utm_campaign=plugins_catalog)
 
 # About us
 
