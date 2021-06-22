@@ -19,10 +19,10 @@ Add config to your `config/packages/` directory for example in `config/packages/
 # config/packages/bitbag_sylius_catalog_plugin.yaml
 
 imports:
-  - { resource: "@BitBagSyliusCatalogPlugin/Resources/config/config.yaml" }
+    - { resource: "@BitBagSyliusCatalogPlugin/Resources/config/config.yaml" }
 
 bit_bag_sylius_catalog:
-  driver: doctrine
+    driver: doctrine
 
 ```
 
@@ -32,10 +32,10 @@ If You are using Bitbag SyliusElasticsearchPlugin change driver to elasticsearch
 # config/packages/bitbag_sylius_catalog_plugin.yaml
 
 imports:
-  - { resource: "@BitBagSyliusCatalogPlugin/Resources/config/config.yaml" }
+    - { resource: "@BitBagSyliusCatalogPlugin/Resources/config/config.yaml" }
 
 bit_bag_sylius_catalog:
-  driver: elasticsearch
+    driver: elasticsearch
 
 ```
 
@@ -46,7 +46,7 @@ Import routing for example by adding `config/routes/bitbag_sylius_catalog.yaml` 
 # config/routes/bitbag_sylius_catalog.yaml
 
 bitbag_sylius_catalog_plugin:
-  resource: "@BitBagSyliusCatalogPlugin/Resources/config/routing.yaml"
+    resource: "@BitBagSyliusCatalogPlugin/Resources/config/routing.yaml"
 ```
 
 To display catalogs in product details You need to override product details template, for example with template provided as a part of test application in
@@ -54,23 +54,32 @@ To display catalogs in product details You need to override product details temp
 
 Finish the installation by updating the database schema and installing assets:
 ```
-$ bin/console doctrine:migrations:diff
-$ bin/console doctrine:migrations:migrate
-$ bin/console assets:install --symlink
-$ bin/console sylius:theme:assets:install --symlink
+$ symfony console doctrine:migrations:diff
+$ symfony console doctrine:migrations:migrate
+$ symfony console assets:install --symlink
+$ symfony console sylius:theme:assets:install --symlink
+```
+
+### Parameters and Services which can be overridden
+```yml
+$ symfony console debug:container --parameters | grep bitbag_sylius_catalog_plugin
+$ symfony console debug:container bitbag_sylius_catalog_plugin
 ```
 
 ## Testing & running the plugin
 ```bash
-$ composer install
-$ cd tests/Application
-$ yarn install
-$ yarn build
-$ bin/console assets:install public -e test
-$ bin/console doctrine:schema:create -e test
-$ bin/console server:run 127.0.0.1:8080 -d public -e test
-$ open http://localhost:8080
-$ cd ../..
+$ symfony composer install
+$ APP_ENV=test symfony server:start --port=8080 --dir=tests/Application/public --daemon
+$ cd ./tests/Application/
+$ symfony run yarn install
+$ symfony run yarn build
+$ symfony console doctrine:database:create --env=test
+$ symfony console doctrine:schema:create --env=test
+$ symfony console assets:install --env=test
+$ symfony console sylius:fixtures:load --env=test
+$ symfony open:local
+$ cd ../../
 $ vendor/bin/behat
 $ vendor/bin/phpspec run
+$ vendor/bin/ecs check src
 ```
