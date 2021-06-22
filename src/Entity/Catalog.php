@@ -59,7 +59,6 @@ class Catalog implements CatalogInterface
         $this->displayProducts = null;
         $this->sortBy = null;
         $this->sortingType = null;
-        /** @var ArrayCollection<array-key, CatalogRuleInterface> $this->rules */
         $this->rules = new ArrayCollection();
         $this->productAssociationRules = new ArrayCollection();
     }

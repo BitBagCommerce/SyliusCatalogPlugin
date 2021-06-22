@@ -26,7 +26,7 @@ final class RenderProductCatalogsExtension extends AbstractExtension
     public function __construct(
         Environment $engine,
         CatalogsForProductResolverInterface $productCatalogResolver
-        ) {
+    ) {
         $this->engine = $engine;
         $this->productCatalogResolver = $productCatalogResolver;
     }

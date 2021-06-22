@@ -89,6 +89,9 @@ final class CatalogContext implements Context
         $catalog->setCode($code);
         $catalog->setCurrentLocale('en_US');
         $catalog->setName($name);
+        $catalog->setTemplate('@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig');
+        $catalog->setSortingType('newest');
+        $catalog->setDisplayProducts(3);
         $catalog->setConnectingRules(RuleInterface::OR);
         $catalog->setProductAssociationConnectingRules(RuleInterface::OR);
 
