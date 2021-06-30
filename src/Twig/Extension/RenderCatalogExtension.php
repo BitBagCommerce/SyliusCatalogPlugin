@@ -20,19 +20,20 @@ use Twig\TwigFunction;
 
 final class RenderCatalogExtension extends AbstractExtension
 {
-    private Environment $engine;
+    /** @var Environment */
+    private $twig;
 
     private CatalogResourceResolverInterface $catalogResolver;
 
     private ProductsInsideCatalogResolverInterface $productResolver;
 
     public function __construct(
-        Environment $engine,
+        Environment $twig,
         CatalogResourceResolverInterface $catalogResolver,
         ProductsInsideCatalogResolverInterface $productResolver
     ) {
         $this->productResolver = $productResolver;
-        $this->engine = $engine;
+        $this->twig = $twig;
         $this->catalogResolver = $catalogResolver;
     }
 
@@ -56,7 +57,7 @@ final class RenderCatalogExtension extends AbstractExtension
         if (empty($products) !== null && $catalog !== null) {
             $template = $catalog->getTemplate() ?? '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig';
 
-            return $this->engine->render($template, ['products' => $products, 'catalog' => $catalog]);
+            return $this->twig->render($template, ['products' => $products, 'catalog' => $catalog]);
         }
 
         return ' ';

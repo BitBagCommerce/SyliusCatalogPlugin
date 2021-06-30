@@ -10,6 +10,10 @@
     },
     "conflict": {
         "api-platform/core": "^2.6"
+        "php": "^7.4",
+        "friendsofsymfony/oauth-server-bundle": ">2.0.0-alpha.0 ^2.0@dev",
+        "sylius/admin-api-bundle": "^1.9.5",
+        "sylius/sylius": "1.9.5"
     },
     "require-dev": {
         "behat/behat": "^3.7",
@@ -50,6 +54,25 @@
         }
     },
     "autoload-dev": {
+        "classmap": ["tests/Application/Kernel.php"]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.9-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php bin/create_node_symlink.php"
+        ],
+        "post-update-cmd": [
+            "php bin/create_node_symlink.php"
+        ],
+        "post-create-project-cmd": [
+            "php bin/create_node_symlink.php"
         "classmap": [
             "tests/Application/Kernel.php"
         ]
