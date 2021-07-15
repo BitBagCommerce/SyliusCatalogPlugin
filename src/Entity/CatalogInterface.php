@@ -63,4 +63,8 @@ interface CatalogInterface extends ResourceInterface, TranslatableInterface, Cod
     public function getSortingType(): ?string;
 
     public function setSortingType(?string $sortingType): void;
+
+    public function setProducts(array $products): void;
+
+    public function getProducts(): array;
 }
