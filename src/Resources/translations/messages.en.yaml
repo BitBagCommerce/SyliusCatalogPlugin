@@ -18,11 +18,14 @@ bitbag_sylius_catalog_plugin:
         desc_asc: Desc/Asc
         form:
             catalog_rule:
+                has_attribute: By product attribute value
                 sort_by_code: By product code
                 price_higher_than: By price
                 sort_by_name: Filter by name
                 taxon: By taxons
             catalog:
+                attribute: Attribute
+                attribute_value: Attribute value
                 connecting_rules: Connecting rules
                 product_association_connecting_rules: How to connect rules
                 rule_connecting_rules: Connecting rules

@@ -45,6 +45,13 @@
             <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="price" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.price_higher_than" form-type="BitBag\SyliusCatalogPlugin\Form\Type\FirstVariantPriceConfigurationType" />
         </service>
 
+        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.elasticsearch.by_attribute" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Elasticsearch\AttributeRule">
+            <argument type="service" id="bitbag.sylius_elasticsearch_plugin.string_formatter" />
+            <argument type="service" id="sylius.context.locale"/>
+            <argument type="service" id="bitbag_sylius_elasticsearch_plugin.property_name_resolver.attribute"/>
+            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="attribute" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.has_attribute" form-type="BitBag\SyliusCatalogPlugin\Form\Type\AttributeConfigurationType" />
+        </service>
+
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.elasticsearch.by_taxon" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Elasticsearch\TaxonRule">
             <argument>%bitbag_es_shop_product_taxons_property%</argument>
             <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker"

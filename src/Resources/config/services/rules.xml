@@ -21,5 +21,12 @@
                  form-type="BitBag\SyliusCatalogPlugin\Form\Type\TaxonConfigurationType" />
             <argument type="service" id="sylius.context.channel" />
         </service>
+        <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.by_attribute" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\AttributeRule">
+            <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker"
+                 type="attribute"
+                 label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.has_attribute"
+                 form-type="BitBag\SyliusCatalogPlugin\Form\Type\AttributeConfigurationType" />
+            <argument type="service" id="sylius.context.locale" />
+        </service>
     </services>
 </container>

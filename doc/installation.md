@@ -73,6 +73,7 @@ $ APP_ENV=test symfony server:start --port=8080 --dir=tests/Application/public -
 $ cd ./tests/Application/
 $ symfony run yarn install
 $ symfony run yarn build
+$ symfony run yarn encore dev
 $ symfony console doctrine:database:create --env=test
 $ symfony console doctrine:schema:create --env=test
 $ symfony console assets:install --env=test

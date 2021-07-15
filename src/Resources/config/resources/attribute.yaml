@@ -1,0 +1,6 @@
+sylius_attribute:
+  resources:
+    product:
+      attribute:
+        classes:
+          repository: BitBag\SyliusCatalogPlugin\Repository\AttributeRepository
