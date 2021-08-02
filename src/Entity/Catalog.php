@@ -48,8 +48,6 @@ class Catalog implements CatalogInterface
 
     protected ?string $sortingType;
 
-    protected array $products = [];
-
     public function __construct()
     {
         $this->initializeTranslationsCollection();
@@ -229,15 +227,5 @@ class Catalog implements CatalogInterface
     public function setSortingType(?string $sortingType): void
     {
         $this->sortingType = $sortingType;
-    }
-
-    public function setProducts(array $products): void
-    {
-        $this->products = $products;
-    }
-
-    public function getProducts(): array
-    {
-        return $this->products;
     }
 }

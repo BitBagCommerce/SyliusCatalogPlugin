@@ -41,7 +41,8 @@ final class AttributeRule implements RuleInterface
         /** @var AttributeInterface $attribute */
         $attribute = $configuration['attribute'];
 
-        $paramName = \sprintf('%s_%s.keyword',
+        $paramName = \sprintf(
+            '%s_%s.keyword',
             $this->attributeNameResolver->resolvePropertyName($attribute->getCode()),
             $this->localeContext->getLocaleCode()
         );
