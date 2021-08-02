@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<resources xmlns="https://api-platform.com/schema/metadata"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="https://api-platform.com/schema/metadata https://api-platform.com/schema/metadata/metadata-2.0.xsd"
+>
+    <resource class="%bitbag_sylius_catalog_plugin.model.catalog.class%" shortName="Catalog">
+        <attribute name="normalization_context">
+            <attribute name="groups">
+                <attribute>shop:catalog:read</attribute>
+            </attribute>
+        </attribute>
+
+        <attribute name="denormalizationContext">
+            <attribute name="groups">
+                <attribute>shop:catalog:write</attribute>
+            </attribute>
+        </attribute>
+
+        <attribute name="validation_groups">sylius</attribute>
+
+        <collectionOperations>
+            <collectionOperation name="shop_get_catalog">
+                <attribute name="method">GET</attribute>
+                <attribute name="path">/shop/catalog-plugin/catalogs</attribute>
+            </collectionOperation>
+
+        </collectionOperations>
+
+        <itemOperations>
+            <itemOperation name="shop_get_catalog">
+                <attribute name="method">GET</attribute>
+                <attribute name="path">/shop/catalog-plugin/catalogs/{code}</attribute>
+                <attribute name="normalization_context">
+                    <attribute name="groups">
+                        <attribute>shop:catalog:read</attribute>
+                    </attribute>
+                </attribute>
+            </itemOperation>
+        </itemOperations>
+
+        <property name="id" identifier="false" writable="false"/>
+        <property name="code" identifier="true" writable="false"/>
+        <property name="startDate" identifier="false" writable="false"/>
+        <property name="endDate" identifier="false" writable="false"/>
+        <property name="connectingRules" identifier="false" writable="false"/>
+        <property name="productAssociationConnectingRules" identifier="false" writable="false"/>
+        <property name="template" identifier="false" writable="false"/>
+        <property name="sortingType" identifier="false" writable="false"/>
+        <property name="displayProducts" identifier="false" writable="false"/>
+        <property name="rules" identifier="false" writable="false"/>
+        <property name="productAssociationRules" identifier="false" writable="false"/>
+        <property name="products" identifier="false" writable="false"/>
+    </resource>
+</resources>

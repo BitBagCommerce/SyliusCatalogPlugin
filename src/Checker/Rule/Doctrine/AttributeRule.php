@@ -64,7 +64,8 @@ final class AttributeRule extends AbstractRule implements AttributeRuleInterface
             $queryBuilder
                 ->setParameter(
                     $attributeValueParamName,
-                    sprintf(self::SELECT_ATTRIBUTE_PATTERN,
+                    sprintf(
+                        self::SELECT_ATTRIBUTE_PATTERN,
                         $this->getValueHashKey(
                             $attribute->getConfiguration(),
                             $value

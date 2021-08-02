@@ -10,6 +10,7 @@
         <import resource="services/resolver/catalog.xml" />
         <import resource="services/resolver/product.xml" />
         <import resource="services/sort.xml" />
+        <import resource="services/normalizer.xml" />
     </imports>
     <services>
         <service id="bitbag_sylius_catalog_plugin.listener.admin.menu_builder" class="BitBag\SyliusCatalogPlugin\Menu\AdminMenuListener">

@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="BitBag\SyliusCatalogPlugin\Entity\Catalog">
+        <attribute name="id">
+            <group>shop:catalog:read</group>
+        </attribute>
+        <attribute name="startDate">
+            <group>shop:catalog:read</group>
+        </attribute>
+        <attribute name="endDate">
+            <group>shop:catalog:read</group>
+        </attribute>
+        <attribute name="code">
+            <group>shop:catalog:read</group>
+        </attribute>
+        <attribute name="productAssociationConnectingRules">
+            <group>shop:catalog:read</group>
+        </attribute>
+        <attribute name="template">
+            <group>shop:catalog:read</group>
+        </attribute>
+        <attribute name="sortingType">
+            <group>shop:catalog:read</group>
+        </attribute>
+        <attribute name="displayProducts">
+            <group>shop:catalog:read</group>
+        </attribute>
+        <attribute name="products">
+            <group>shop:catalog:read</group>
+        </attribute>
+    </class>
+</serializer>
