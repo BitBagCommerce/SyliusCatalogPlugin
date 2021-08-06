@@ -16,5 +16,11 @@
         <property name="translations">
             <constraint name="Valid" />
         </property>
+        <property name="endDate">
+            <constraint name="GreaterThan">
+                <option name="propertyPath">startDate</option>
+                <option name="groups">sylius</option>
+            </constraint>
+        </property>
     </class>
 </constraint-mapping>
