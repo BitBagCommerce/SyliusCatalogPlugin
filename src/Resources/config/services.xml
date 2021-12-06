@@ -11,6 +11,8 @@
         <import resource="services/resolver/product.xml" />
         <import resource="services/sort.xml" />
         <import resource="services/normalizer.xml" />
+        <import resource="services/event_factory.xml" />
+        <import resource="services/query_dispatcher.xml" />
     </imports>
     <services>
         <service id="bitbag_sylius_catalog_plugin.listener.admin.menu_builder" class="BitBag\SyliusCatalogPlugin\Menu\AdminMenuListener">

@@ -17,6 +17,7 @@
         <service id="bitbag.sylius_catalog_plugin.query_builder.product_query_builder" class="BitBag\SyliusCatalogPlugin\QueryBuilder\ProductQueryBuilder">
             <argument type="service" id="bitbag_sylius_catalog_plugin.registry_catalog_rule_checker.elasticsearch" />
             <argument type="service" id="bitbag_sylius_elasticsearch_plugin.query_builder.has_channel" />
+            <argument type="service" id="bitbag.sylius_catalog_plugin.query_dispatcher"/>
             <argument type="service" id="bitbag_sylius_catalog_plugin.registry_catalog_sort_checker.elasticsearch" />
         </service>
 
