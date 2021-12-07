@@ -12,7 +12,7 @@ namespace BitBag\SyliusCatalogPlugin\Repository;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
-final class AttributeRepository extends EntityRepository implements AttributeRepositoryInterface
+class AttributeRepository extends EntityRepository implements AttributeRepositoryInterface
 {
     public function findByCodePart(string $code, ?int $limit = null): array
     {

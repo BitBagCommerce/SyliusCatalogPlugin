@@ -28,7 +28,11 @@ final class AttributeRule extends AbstractRule implements AttributeRuleInterface
         $this->localeContext = $localeContext;
     }
 
-    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
+    public function modifyQueryBuilder(
+        array $configuration,
+        QueryBuilder $queryBuilder,
+        string $connectingRules
+    ): void
     {
         /** @var AttributeInterface $attribute */
         $attribute = $configuration['attribute'];
@@ -42,7 +46,11 @@ final class AttributeRule extends AbstractRule implements AttributeRuleInterface
         $this->addRule($connectingRules, $queryBuilder, $rule);
     }
 
-    private function buildRule(QueryBuilder $queryBuilder, AttributeInterface $attribute, string $value): Andx
+    private function buildRule(
+        QueryBuilder $queryBuilder,
+        AttributeInterface $attribute,
+        string $value
+    ): Andx
     {
         $valueFieldName = self::PRODUCT_ATTRIBUTES_ALIAS . '.' . $this->getAttributeStorageFieldName($attribute->getType());
 
@@ -53,7 +61,7 @@ final class AttributeRule extends AbstractRule implements AttributeRuleInterface
 
         $conditions->add($queryBuilder->expr()->eq(self::PRODUCT_ATTRIBUTES_ALIAS . '.localeCode', ":{$localeCodeParameterName}"));
 
-        if ($attribute->getType() !== SelectAttributeType::TYPE) {
+        if (SelectAttributeType::TYPE !== $attribute->getType()) {
             $conditions->add($queryBuilder->expr()->eq($valueFieldName, ":{$attributeValueParamName}"));
 
             $queryBuilder->setParameter($attributeValueParamName, $value);

@@ -32,7 +32,11 @@ final class CatalogNormalizer implements ContextAwareNormalizerInterface, Normal
         $this->productResolver = $productResolver;
     }
 
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize(
+        $object,
+        $format = null,
+        array $context = []
+    )
     {
         Assert::isInstanceOf($object, CatalogInterface::class);
         Assert::keyNotExists($context, self::ALREADY_CALLED);
@@ -49,7 +53,11 @@ final class CatalogNormalizer implements ContextAwareNormalizerInterface, Normal
         return $data;
     }
 
-    public function supportsNormalization($data, $format = null, $context = []): bool
+    public function supportsNormalization(
+        $data,
+        $format = null,
+        $context = []
+    ): bool
     {
         if (isset($context[self::ALREADY_CALLED])) {
             return false;
@@ -60,6 +68,6 @@ final class CatalogNormalizer implements ContextAwareNormalizerInterface, Normal
 
     private function isNotAdminGetOperation(array $context): bool
     {
-        return !isset($context['item_operation_name']) || !($context['item_operation_name'] === 'admin_get');
+        return !isset($context['item_operation_name']) || !('admin_get' === $context['item_operation_name']);
     }
 }

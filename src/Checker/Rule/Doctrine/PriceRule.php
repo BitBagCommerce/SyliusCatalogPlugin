@@ -28,7 +28,11 @@ final class PriceRule extends AbstractRule
         $this->channelContext = $channelContext;
     }
 
-    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
+    public function modifyQueryBuilder(
+        array $configuration,
+        QueryBuilder $queryBuilder,
+        string $connectingRules
+    ): void
     {
         $priceParameter = $this->generateParameterName();
         $channelCodeParameter = $this->generateParameterName();
@@ -53,7 +57,12 @@ final class PriceRule extends AbstractRule
         return 'productPriceHigher' . $this->i++;
     }
 
-    private function anyVariantRule(QueryBuilder $queryBuilder, string $channelCodeParameter, string $subqueryOperator, string $priceParameter): Func
+    private function anyVariantRule(
+        QueryBuilder $queryBuilder,
+        string $channelCodeParameter,
+        string $subqueryOperator,
+        string $priceParameter
+    ): Func
     {
         $productVariantAlias = sprintf('pv%d', $this->i++);
         $channelPricingAlias = sprintf('cp%d', $this->i++);
@@ -70,7 +79,12 @@ final class PriceRule extends AbstractRule
         return $queryBuilder->expr()->exists($subquery->getDQL());
     }
 
-    private function allVariantsRule(QueryBuilder $queryBuilder, string $channelCodeParameter, string $subqueryOperator, string $priceParameter): Func
+    private function allVariantsRule(
+        QueryBuilder $queryBuilder,
+        string $channelCodeParameter,
+        string $subqueryOperator,
+        string $priceParameter
+    ): Func
     {
         $productVariantAlias = sprintf('pv%d', $this->i++);
         $channelPricingAlias = sprintf('cp%d', $this->i++);
@@ -87,7 +101,12 @@ final class PriceRule extends AbstractRule
             ->not($queryBuilder->expr()->exists($subquery->getDQL()));
     }
 
-    private function createFromFromOperator(string $operator, QueryBuilder $queryBuilder, string $channelCodeParameter, string $priceParameter): Func
+    private function createFromFromOperator(
+        string $operator,
+        QueryBuilder $queryBuilder,
+        string $channelCodeParameter,
+        string $priceParameter
+    ): Func
     {
         switch ($operator) {
             case PriceConfigurationType::OPERATOR_ALL_GT:

@@ -20,7 +20,11 @@ abstract class AbstractRule implements RuleInterface
     /**
      * @param Expr|Func|Comparison $rule
      */
-    protected function addRule(string $connectingRules, QueryBuilder $queryBuilder, $rule): void
+    protected function addRule(
+        string $connectingRules,
+        QueryBuilder $queryBuilder,
+        $rule
+    ): void
     {
         switch ($connectingRules) {
             case RuleInterface::AND:

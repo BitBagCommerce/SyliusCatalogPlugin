@@ -30,12 +30,20 @@ final class CatalogSortChecker implements CompilerPassInterface
         }
     }
 
-    private function serviceImplementsInterface(ContainerBuilder $container, string $id, string $sortInterface): bool
+    private function serviceImplementsInterface(
+        ContainerBuilder $container,
+        string $id,
+        string $sortInterface
+    ): bool
     {
         return isset(class_implements($container->getDefinition($id)->getClass())[$sortInterface]);
     }
 
-    private function addDriverSortsToRegistries(string $driver, ContainerBuilder $container, string $sortInterface): void
+    private function addDriverSortsToRegistries(
+        string $driver,
+        ContainerBuilder $container,
+        string $sortInterface
+    ): void
     {
         $driverSortRegistry = sprintf('bitbag_sylius_catalog_plugin.registry_catalog_sort_checker.%s', $driver);
 

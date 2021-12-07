@@ -89,7 +89,11 @@ final class CatalogFixtureFactory
         $this->catalogRepository->add($catalog);
     }
 
-    private function createRule($rule, string $ruleTarget, CatalogInterface $catalog): void
+    private function createRule(
+        $rule,
+        string $ruleTarget,
+        CatalogInterface $catalog
+    ): void
     {
         /** @var CatalogRuleInterface $catalogRule */
         $catalogRule = $this->catalogRuleFactory->createNew();
