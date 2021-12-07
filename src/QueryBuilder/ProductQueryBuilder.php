@@ -11,9 +11,11 @@ declare(strict_types=1);
 namespace BitBag\SyliusCatalogPlugin\QueryBuilder;
 
 use BitBag\SyliusCatalogPlugin\Checker\Rule\Elasticsearch\RuleInterface;
+use BitBag\SyliusCatalogPlugin\Notifier\QueryDispatcherInterface;
 use BitBag\SyliusElasticsearchPlugin\QueryBuilder\QueryBuilderInterface;
 use Doctrine\Common\Collections\Collection;
 use Elastica\Query\BoolQuery;
+use spec\SM\DummyObject;
 use Sylius\Component\Registry\ServiceRegistry;
 
 final class ProductQueryBuilder implements ProductQueryBuilderInterface
@@ -22,10 +24,17 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
 
     private QueryBuilderInterface $hasChannelQueryBuilder;
 
-    public function __construct(ServiceRegistry $serviceRegistry, QueryBuilderInterface $hasChannelQueryBuilder)
+    private QueryDispatcherInterface $queryDispatcher;
+
+    public function __construct(
+        ServiceRegistry $serviceRegistry,
+        QueryBuilderInterface $hasChannelQueryBuilder,
+        QueryDispatcherInterface $queryDispatcher
+    )
     {
         $this->serviceRegistry = $serviceRegistry;
         $this->hasChannelQueryBuilder = $hasChannelQueryBuilder;
+        $this->queryDispatcher = $queryDispatcher;
     }
 
     public function findMatchingProductsQuery(string $connectingRules, Collection $rules)
@@ -56,6 +65,7 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
                 throw new \InvalidArgumentException('Invalid connecting rule');
         }
 
+        $this->queryDispatcher->dispatchNewQuery($query);
         return $query;
     }
 
