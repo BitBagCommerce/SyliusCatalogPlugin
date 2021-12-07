@@ -18,5 +18,9 @@ interface RuleInterface
 
     public const AND = 'And';
 
-    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void;
+    public function modifyQueryBuilder(
+        array $configuration,
+        QueryBuilder $queryBuilder,
+        string $connectingRules
+    ): void;
 }

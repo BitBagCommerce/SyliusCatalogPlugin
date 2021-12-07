@@ -52,7 +52,7 @@ final class RenderCatalogExtension extends AbstractExtension
             $products = $this->productResolver->findMatchingProducts($catalog);
         }
 
-        if (empty($products) !== null && $catalog !== null) {
+        if (null !== empty($products) && null !== $catalog) {
             $template = $catalog->getTemplate() ?? '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig';
 
             return $this->engine->render($template, ['products' => $products, 'catalog' => $catalog]);

@@ -30,12 +30,20 @@ final class CatalogRuleCheckersPass implements CompilerPassInterface
         }
     }
 
-    private function serviceImplementsInterface(ContainerBuilder $container, string $id, string $ruleInterface): bool
+    private function serviceImplementsInterface(
+        ContainerBuilder $container,
+        string $id,
+        string $ruleInterface
+    ): bool
     {
         return isset(class_implements($container->getDefinition($id)->getClass())[$ruleInterface]);
     }
 
-    private function addDriverRulesToRegistries(string $driver, ContainerBuilder $container, string $ruleInterface): void
+    private function addDriverRulesToRegistries(
+        string $driver,
+        ContainerBuilder $container,
+        string $ruleInterface
+    ): void
     {
         $driverRuleRegistry = sprintf('bitbag_sylius_catalog_plugin.registry_catalog_rule_checker.%s', $driver);
         $driverFormRegistry = sprintf('bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker.%s', $driver);

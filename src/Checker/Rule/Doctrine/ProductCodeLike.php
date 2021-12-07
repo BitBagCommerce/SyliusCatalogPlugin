@@ -26,7 +26,11 @@ final class ProductCodeLike extends AbstractRule implements RuleInterface
 
     private int $i = 0;
 
-    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
+    public function modifyQueryBuilder(
+        array $configuration,
+        QueryBuilder $queryBuilder,
+        string $connectingRules
+    ): void
     {
         $parameterName = $this->generateParameterName();
 

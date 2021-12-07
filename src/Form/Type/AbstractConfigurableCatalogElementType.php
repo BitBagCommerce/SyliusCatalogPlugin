@@ -23,7 +23,11 @@ abstract class AbstractConfigurableCatalogElementType extends AbstractResourceTy
 {
     private FormTypeRegistryInterface $formTypeRegistry;
 
-    public function __construct(string $dataClass, array $validationGroups = [], FormTypeRegistryInterface $formTypeRegistry)
+    public function __construct(
+        string $dataClass,
+        array $validationGroups = [],
+        FormTypeRegistryInterface $formTypeRegistry
+    )
     {
         parent::__construct($dataClass, $validationGroups);
 

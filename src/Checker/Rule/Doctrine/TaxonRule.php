@@ -24,7 +24,11 @@ class TaxonRule extends AbstractRule
         $this->channelContext = $channelContext;
     }
 
-    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
+    public function modifyQueryBuilder(
+        array $configuration,
+        QueryBuilder $queryBuilder,
+        string $connectingRules
+    ): void
     {
         $taxonsParameterName = $this->generateParameterName();
 

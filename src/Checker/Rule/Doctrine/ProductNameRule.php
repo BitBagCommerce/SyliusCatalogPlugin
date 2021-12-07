@@ -24,13 +24,17 @@ final class ProductNameRule extends AbstractRule
         $this->localeContext = $localeContext;
     }
 
-    public function modifyQueryBuilder(array $configuration, QueryBuilder $queryBuilder, string $connectingRules): void
+    public function modifyQueryBuilder(
+        array $configuration,
+        QueryBuilder $queryBuilder,
+        string $connectingRules
+    ): void
     {
         $parameterName = 'configurationName' . $this->i;
         $locale = $this->localeContext->getLocaleCode();
         ++$this->i;
 
-        if ($connectingRules === self::OR) {
+        if (self::OR === $connectingRules) {
             $queryBuilder
                 ->andWhere('name.locale =:locale')
                 ->orWhere('name.name like :' . $parameterName);

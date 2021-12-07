@@ -12,7 +12,7 @@ namespace BitBag\SyliusCatalogPlugin\Repository;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
-final class CatalogRepository extends EntityRepository implements CatalogRepositoryInterface
+class CatalogRepository extends EntityRepository implements CatalogRepositoryInterface
 {
     /**
      * @return Catalog[]

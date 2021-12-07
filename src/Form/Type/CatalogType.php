@@ -25,7 +25,11 @@ final class CatalogType extends AbstractResourceType
 {
     private array $attributeChoices;
 
-    public function __construct(string $dataClass, array $attributeChoices, array $validationGroups = [])
+    public function __construct(
+        string $dataClass,
+        array $attributeChoices,
+        array $validationGroups = []
+    )
     {
         parent::__construct($dataClass, $validationGroups);
 
