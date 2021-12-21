@@ -47,7 +47,7 @@ final class Catalog implements CatalogInterface
             $templates[$file->getBasename('.html.twig')] = $this->templatesDir.'/'.$file->getBasename();
         }
         if (in_array(array_key_first(self::DEFAULT_TEMPLATE), array_keys($templates))) {
-            return $templates;
+            return array_merge(['default' => $templates['default']], $templates);
         }
 
         return array_merge(self::DEFAULT_TEMPLATE, $templates);
