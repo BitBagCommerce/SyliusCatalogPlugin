@@ -42,6 +42,7 @@ For catalog You can configure:
 * when it should be shown - this is useful for time restricted special offers or promotions
 * there is set of rules that restrict which products will be shown inside, they can be combined using AND or OR.
 * there is another set of rules - used to restrict products associated with given catalog - it can be shown on product details page
+* templates for each catalog
 
 - [Installation](doc/installation.md)
 - [Testing & running the plugin](doc/installation.md#testing--running-the-plugin)

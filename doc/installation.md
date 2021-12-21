@@ -52,6 +52,8 @@ bitbag_sylius_catalog_plugin:
 To display catalogs in product details You need to override product details template, for example with template provided as a part of test application in
 `vendor/bitbag/catalog-plugin/tests/Application/templates/bundles/SyliusShopBundle/Product/show.html.twig`
 
+If you want to create your own template for catalog, you have to create them in `templates/bundles/BitBagSyliusCatalogPlugin/Catalog/Templates`. The default one is in `vendor/bitbag/catalog-plugin/src/Resources/views/Catalog/Templates/default.html.twig`. You can simply override this, if you create `default.html.twig` file in above directory. Name of file is name of template which you see at admin panel.
+
 Finish the installation by updating the database schema and installing assets:
 ```
 $ symfony console doctrine:migrations:diff

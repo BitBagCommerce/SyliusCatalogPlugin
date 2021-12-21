@@ -26,5 +26,10 @@
             <argument>BitBag\SyliusCatalogPlugin\Checker\Sort\Doctrine\SortInterface</argument>
             <argument>sort checker</argument>
         </service>
+
+        <service class="BitBag\SyliusCatalogPlugin\Choices\Catalog" id="bitbag_sylius_catalog_plugin.choices.catalog">
+            <argument>%kernel.project_dir%</argument>
+        </service>
+
     </services>
 </container>
