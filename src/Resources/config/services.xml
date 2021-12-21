@@ -29,6 +29,7 @@
 
         <service class="BitBag\SyliusCatalogPlugin\Choices\Catalog" id="bitbag_sylius_catalog_plugin.choices.catalog">
             <argument>%kernel.project_dir%</argument>
+            <argument>%bitbag_sylius_catalog_plugin.parameters.templates_dir%</argument>
         </service>
 
     </services>

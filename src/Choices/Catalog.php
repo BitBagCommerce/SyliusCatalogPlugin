@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Choices;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 
@@ -17,11 +19,14 @@ final class Catalog implements CatalogInterface
 {
     private string $projectDir;
 
+    private string $templatesDir;
+
     private const DEFAULT_TEMPLATE = ['default' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/default.html.twig'];
 
-    public function __construct(string $projectDir)
+    public function __construct(string $projectDir, string $templatesDir)
     {
         $this->projectDir = $projectDir;
+        $this->templatesDir = $templatesDir;
     }
 
     public function getTemplates(): array
@@ -29,7 +34,7 @@ final class Catalog implements CatalogInterface
         $finder = new Finder();
 
         try {
-            $finder->files()->in($this->projectDir.'/templates/bundles/BitBagSyliusCatalogPlugin/Catalog/Templates')->name('*.html.twig')->depth(0);
+            $finder->files()->in($this->projectDir.'/templates/'.$this->templatesDir)->name('*.html.twig')->depth(0);
         } catch (DirectoryNotFoundException $directoryNotFoundException) {
             return self::DEFAULT_TEMPLATE;
         }
@@ -39,10 +44,10 @@ final class Catalog implements CatalogInterface
         }
 
         $templates = [];
-        foreach ($finder->getIterator() as $file) {
-            $templates[$file->getBasename('.html.twig')] = '@BitBagSyliusCatalogPlugin/Catalog/Templates/'.$file->getBasename();
-        }
 
+        foreach ($finder->getIterator() as $file) {
+            $templates[$file->getBasename('.html.twig')] = $this->templatesDir.'/'.$file->getBasename();
+        }
         if (in_array(array_key_first(self::DEFAULT_TEMPLATE), array_keys($templates))) {
             return $templates;
         }

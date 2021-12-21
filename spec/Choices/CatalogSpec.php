@@ -24,7 +24,8 @@ final class CatalogSpec extends ObjectBehavior
 
     private const DEFAULT_TEMPLATE = ['default' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/default.html.twig'];
 
-    function let(): void {
+    function let(): void
+    {
         $this->beConstructedWith($this->projectDir);
     }
 

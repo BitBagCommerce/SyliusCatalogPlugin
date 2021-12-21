@@ -12,6 +12,7 @@ namespace BitBag\SyliusCatalogPlugin\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 final class Configuration implements ConfigurationInterface
 {
@@ -22,9 +23,23 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->enumNode('driver')
-            ->values(['doctrine', 'elasticsearch'])
-            ->defaultValue('doctrine')
+                ->enumNode('driver')
+                    ->values(['doctrine', 'elasticsearch'])
+                    ->defaultValue('doctrine')
+                ->end()
+                ->scalarNode('templates_dir')
+                    ->defaultValue('catalog')
+                    ->cannotBeEmpty()
+                    ->validate()
+                        ->always(function ($value) {
+                            if (!is_string($value)) {
+                                throw new InvalidConfigurationException('templates must be string');
+                            }
+
+                            return $value;
+                        })
+                    ->end()
+                ->end()
             ->end()
         ;
 

@@ -62,6 +62,9 @@ final class BitBagSyliusCatalogExtension extends Extension
             $container->getDefinition('bitbag_sylius_catalog_plugin.form.type.catalog')
                 ->setArgument(1, sprintf('%%bitbag_sylius_catalog_plugin.catalog_sorts.%s%%', $config['driver']))
         );
+
+        $container->setParameter('bitbag_sylius_catalog_plugin.parameters.templates_dir', $config['templates_dir']);
+
     }
 
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
