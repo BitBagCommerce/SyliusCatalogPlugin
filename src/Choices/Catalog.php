@@ -10,8 +10,6 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Choices;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 
