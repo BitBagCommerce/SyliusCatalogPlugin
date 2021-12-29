@@ -16,17 +16,17 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 
 final class CatalogSpec extends ObjectBehavior
 {
     private string $projectDir = '/test/';
+    private string $templatesDir = 'catalog';
 
     private const DEFAULT_TEMPLATE = ['default' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/default.html.twig'];
 
     function let(): void
     {
-        $this->beConstructedWith($this->projectDir);
+        $this->beConstructedWith($this->projectDir, $this->templatesDir);
     }
 
     function it_is_initializable(): void
