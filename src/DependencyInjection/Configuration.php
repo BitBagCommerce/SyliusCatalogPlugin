@@ -33,7 +33,7 @@ final class Configuration implements ConfigurationInterface
                     ->validate()
                         ->always(function ($value) {
                             if (!is_string($value)) {
-                                throw new InvalidConfigurationException('templates must be string');
+                                throw new InvalidConfigurationException('templates_dir must be string');
                             }
 
                             return $value;

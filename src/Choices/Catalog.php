@@ -19,7 +19,7 @@ final class Catalog implements CatalogInterface
 
     private string $templatesDir;
 
-    private const DEFAULT_TEMPLATE = ['default' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/default.html.twig'];
+    private const DEFAULT_TEMPLATE = ['default' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig'];
 
     public function __construct(string $projectDir, string $templatesDir)
     {
@@ -30,7 +30,6 @@ final class Catalog implements CatalogInterface
     public function getTemplates(): array
     {
         $finder = new Finder();
-
         try {
             $finder->files()->in($this->projectDir.'/templates/'.$this->templatesDir)->name('*.html.twig')->depth(0);
         } catch (DirectoryNotFoundException $directoryNotFoundException) {
