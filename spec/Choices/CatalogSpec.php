@@ -22,26 +22,27 @@ use Tests\BitBag\SyliusCatalogPlugin\Application\Kernel;
 final class CatalogSpec extends ObjectBehavior
 {
     private string $testDir = 'spec/test';
+
     private string $templatesDir = 'catalog';
 
     private const DEFAULT_TEMPLATE = ['default' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig'];
 
-    function let(): void
+    public function let(): void
     {
         $this->beConstructedWith($this->testDir, $this->templatesDir);
     }
 
-    function it_is_initializable(): void
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(Catalog::class);
     }
 
-    function it_implements_catalog_interface(): void
+    public function it_implements_catalog_interface(): void
     {
         $this->shouldHaveType(CatalogInterface::class);
     }
 
-    function it_return_default_template_if_directory_doesnt_exist(
+    public function it_returns_default_template_if_directory_doesnt_exist(
         Finder $finder
     ): void
     {
@@ -53,7 +54,7 @@ final class CatalogSpec extends ObjectBehavior
         $this->getTemplates()->shouldReturn(self::DEFAULT_TEMPLATE);
     }
 
-    function it_return_default_template_if_directory_doesnt_contain_twig_files(
+    public function it_returns_default_template_if_directory_doesnt_contain_twig_files(
         Finder $finder
     ): void
     {
@@ -73,7 +74,7 @@ final class CatalogSpec extends ObjectBehavior
         $this->rrmdir($this->testDir);
     }
 
-    function it_return_templates_from_default_dir(
+    public function it_returns_templates_from_default_dir(
         Finder $finder,
         SplFileInfo $file1,
         SplFileInfo $file2
@@ -112,7 +113,7 @@ final class CatalogSpec extends ObjectBehavior
 
         $this->rrmdir($this->testDir);
     }
-    function it_return_templates_from_default_dir_with_first_default_if_default_exist(
+    public function it_returns_templates_from_default_dir_with_first_default_if_default_exist(
         Finder $finder,
         SplFileInfo $file1,
         SplFileInfo $file2,
@@ -128,7 +129,6 @@ final class CatalogSpec extends ObjectBehavior
         $finder->name('*.html.twig')->willReturn($finder);
         $finder->depth(0)->willReturn($finder);
         $finder->hasResults()->willReturn(true);
-
 
         $finder->getIterator()->willReturn(new \ArrayIterator([
             $file1->getWrappedObject(),

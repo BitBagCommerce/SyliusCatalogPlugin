@@ -31,7 +31,12 @@ final class Catalog implements CatalogInterface
     {
         $finder = new Finder();
         try {
-            $finder->files()->in($this->projectDir.'/templates/'.$this->templatesDir)->name('*.html.twig')->depth(0);
+            $finder
+                ->files()
+                ->in($this->projectDir.'/templates/'.$this->templatesDir)
+                ->name('*.html.twig')
+                ->depth(0)
+            ;
         } catch (DirectoryNotFoundException $directoryNotFoundException) {
             return self::DEFAULT_TEMPLATE;
         }
