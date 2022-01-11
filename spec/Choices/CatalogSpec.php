@@ -20,11 +20,11 @@ use Symfony\Component\Finder\Finder;
 
 final class CatalogSpec extends ObjectBehavior
 {
-    private string $fullTemplatePath = 'spec/test';
+    private const FULL_TEMPLATE_PATH = 'spec/test';
 
     public function let(CatalogMapperInterface $catalogMapper): void
     {
-        $this->beConstructedWith($this->fullTemplatePath, $catalogMapper);
+        $this->beConstructedWith(self::FULL_TEMPLATE_PATH, $catalogMapper);
     }
 
     public function it_is_initializable(): void
@@ -51,11 +51,11 @@ final class CatalogSpec extends ObjectBehavior
     public function it_returns_default_template_if_directory_doesnt_contain_twig_files(
         Finder $finder
     ): void {
-        if (!is_dir($this->fullTemplatePath)) {
-            mkdir($this->fullTemplatePath, 0777, true);
+        if (!is_dir(self::FULL_TEMPLATE_PATH)) {
+            mkdir(self::FULL_TEMPLATE_PATH, 0777, true);
         }
         $finder->files()->willReturn($finder);
-        $finder->in($this->fullTemplatePath)->willReturn($finder);
+        $finder->in(self::FULL_TEMPLATE_PATH)->willReturn($finder);
         $finder->name('*.html.twig')->willReturn($finder);
         $finder->depth(0)->willReturn($finder);
 
@@ -63,7 +63,7 @@ final class CatalogSpec extends ObjectBehavior
 
         $this->getTemplates()->shouldReturn(CatalogInterface::DEFAULT_TEMPLATE);
 
-        $this->rrmdir($this->fullTemplatePath);
+        $this->rrmdir(self::FULL_TEMPLATE_PATH);
     }
 
     private function rrmdir(string $directory): bool

@@ -18,11 +18,11 @@ use Symfony\Component\Finder\SplFileInfo;
 
 final class CatalogMapperSpec extends ObjectBehavior
 {
-    private string $catalogName = 'catalog';
+    private const CATALOG_NAME = 'catalog';
 
     public function let(): void
     {
-        $this->beConstructedWith($this->catalogName);
+        $this->beConstructedWith(self::CATALOG_NAME);
     }
 
     public function it_is_initializable(): void
@@ -51,8 +51,8 @@ final class CatalogMapperSpec extends ObjectBehavior
         $file2->getBasename()->willReturn('two.html.twig');
 
         $templates = [
-            'one' => $this->catalogName . '/one.html.twig',
-            'two' => $this->catalogName . '/two.html.twig',
+            'one' => self::CATALOG_NAME . '/one.html.twig',
+            'two' => self::CATALOG_NAME . '/two.html.twig',
         ];
 
         $this->map($files)->shouldReturn(array_merge(CatalogInterface::DEFAULT_TEMPLATE, $templates));
@@ -79,9 +79,9 @@ final class CatalogMapperSpec extends ObjectBehavior
         $default->getBasename()->willReturn('default.html.twig');
 
         $templates = [
-            'one' => $this->catalogName . '/one.html.twig',
-            'two' => $this->catalogName . '/two.html.twig',
-            'default' => $this->catalogName . '/default.html.twig',
+            'one' => self::CATALOG_NAME . '/one.html.twig',
+            'two' => self::CATALOG_NAME . '/two.html.twig',
+            'default' => self::CATALOG_NAME . '/default.html.twig',
         ];
 
         if (in_array(array_key_first(CatalogInterface::DEFAULT_TEMPLATE), array_keys($templates))) {
