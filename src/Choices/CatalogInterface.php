@@ -12,5 +12,7 @@ namespace BitBag\SyliusCatalogPlugin\Choices;
 
 interface CatalogInterface
 {
+    public const DEFAULT_TEMPLATE = ['default' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig'];
+
     public function getTemplates(): array;
 }

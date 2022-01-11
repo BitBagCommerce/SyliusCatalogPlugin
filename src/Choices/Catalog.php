@@ -15,25 +15,24 @@ use Symfony\Component\Finder\Finder;
 
 final class Catalog implements CatalogInterface
 {
-    private string $projectDir;
+    private string $fullTemplatePath;
 
-    private string $templatesDir;
+    private CatalogMapperInterface $catalogMapper;
 
-    private const DEFAULT_TEMPLATE = ['default' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig'];
-
-    public function __construct(string $projectDir, string $templatesDir)
+    public function __construct(string $fullTemplatePath, CatalogMapperInterface $catalogMapper)
     {
-        $this->projectDir = $projectDir;
-        $this->templatesDir = $templatesDir;
+        $this->fullTemplatePath = $fullTemplatePath;
+        $this->catalogMapper = $catalogMapper;
     }
 
     public function getTemplates(): array
     {
         $finder = new Finder();
+
         try {
             $finder
                 ->files()
-                ->in($this->projectDir.'/templates/'.$this->templatesDir)
+                ->in($this->fullTemplatePath)
                 ->name('*.html.twig')
                 ->depth(0)
             ;
@@ -45,15 +44,6 @@ final class Catalog implements CatalogInterface
             return self::DEFAULT_TEMPLATE;
         }
 
-        $templates = [];
-
-        foreach ($finder->getIterator() as $file) {
-            $templates[$file->getBasename('.html.twig')] = $this->templatesDir.'/'.$file->getBasename();
-        }
-        if (in_array(array_key_first(self::DEFAULT_TEMPLATE), array_keys($templates))) {
-            return array_merge(['default' => $templates['default']], $templates);
-        }
-
-        return array_merge(self::DEFAULT_TEMPLATE, $templates);
+        return $this->catalogMapper->map($finder->getIterator());
     }
 }
