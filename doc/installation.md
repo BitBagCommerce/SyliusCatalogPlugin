@@ -60,7 +60,7 @@ If you want to create your own templates for product catalog, you have to create
 bit_bag_sylius_catalog:
     templates_dir: 'catalog'
 ```
-Default template for product catalog is `@BitBagSyliusCatalogPlugin/Catalog/Templates/default.html.twig`
+Default template for product catalog is `@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig`
 
 
 Finish the installation by updating the database schema and installing assets:
