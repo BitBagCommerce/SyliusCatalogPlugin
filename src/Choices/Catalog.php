@@ -19,18 +19,19 @@ final class Catalog implements CatalogInterface
 
     private CatalogMapperInterface $catalogMapper;
 
-    public function __construct(string $fullTemplatePath, CatalogMapperInterface $catalogMapper)
+    private Finder $finder;
+
+    public function __construct(string $fullTemplatePath, CatalogMapperInterface $catalogMapper, Finder $finder)
     {
         $this->fullTemplatePath = $fullTemplatePath;
         $this->catalogMapper = $catalogMapper;
+        $this->finder = $finder;
     }
 
     public function getTemplates(): array
     {
-        $finder = new Finder();
-
         try {
-            $finder
+            $this->finder
                 ->files()
                 ->in($this->fullTemplatePath)
                 ->name('*.html.twig')
@@ -40,10 +41,10 @@ final class Catalog implements CatalogInterface
             return self::DEFAULT_TEMPLATE;
         }
 
-        if (!$finder->hasResults()) {
+        if (!$this->finder->hasResults()) {
             return self::DEFAULT_TEMPLATE;
         }
 
-        return $this->catalogMapper->map($finder->getIterator());
+        return $this->catalogMapper->map($this->finder->getIterator());
     }
 }

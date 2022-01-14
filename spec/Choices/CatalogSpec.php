@@ -22,9 +22,9 @@ final class CatalogSpec extends ObjectBehavior
 {
     private const FULL_TEMPLATE_PATH = 'spec/test';
 
-    public function let(CatalogMapperInterface $catalogMapper): void
+    public function let(CatalogMapperInterface $catalogMapper, Finder $finder): void
     {
-        $this->beConstructedWith(self::FULL_TEMPLATE_PATH, $catalogMapper);
+        $this->beConstructedWith(self::FULL_TEMPLATE_PATH, $catalogMapper, $finder);
     }
 
     public function it_is_initializable(): void

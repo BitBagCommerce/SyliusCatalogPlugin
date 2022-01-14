@@ -69,7 +69,7 @@ final class BitBagSyliusCatalogExtension extends Extension
 
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
     {
-        return new Configuration();
+        return new Configuration($container->getParameter('kernel.project_dir'));
     }
 
     public function prepend(ContainerBuilder $container): void

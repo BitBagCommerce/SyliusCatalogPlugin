@@ -34,6 +34,7 @@
                 ~ parameter('bitbag_sylius_catalog_plugin.parameters.templates_dir')
             </argument>
             <argument type="service" id="bitbag_sylius_catalog_plugin.choices.catalog_mapper"/>
+            <argument type="service" id="bitbag_sylius_catalog_plugin.filesystem.finder"/>
         </service>
         <service
                 class="BitBag\SyliusCatalogPlugin\Choices\CatalogMapper"
@@ -42,6 +43,6 @@
             <argument>%bitbag_sylius_catalog_plugin.parameters.templates_dir%</argument>
         </service>
 
-
+        <service id="bitbag_sylius_catalog_plugin.filesystem.finder" class="Symfony\Component\Finder\Finder"/>
     </services>
 </container>
