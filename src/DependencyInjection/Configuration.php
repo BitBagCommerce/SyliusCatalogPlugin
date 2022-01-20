@@ -45,7 +45,7 @@ final class Configuration implements ConfigurationInterface
                             $fullDirPath = $this->projectDir.'/templates/'.$value;
 
                             if (!is_dir($fullDirPath)) {
-                                throw new InvalidConfigurationException(sprintf('%s is not valid direction', $fullDirPath));
+                                throw new InvalidConfigurationException(sprintf('%s is not valid directory', $fullDirPath));
                             }
                             return $value;
                         })
