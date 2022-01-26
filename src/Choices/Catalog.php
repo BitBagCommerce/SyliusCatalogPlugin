@@ -10,12 +10,41 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Choices;
 
-final class Catalog
+use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
+use Symfony\Component\Finder\Finder;
+
+final class Catalog implements CatalogInterface
 {
-    public static function getTemplates(): array
+    private string $fullTemplatePath;
+
+    private CatalogMapperInterface $catalogMapper;
+
+    private Finder $finder;
+
+    public function __construct(string $fullTemplatePath, CatalogMapperInterface $catalogMapper, Finder $finder)
     {
-        return [
-            'bitbag_sylius_catalog_plugin.ui.form.catalog.default_template' => '@BitBagSyliusCatalogPlugin/Catalog/Templates/showProducts.html.twig',
-        ];
+        $this->fullTemplatePath = $fullTemplatePath;
+        $this->catalogMapper = $catalogMapper;
+        $this->finder = $finder;
+    }
+
+    public function getTemplates(): array
+    {
+        try {
+            $this->finder
+                ->files()
+                ->in($this->fullTemplatePath)
+                ->name('*.html.twig')
+                ->depth(0)
+            ;
+        } catch (DirectoryNotFoundException $directoryNotFoundException) {
+            return self::DEFAULT_TEMPLATE;
+        }
+
+        if (!$this->finder->hasResults()) {
+            return self::DEFAULT_TEMPLATE;
+        }
+
+        return $this->catalogMapper->map($this->finder->getIterator());
     }
 }

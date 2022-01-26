@@ -12,6 +12,7 @@ namespace BitBag\SyliusCatalogPlugin\Form\Type;
 
 use BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\RuleInterface;
 use BitBag\SyliusCatalogPlugin\Choices\Catalog;
+use BitBag\SyliusCatalogPlugin\Choices\CatalogInterface;
 use BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType;
 use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
@@ -25,15 +26,19 @@ final class CatalogType extends AbstractResourceType
 {
     private array $attributeChoices;
 
+    private CatalogInterface $catalogChoices;
+
     public function __construct(
         string $dataClass,
         array $attributeChoices,
+        CatalogInterface $catalogChoices,
         array $validationGroups = []
     )
     {
         parent::__construct($dataClass, $validationGroups);
 
         $this->attributeChoices = $attributeChoices;
+        $this->catalogChoices = $catalogChoices;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -54,7 +59,7 @@ final class CatalogType extends AbstractResourceType
             ])
             ->add('template', ChoiceType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.template',
-                'choices' => Catalog::getTemplates(),
+                'choices' => $this->catalogChoices->getTemplates(),
             ])
             ->add('sortingType', ChoiceType::class, [
                 'label' => 'bitbag_sylius_catalog_plugin.ui.sorting_type',
