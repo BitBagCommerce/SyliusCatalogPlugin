@@ -5,9 +5,9 @@
     "description": "Catalog plugin for Sylius",
     "license": "MIT",
     "require": {
-        "php": "^7.3 || ^7.4 || ^8.0",
+        "php": "^7.4 || ^8.0",
         "bitbag/coding-standard": "^1.0",
-        "sylius/sylius": "~1.8.0 || ~1.9.0 || ~1.10.0 || ~1.11.0"
+        "sylius/sylius": "~1.9.0 || ~1.10.0 || ~1.11.0"
     },
     "require-dev": {
         "behat/behat": "^3.7",
@@ -39,12 +39,7 @@
         "vimeo/psalm": "^4.7"
     },
     "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "symfony/thanks": false,
-            "dealerdirect/phpcodesniffer-composer-installer": false,
-            "phpstan/extension-installer": false
-        }
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
