@@ -29,9 +29,9 @@
             <tag name="form.type" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.form.type.catalog_rule" class="BitBag\SyliusCatalogPlugin\Form\Type\CatalogRuleType">
+            <argument type="service" id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" />
             <argument>%bitbag_sylius_catalog_plugin.model.catalog_rule.class%</argument>
             <argument>%bitbag_sylius_catalog_plugin.form.type.catalog_rule.validation_groups%</argument>
-            <argument type="service" id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" />
             <tag name="form.type" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.form.type.translation.catalog" class="BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType">
@@ -55,9 +55,9 @@
             <tag name="form.type" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.form.type.product_association_rule" class="BitBag\SyliusCatalogPlugin\Form\Type\ProductAssociationRuleType">
+            <argument type="service" id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" />
             <argument>%bitbag_sylius_catalog_plugin.model.product_association_rule.class%</argument>
             <argument type="collection"></argument>
-            <argument type="service" id="bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker" />
             <tag name="form.type" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.form.type.product_association_rule.collection" class="BitBag\SyliusCatalogPlugin\Form\Type\ProductAssociationRuleCollectionType">
