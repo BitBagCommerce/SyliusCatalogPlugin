@@ -22,14 +22,14 @@
 
         <service id="bitbag.resolver.catalog.product_resource" class="BitBag\SyliusCatalogPlugin\Resolver\Elasticsearch\ProductsInsideCatalogResolver">
             <argument type="service" id="bitbag.sylius_catalog_plugin.query_builder.product_query_builder" />
-            <argument type="service" id="fos_elastica.finder.bitbag_shop_product.default" />
+            <argument type="service" id="fos_elastica.finder.bitbag_shop_product" />
             <argument type="service" id="bitbag_sylius_catalog_plugin.registry_catalog_sort_checker.elasticsearch" />
         </service>
 
         <service id="bitbag.resolver.catalog.product_catalog_resolver" class="BitBag\SyliusCatalogPlugin\Resolver\Elasticsearch\CatalogsForProductResolver">
             <argument type="service" id="bitbag_sylius_catalog_plugin.repository.catalog" />
             <argument type="service" id="bitbag.sylius_catalog_plugin.query_builder.product_query_builder" />
-            <argument type="service" id="fos_elastica.finder.bitbag_shop_product.default" />
+            <argument type="service" id="fos_elastica.finder.bitbag_shop_product" />
         </service>
 
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.elasticsearch.by_name" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Elasticsearch\ProductNameRule">
