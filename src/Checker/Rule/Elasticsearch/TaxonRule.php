@@ -32,9 +32,6 @@ final class TaxonRule implements RuleInterface
             $configuration['taxons']->toArray()
         );
 
-        $taxonQuery = new Terms();
-        $taxonQuery->setTerms($this->taxonsProperty, $taxonsCodes);
-
-        return $taxonQuery;
+        return new Terms($this->taxonsProperty, $taxonsCodes);
     }
 }
