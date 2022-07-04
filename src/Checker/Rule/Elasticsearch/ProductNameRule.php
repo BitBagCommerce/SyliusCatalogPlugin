@@ -12,7 +12,7 @@ namespace BitBag\SyliusCatalogPlugin\Checker\Rule\Elasticsearch;
 
 use BitBag\SyliusElasticsearchPlugin\PropertyNameResolver\ConcatedNameResolverInterface;
 use Elastica\Query\AbstractQuery;
-use Elastica\Query\Match;
+use Elastica\Query\MatchQuery;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 
 final class ProductNameRule implements RuleInterface
@@ -39,7 +39,7 @@ final class ProductNameRule implements RuleInterface
         $localeCode = $this->localeContext->getLocaleCode();
         $propertyName = $this->productNameNameResolver->resolvePropertyName($localeCode);
 
-        $nameQuery = new Match();
+        $nameQuery = new MatchQuery($propertyName, $name);
         $nameQuery->setFieldQuery($propertyName, $name);
 
         return $nameQuery;
