@@ -32,8 +32,7 @@ final class AttributeRule extends AbstractRule implements AttributeRuleInterface
         array $configuration,
         QueryBuilder $queryBuilder,
         string $connectingRules
-    ): void
-    {
+    ): void {
         /** @var AttributeInterface $attribute */
         $attribute = $configuration['attribute'];
 
@@ -50,8 +49,7 @@ final class AttributeRule extends AbstractRule implements AttributeRuleInterface
         QueryBuilder $queryBuilder,
         AttributeInterface $attribute,
         string $value
-    ): Andx
-    {
+    ): Andx {
         $valueFieldName = self::PRODUCT_ATTRIBUTES_ALIAS . '.' . $this->getAttributeStorageFieldName($attribute->getType());
 
         $attributeValueParamName = $this->generateAttributeValueParameterName();

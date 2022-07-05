@@ -64,7 +64,6 @@ final class BitBagSyliusCatalogExtension extends Extension
         );
 
         $container->setParameter('bitbag_sylius_catalog_plugin.parameters.templates_dir', $config['templates_dir']);
-
     }
 
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface

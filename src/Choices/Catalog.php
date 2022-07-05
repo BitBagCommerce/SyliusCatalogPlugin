@@ -21,7 +21,11 @@ final class Catalog implements CatalogInterface
 
     private Finder $finder;
 
-    public function __construct(string $fullTemplatePath, CatalogMapperInterface $catalogMapper, Finder $finder)
+    public function __construct(
+        string $fullTemplatePath,
+        CatalogMapperInterface $catalogMapper,
+        Finder $finder
+    )
     {
         $this->fullTemplatePath = $fullTemplatePath;
         $this->catalogMapper = $catalogMapper;
