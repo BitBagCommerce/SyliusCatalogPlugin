@@ -28,8 +28,7 @@ final class ProductNameRule extends AbstractRule
         array $configuration,
         QueryBuilder $queryBuilder,
         string $connectingRules
-    ): void
-    {
+    ): void {
         $parameterName = 'configurationName' . $this->i;
         $locale = $this->localeContext->getLocaleCode();
         ++$this->i;

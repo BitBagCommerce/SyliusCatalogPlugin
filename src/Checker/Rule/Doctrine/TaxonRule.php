@@ -28,8 +28,7 @@ class TaxonRule extends AbstractRule
         array $configuration,
         QueryBuilder $queryBuilder,
         string $connectingRules
-    ): void
-    {
+    ): void {
         $taxonsParameterName = $this->generateParameterName();
 
         $rule = $queryBuilder->expr()

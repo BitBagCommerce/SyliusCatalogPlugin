@@ -34,8 +34,7 @@ final class CatalogSortChecker implements CompilerPassInterface
         ContainerBuilder $container,
         string $id,
         string $sortInterface
-    ): bool
-    {
+    ): bool {
         return isset(class_implements($container->getDefinition($id)->getClass())[$sortInterface]);
     }
 
@@ -43,8 +42,7 @@ final class CatalogSortChecker implements CompilerPassInterface
         string $driver,
         ContainerBuilder $container,
         string $sortInterface
-    ): void
-    {
+    ): void {
         $driverSortRegistry = sprintf('bitbag_sylius_catalog_plugin.registry_catalog_sort_checker.%s', $driver);
 
         if (!$container->has($driverSortRegistry)) {

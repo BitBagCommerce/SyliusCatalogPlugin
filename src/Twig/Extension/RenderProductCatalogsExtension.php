@@ -41,8 +41,7 @@ final class RenderProductCatalogsExtension extends AbstractExtension
         ProductInterface $product,
         ?string $date = null,
         ?string $template = null
-    ): string
-    {
+    ): string {
         return $this->engine->render(
             $template ?? '@BitBagSyliusCatalogPlugin/Product/showCatalogs.html.twig',
             [

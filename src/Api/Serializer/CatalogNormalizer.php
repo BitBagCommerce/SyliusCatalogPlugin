@@ -36,8 +36,7 @@ final class CatalogNormalizer implements ContextAwareNormalizerInterface, Normal
         $object,
         $format = null,
         array $context = []
-    )
-    {
+    ) {
         Assert::isInstanceOf($object, CatalogInterface::class);
         Assert::keyNotExists($context, self::ALREADY_CALLED);
 
@@ -57,8 +56,7 @@ final class CatalogNormalizer implements ContextAwareNormalizerInterface, Normal
         $data,
         $format = null,
         $context = []
-    ): bool
-    {
+    ): bool {
         if (isset($context[self::ALREADY_CALLED])) {
             return false;
         }

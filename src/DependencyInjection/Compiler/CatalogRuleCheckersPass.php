@@ -34,8 +34,7 @@ final class CatalogRuleCheckersPass implements CompilerPassInterface
         ContainerBuilder $container,
         string $id,
         string $ruleInterface
-    ): bool
-    {
+    ): bool {
         return isset(class_implements($container->getDefinition($id)->getClass())[$ruleInterface]);
     }
 
@@ -43,8 +42,7 @@ final class CatalogRuleCheckersPass implements CompilerPassInterface
         string $driver,
         ContainerBuilder $container,
         string $ruleInterface
-    ): void
-    {
+    ): void {
         $driverRuleRegistry = sprintf('bitbag_sylius_catalog_plugin.registry_catalog_rule_checker.%s', $driver);
         $driverFormRegistry = sprintf('bitbag_sylius_catalog_plugin.form_registry.catalog_rule_checker.%s', $driver);
         if (!$container->has($driverRuleRegistry) || !$container->has($driverFormRegistry)) {

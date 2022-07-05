@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace BitBag\SyliusCatalogPlugin\Form\Type;
 
 use BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\RuleInterface;
-use BitBag\SyliusCatalogPlugin\Choices\Catalog;
 use BitBag\SyliusCatalogPlugin\Choices\CatalogInterface;
 use BitBag\SyliusCatalogPlugin\Form\Type\Translation\CatalogTranslationType;
 use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
@@ -33,8 +32,7 @@ final class CatalogType extends AbstractResourceType
         array $attributeChoices,
         CatalogInterface $catalogChoices,
         array $validationGroups = []
-    )
-    {
+    ) {
         parent::__construct($dataClass, $validationGroups);
 
         $this->attributeChoices = $attributeChoices;

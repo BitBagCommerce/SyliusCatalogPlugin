@@ -32,8 +32,7 @@ final class PriceRule extends AbstractRule
         array $configuration,
         QueryBuilder $queryBuilder,
         string $connectingRules
-    ): void
-    {
+    ): void {
         $priceParameter = $this->generateParameterName();
         $channelCodeParameter = $this->generateParameterName();
 
@@ -62,8 +61,7 @@ final class PriceRule extends AbstractRule
         string $channelCodeParameter,
         string $subqueryOperator,
         string $priceParameter
-    ): Func
-    {
+    ): Func {
         $productVariantAlias = sprintf('pv%d', $this->i++);
         $channelPricingAlias = sprintf('cp%d', $this->i++);
 
@@ -84,8 +82,7 @@ final class PriceRule extends AbstractRule
         string $channelCodeParameter,
         string $subqueryOperator,
         string $priceParameter
-    ): Func
-    {
+    ): Func {
         $productVariantAlias = sprintf('pv%d', $this->i++);
         $channelPricingAlias = sprintf('cp%d', $this->i++);
         $subquery = $queryBuilder->getEntityManager()->createQueryBuilder()
@@ -106,8 +103,7 @@ final class PriceRule extends AbstractRule
         QueryBuilder $queryBuilder,
         string $channelCodeParameter,
         string $priceParameter
-    ): Func
-    {
+    ): Func {
         switch ($operator) {
             case PriceConfigurationType::OPERATOR_ALL_GT:
                 return $this->allVariantsRule($queryBuilder, $channelCodeParameter, '<=', $priceParameter);

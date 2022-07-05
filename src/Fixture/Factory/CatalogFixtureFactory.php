@@ -93,8 +93,7 @@ final class CatalogFixtureFactory
         $rule,
         string $ruleTarget,
         CatalogInterface $catalog
-    ): void
-    {
+    ): void {
         /** @var CatalogRuleInterface $catalogRule */
         $catalogRule = $this->catalogRuleFactory->createNew();
         $catalogRule->setConfiguration($rule['config']);

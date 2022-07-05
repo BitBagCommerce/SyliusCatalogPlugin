@@ -24,8 +24,7 @@ abstract class AbstractRule implements RuleInterface
         string $connectingRules,
         QueryBuilder $queryBuilder,
         $rule
-    ): void
-    {
+    ): void {
         switch ($connectingRules) {
             case RuleInterface::AND:
                 $queryBuilder->andWhere($rule);

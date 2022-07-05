@@ -42,11 +42,12 @@ final class Configuration implements ConfigurationInterface
                                 throw new InvalidConfigurationException('templates_dir must be string');
                             }
 
-                            $fullDirPath = $this->projectDir.'/templates/'.$value;
+                            $fullDirPath = $this->projectDir . '/templates/' . $value;
 
                             if (!is_dir($fullDirPath)) {
                                 throw new InvalidConfigurationException(sprintf('%s is not valid directory', $fullDirPath));
                             }
+
                             return $value;
                         })
                     ->end()
