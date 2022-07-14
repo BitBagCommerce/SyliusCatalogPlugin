@@ -48,35 +48,37 @@ final class CatalogsForProductResolver implements CatalogsForProductResolverInte
 
         /** @var CatalogInterface $activeCatalog */
         foreach ($activeCatalogs as $activeCatalog) {
-            $connectingRules = $activeCatalog->getConnectingRules();
+            if (0 !== $activeCatalog->getProductAssociationRules()->count()) {
+                $connectingRules = $activeCatalog->getConnectingRules();
 
-            /** @var AbstractCatalogRule $rules */
-            $rules = $activeCatalog->getProductAssociationRules();
+                /** @var AbstractCatalogRule $rules */
+                $rules = $activeCatalog->getProductAssociationRules();
 
-            /** @var QueryBuilder $qb */
-            $qb = $this->productRepository->createQueryBuilder('p')
-                ->select('count(p.code)')
-                ->leftJoin('p.translations', 'name')
-                ->leftJoin('p.variants', 'variant')
-                ->leftJoin('p.productTaxons', 'productTaxon')
-                ->leftJoin('productTaxon.taxon', 'taxon')
-                ->leftJoin('variant.channelPricings', 'price')
-                ->andWhere('p.code = :productCode')
-                ->setParameter('productCode', $product->getCode());
+                /** @var QueryBuilder $qb */
+                $qb = $this->productRepository->createQueryBuilder('p')
+                    ->select('count(p.code)')
+                    ->leftJoin('p.translations', 'name')
+                    ->leftJoin('p.variants', 'variant')
+                    ->leftJoin('p.productTaxons', 'productTaxon')
+                    ->leftJoin('productTaxon.taxon', 'taxon')
+                    ->leftJoin('variant.channelPricings', 'price')
+                    ->andWhere('p.code = :productCode')
+                    ->setParameter('productCode', $product->getCode());
 
-            foreach ($rules as $rule) {
-                $type = $rule->getType();
+                foreach ($rules as $rule) {
+                    $type = $rule->getType();
 
-                /** @var RuleInterface $ruleChecker */
-                $ruleChecker = $this->serviceRegistry->get($type);
+                    /** @var RuleInterface $ruleChecker */
+                    $ruleChecker = $this->serviceRegistry->get($type);
 
-                $ruleConfiguration = $rule->getConfiguration();
+                    $ruleConfiguration = $rule->getConfiguration();
 
-                $ruleChecker->modifyQueryBuilder($ruleConfiguration, $qb, $connectingRules);
-            }
+                    $ruleChecker->modifyQueryBuilder($ruleConfiguration, $qb, $connectingRules);
+                }
 
-            if (0 < $qb->getQuery()->getSingleScalarResult()) {
-                $result[] = $activeCatalog;
+                if (0 < $qb->getQuery()->getSingleScalarResult()) {
+                    $result[] = $activeCatalog;
+                }
             }
         }
 
