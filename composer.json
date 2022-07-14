@@ -39,7 +39,13 @@
         "vimeo/psalm": "^4.7"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "composer/package-versions-deprecated": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "symfony/thanks": true
+        }
     },
     "autoload": {
         "psr-4": {
