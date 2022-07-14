@@ -48,24 +48,26 @@ final class CatalogsForProductResolver implements CatalogsForProductResolverInte
 
         /** @var CatalogInterface $activeCatalog */
         foreach ($activeCatalogs as $activeCatalog) {
-            $boolQuery = new BoolQuery();
-            if ($activeCatalog->getProductAssociationRules()->count()) {
-                $boolQuery->addMust(
-                    $this->productQueryBuilder->findMatchingProductsQuery(
-                        $activeCatalog->getProductAssociationConnectingRules(),
-                        $activeCatalog->getProductAssociationRules()
-                    )
-                );
-            }
+            if (0 !== $activeCatalog->getProductAssociationRules()->count()) {
+                $boolQuery = new BoolQuery();
+                if ($activeCatalog->getProductAssociationRules()->count()) {
+                    $boolQuery->addMust(
+                        $this->productQueryBuilder->findMatchingProductsQuery(
+                            $activeCatalog->getProductAssociationConnectingRules(),
+                            $activeCatalog->getProductAssociationRules()
+                        )
+                    );
+                }
 
-            $idTerm = new Term();
-            $idTerm->setTerm('_id', $product->getId());
-            $boolQuery->addMust($idTerm);
+                $idTerm = new Term();
+                $idTerm->setTerm('_id', $product->getId());
+                $boolQuery->addMust($idTerm);
 
-            $matching = $this->paginatedFinder->findPaginated($boolQuery);
+                $matching = $this->paginatedFinder->findPaginated($boolQuery);
 
-            if (0 < $matching->getNbResults()) {
-                $result[] = $activeCatalog;
+                if (0 < $matching->getNbResults()) {
+                    $result[] = $activeCatalog;
+                }
             }
         }
 
