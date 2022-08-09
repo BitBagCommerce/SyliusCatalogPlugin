@@ -35,7 +35,12 @@ final class CatalogSortChecker implements CompilerPassInterface
         string $id,
         string $sortInterface
     ): bool {
-        return isset(class_implements($container->getDefinition($id)->getClass())[$sortInterface]);
+        $objectOrClass = $container->getDefinition($id)->getClass();
+        if (is_null($objectOrClass)) {
+            return false;
+        }
+
+        return isset(class_implements($objectOrClass)[$sortInterface]);
     }
 
     private function addDriverSortsToRegistries(

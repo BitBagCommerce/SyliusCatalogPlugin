@@ -13,16 +13,17 @@ namespace BitBag\SyliusCatalogPlugin\Resolver;
 use BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\RuleInterface;
 use BitBag\SyliusCatalogPlugin\Entity\AbstractCatalogRule;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
+use BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface;
 use BitBag\SyliusCatalogPlugin\Repository\CatalogRepositoryInterface;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
 use Sylius\Component\Registry\ServiceRegistry;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 final class CatalogsForProductResolver implements CatalogsForProductResolverInterface
 {
-    private RepositoryInterface $catalogRepository;
+    private CatalogRepositoryInterface $catalogRepository;
 
     private ServiceRegistry $serviceRegistry;
 
@@ -51,7 +52,7 @@ final class CatalogsForProductResolver implements CatalogsForProductResolverInte
             if (0 !== $activeCatalog->getProductAssociationRules()->count()) {
                 $connectingRules = $activeCatalog->getConnectingRules();
 
-                /** @var AbstractCatalogRule $rules */
+                /** @var Collection<int, CatalogRuleInterface> $rules */
                 $rules = $activeCatalog->getProductAssociationRules();
 
                 /** @var QueryBuilder $qb */
@@ -67,6 +68,11 @@ final class CatalogsForProductResolver implements CatalogsForProductResolverInte
 
                 foreach ($rules as $rule) {
                     $type = $rule->getType();
+
+                    if (is_null($type)
+                        ||is_null($connectingRules)) {
+                        continue;
+                    }
 
                     /** @var RuleInterface $ruleChecker */
                     $ruleChecker = $this->serviceRegistry->get($type);

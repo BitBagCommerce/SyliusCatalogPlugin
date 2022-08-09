@@ -35,7 +35,11 @@ final class CatalogRuleCheckersPass implements CompilerPassInterface
         string $id,
         string $ruleInterface
     ): bool {
-        return isset(class_implements($container->getDefinition($id)->getClass())[$ruleInterface]);
+        $objectOrClass = $container->getDefinition($id)->getClass();
+        if (is_null($objectOrClass)) {
+            return false;
+        }
+        return isset(class_implements($objectOrClass)[$ruleInterface]);
     }
 
     private function addDriverRulesToRegistries(

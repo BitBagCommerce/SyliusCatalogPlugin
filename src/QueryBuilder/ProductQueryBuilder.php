@@ -28,7 +28,7 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
         $this->hasChannelQueryBuilder = $hasChannelQueryBuilder;
     }
 
-    public function findMatchingProductsQuery(string $connectingRules, Collection $rules)
+    public function findMatchingProductsQuery(string $connectingRules, Collection $rules): BoolQuery
     {
         $subQueries = $this->getQueries($rules->toArray());
 

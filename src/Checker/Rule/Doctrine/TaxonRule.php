@@ -17,13 +17,6 @@ class TaxonRule extends AbstractRule
 {
     private int $i = 0;
 
-    private ChannelContextInterface $channelContext;
-
-    public function __construct(ChannelContextInterface $channelContext)
-    {
-        $this->channelContext = $channelContext;
-    }
-
     public function modifyQueryBuilder(
         array $configuration,
         QueryBuilder $queryBuilder,

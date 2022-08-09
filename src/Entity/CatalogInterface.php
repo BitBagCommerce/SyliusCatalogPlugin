@@ -33,6 +33,9 @@ interface CatalogInterface extends ResourceInterface, TranslatableInterface, Cod
 
     public function setEndDate(?\DateTime $endDate): void;
 
+    /**
+     * @return Collection<int, CatalogRuleInterface>
+     */
     public function getRules(): Collection;
 
     public function hasRules(): bool;
@@ -47,6 +50,9 @@ interface CatalogInterface extends ResourceInterface, TranslatableInterface, Cod
 
     public function getConnectingRules(): ?string;
 
+    /**
+     * @return Collection<int, CatalogRuleInterface>
+     */
     public function getProductAssociationRules(): Collection;
 
     public function getProductAssociationConnectingRules(): ?string;
@@ -62,4 +68,6 @@ interface CatalogInterface extends ResourceInterface, TranslatableInterface, Cod
     public function getSortingType(): ?string;
 
     public function setSortingType(?string $sortingType): void;
+
+    public function setProductAssociationConnectingRules(string $productAssociationConnectingRules): void;
 }

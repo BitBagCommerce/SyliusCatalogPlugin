@@ -34,14 +34,15 @@ final class CatalogNormalizer implements ContextAwareNormalizerInterface, Normal
 
     public function normalize(
         $object,
-        $format = null,
+        ?string $format = null,
         array $context = []
-    ) {
+    ):array {
         Assert::isInstanceOf($object, CatalogInterface::class);
         Assert::keyNotExists($context, self::ALREADY_CALLED);
 
         $context[self::ALREADY_CALLED] = true;
 
+        /** @var array $data */
         $data = $this->normalizer->normalize($object, $format, $context);
 
         $products = $this->productResolver->findMatchingProducts($object);
@@ -54,8 +55,8 @@ final class CatalogNormalizer implements ContextAwareNormalizerInterface, Normal
 
     public function supportsNormalization(
         $data,
-        $format = null,
-        $context = []
+        ?string $format = null,
+        array $context = []
     ): bool {
         if (isset($context[self::ALREADY_CALLED])) {
             return false;

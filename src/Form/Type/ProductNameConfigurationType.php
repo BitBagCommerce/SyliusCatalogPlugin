@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints\Type;
 
 final class ProductNameConfigurationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('catalogName', TextType::class, [

@@ -35,7 +35,6 @@
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.elasticsearch.by_name" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Elasticsearch\ProductNameRule">
             <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker" type="sort_by_name" label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.sort_by_name" form-type="BitBag\SyliusCatalogPlugin\Form\Type\ProductNameConfigurationType"/>
             <argument type="service" id="sylius.context.locale" />
-            <argument type="service" id="bitbag_sylius_elasticsearch_plugin.property_name_resolver.name" />
             <argument>%bitbag_es_shop_name_property_prefix%</argument>
         </service>
 

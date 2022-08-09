@@ -43,7 +43,13 @@ abstract class AbstractConfigurableCatalogElementType extends AbstractResourceTy
                     return;
                 }
 
-                $this->addConfigurationFields($event->getForm(), $this->formTypeRegistry->get($type, 'default'));
+                $configuration = $this->formTypeRegistry->get($type, 'default');
+
+                if (null === $configuration) {
+                    return;
+                }
+
+                $this->addConfigurationFields($event->getForm(), $configuration);
             })
             ->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
                 $type = $this->getRegistryIdentifier($event->getForm(), $event->getData());
@@ -58,8 +64,12 @@ abstract class AbstractConfigurableCatalogElementType extends AbstractResourceTy
                 if (!isset($data['type'])) {
                     return;
                 }
+                $configuration = $this->formTypeRegistry->get($data['type'], 'default');
 
-                $this->addConfigurationFields($event->getForm(), $this->formTypeRegistry->get($data['type'], 'default'));
+                if (null === $configuration) {
+                    return;
+                }
+                $this->addConfigurationFields($event->getForm(), $configuration);
             })
         ;
     }

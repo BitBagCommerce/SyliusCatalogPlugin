@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Repository;
 
+use BitBag\SyliusCatalogPlugin\Entity\Catalog;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 interface CatalogRepositoryInterface extends RepositoryInterface

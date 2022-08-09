@@ -22,9 +22,10 @@ class ChannelBasedRulePricing extends AbstractType
         $resolver->setDefaults([
             'entry_type' => ChannelPriceType::class,
             'entry_options' => function (ChannelInterface $channel) {
+            if (null == $channel->getBaseCurrency())
                 return [
                     'label' => $channel->getCode(),
-                    'currency' => $channel->getBaseCurrency()->getCode(),
+                    'currency' => !is_null($channel->getBaseCurrency()) ? $channel->getBaseCurrency()->getCode() : null,
                 ];
             },
         ]);
