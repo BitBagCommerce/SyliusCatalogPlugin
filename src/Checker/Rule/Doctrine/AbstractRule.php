@@ -12,13 +12,14 @@ namespace BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine;
 
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\Query\Expr\Comparison;
+use Doctrine\ORM\Query\Expr\Composite;
 use Doctrine\ORM\Query\Expr\Func;
 use Doctrine\ORM\QueryBuilder;
 
 abstract class AbstractRule implements RuleInterface
 {
     /**
-     * @param Expr|Func|Comparison $rule
+     * @param Expr|Func|Comparison|Composite $rule
      */
     protected function addRule(
         string $connectingRules,

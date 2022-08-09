@@ -19,7 +19,6 @@
                  type="taxon"
                  label="bitbag_sylius_catalog_plugin.ui.form.catalog_rule.taxon"
                  form-type="BitBag\SyliusCatalogPlugin\Form\Type\TaxonConfigurationType" />
-            <argument type="service" id="sylius.context.channel" />
         </service>
         <service id="bitbag_sylius_catalog_plugin.catalog_rule_checker.by_attribute" class="BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\AttributeRule">
             <tag name="bitbag_sylius_catalog_plugin.catalog_rule_checker"

@@ -14,5 +14,5 @@ use Doctrine\Common\Collections\Collection;
 
 interface ProductQueryBuilderInterface
 {
-    public function findMatchingProductsQuery(string $connectingRules, Collection $rules);
+    public function findMatchingProductsQuery(string $connectingRules, Collection $rules): array;
 }

@@ -40,7 +40,12 @@ final class ProductsInsideCatalogResolver implements ProductsInsideCatalogResolv
     {
         $query = new BoolQuery();
 
-        if ($catalog->getRules()->count()) {
+        if (is_null($catalog->getConnectingRules())
+            || is_null($catalog->getSortingType())) {
+            return [];
+        }
+
+        if ((bool) $catalog->getRules()->count()) {
             $query = $this->productQueryBuilder->findMatchingProductsQuery($catalog->getConnectingRules(), $catalog->getRules());
         }
 

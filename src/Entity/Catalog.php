@@ -27,14 +27,14 @@ class Catalog implements CatalogInterface
 
     protected ?\DateTime $endDate;
 
-    /** @var CatalogRuleInterface[]|Collection */
+    /** @var CatalogRuleInterface[]|Collection<int, CatalogRuleInterface> */
     protected $rules;
 
     protected ?string $code;
 
     protected ?string $connectingRules;
 
-    /** @var CatalogRuleInterface[]|Collection */
+    /** @var CatalogRuleInterface[]|Collection<int, CatalogRuleInterface> */
     protected $productAssociationRules;
 
     protected string $productAssociationConnectingRules;
@@ -138,11 +138,13 @@ class Catalog implements CatalogInterface
 
     public function getName(): ?string
     {
+        /* @phpstan-ignore-next-line the getName method exists in the CatalogTranslationInterface class*/
         return $this->getCatalogTranslation()->getName();
     }
 
     public function setName(?string $name): void
     {
+        /* @phpstan-ignore-next-line the setName method exists in the CatalogTranslationInterface class*/
         $this->getCatalogTranslation()->setName($name);
     }
 
@@ -193,7 +195,7 @@ class Catalog implements CatalogInterface
         return $this->productAssociationConnectingRules;
     }
 
-    public function setProductAssociationConnectingRules($productAssociationConnectingRules): void
+    public function setProductAssociationConnectingRules(string $productAssociationConnectingRules): void
     {
         $this->productAssociationConnectingRules = $productAssociationConnectingRules;
     }

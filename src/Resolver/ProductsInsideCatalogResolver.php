@@ -12,9 +12,9 @@ namespace BitBag\SyliusCatalogPlugin\Resolver;
 
 use BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\RuleInterface;
 use BitBag\SyliusCatalogPlugin\Checker\Sort\Doctrine\SortInterface;
-use BitBag\SyliusCatalogPlugin\Entity\AbstractCatalogRule;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface;
+use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\ProductBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Registry\ServiceRegistry;
 
@@ -38,9 +38,15 @@ class ProductsInsideCatalogResolver implements ProductsInsideCatalogResolverInte
 
     public function findMatchingProducts(CatalogInterface $catalog): array
     {
+        if (is_null($catalog->getConnectingRules())
+        || is_null($catalog->getSortingType())
+        || is_null($catalog->getDisplayProducts())) {
+            return [];
+        }
+
         $connectingRules = $catalog->getConnectingRules();
 
-        /** @var AbstractCatalogRule $rules */
+        /** @var Collection<int, CatalogRuleInterface> $rules */
         $rules = $catalog->getRules();
 
         $qb = $this->productRepository->createQueryBuilder('p')
@@ -57,6 +63,10 @@ class ProductsInsideCatalogResolver implements ProductsInsideCatalogResolverInte
         /** @var CatalogRuleInterface $rule */
         foreach ($rules as $rule) {
             $type = $rule->getType();
+
+            if (is_null($type)) {
+                continue;
+            }
 
             /** @var RuleInterface $ruleChecker */
             $ruleChecker = $this->ruleServiceRegistry->get($type);

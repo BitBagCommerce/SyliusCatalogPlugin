@@ -35,7 +35,7 @@ final class PriceConfigurationType extends AbstractType
 
     public const OPERATOR_ANY_LTE = 'any_lte';
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('operator', ChoiceType::class, [

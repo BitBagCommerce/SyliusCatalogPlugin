@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Repository;
 
+use BitBag\SyliusCatalogPlugin\Entity\Catalog;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class CatalogRepository extends EntityRepository implements CatalogRepositoryInterface

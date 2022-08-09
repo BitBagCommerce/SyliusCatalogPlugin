@@ -25,8 +25,7 @@ final class Catalog implements CatalogInterface
         string $fullTemplatePath,
         CatalogMapperInterface $catalogMapper,
         Finder $finder
-    )
-    {
+    ) {
         $this->fullTemplatePath = $fullTemplatePath;
         $this->catalogMapper = $catalogMapper;
         $this->finder = $finder;

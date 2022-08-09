@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace BitBag\SyliusCatalogPlugin\Checker\Rule\Elasticsearch;
 
 use BitBag\SyliusElasticsearchPlugin\PropertyNameResolver\ConcatedNameResolverInterface;
-use Elastica\Query\AbstractQuery;
+    use Elastica\Query\AbstractQuery;
 use Elastica\Query\MatchQuery;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 
@@ -21,18 +21,15 @@ final class ProductNameRule implements RuleInterface
 
     private ConcatedNameResolverInterface $productNameNameResolver;
 
-    private string $namePropertyPrefix;
-
     public function __construct(
         LocaleContextInterface $localeContext,
         ConcatedNameResolverInterface $productNameNameResolver,
-        string $namePropertyPrefix
     ) {
         $this->localeContext = $localeContext;
         $this->productNameNameResolver = $productNameNameResolver;
-        $this->namePropertyPrefix = $namePropertyPrefix;
     }
 
+    /* @phpstan-ignore-next-line Elastica\Query\MatchQuery Class extended by Elastica\Query\AbstractQuery*/
     public function createSubquery(array $configuration): AbstractQuery
     {
         $name = $configuration['catalogName'];

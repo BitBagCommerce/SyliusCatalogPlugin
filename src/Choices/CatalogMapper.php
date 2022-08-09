@@ -25,7 +25,7 @@ final class CatalogMapper implements CatalogMapperInterface
         foreach ($files as $file) {
             $templates[$file->getBasename('.html.twig')] = $this->catalogName . '/' . $file->getBasename();
         }
-        if (in_array(array_key_first(CatalogInterface::DEFAULT_TEMPLATE), array_keys($templates))) {
+        if (in_array(array_key_first(CatalogInterface::DEFAULT_TEMPLATE), array_keys($templates), true)) {
             return array_merge(['default' => $templates['default']], $templates);
         }
 

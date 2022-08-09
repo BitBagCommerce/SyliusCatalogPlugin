@@ -27,6 +27,10 @@ final class CompleteCatalogsForProductResolver implements CatalogsForProductReso
         $this->catalogResolver = $catalogResolver;
     }
 
+
+    /**
+     * @return array|CatalogInterface[]
+     */
     public function resolveProductCatalogs(ProductInterface $product, \DateTimeImmutable $dataTime): array
     {
         return

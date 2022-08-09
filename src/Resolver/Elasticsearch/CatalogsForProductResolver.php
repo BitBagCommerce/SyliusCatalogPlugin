@@ -22,7 +22,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 final class CatalogsForProductResolver implements CatalogsForProductResolverInterface
 {
-    private RepositoryInterface $catalogRepository;
+    private CatalogRepositoryInterface $catalogRepository;
 
     private ProductQueryBuilderInterface $productQueryBuilder;
 
@@ -48,16 +48,18 @@ final class CatalogsForProductResolver implements CatalogsForProductResolverInte
 
         /** @var CatalogInterface $activeCatalog */
         foreach ($activeCatalogs as $activeCatalog) {
-            if (0 !== $activeCatalog->getProductAssociationRules()->count()) {
+            if ((bool) $activeCatalog->getProductAssociationRules()->count()) {
                 $boolQuery = new BoolQuery();
-                if ($activeCatalog->getProductAssociationRules()->count()) {
-                    $boolQuery->addMust(
-                        $this->productQueryBuilder->findMatchingProductsQuery(
-                            $activeCatalog->getProductAssociationConnectingRules(),
-                            $activeCatalog->getProductAssociationRules()
-                        )
-                    );
+                if (is_null($activeCatalog->getProductAssociationConnectingRules())) {
+                    continue;
                 }
+                $boolQuery->addMust(
+                    $this->productQueryBuilder->findMatchingProductsQuery(
+                        $activeCatalog->getProductAssociationConnectingRules(),
+                        $activeCatalog->getProductAssociationRules()
+                    )
+                );
+
 
                 $idTerm = new Term();
                 $idTerm->setTerm('_id', $product->getId());

@@ -35,8 +35,10 @@ final class CatalogFixture extends AbstractFixture implements FixtureInterface
         return 'catalog';
     }
 
+
     protected function configureOptionsNode(ArrayNodeDefinition $optionsNode): void
     {
+        /* @phpstan-ignore-next-line We ignored this line due to typing issues in NodeDefinition related classes. */
         $optionsNode
             ->children()
                 ->arrayNode('custom')

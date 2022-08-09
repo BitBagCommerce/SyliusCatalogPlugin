@@ -30,6 +30,7 @@ final class PriceRule implements RuleInterface
         $this->propertyNameResolver = $propertyNameResolver;
     }
 
+    /* @phpstan-ignore-next-line Elastica\Query\Range Class extended by Elastica\Query\AbstractQuery*/
     public function createSubquery(array $configuration): AbstractQuery
     {
         /** @var string|null $currentChannel */

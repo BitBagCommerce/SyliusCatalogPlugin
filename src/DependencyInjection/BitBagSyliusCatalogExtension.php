@@ -28,6 +28,7 @@ final class BitBagSyliusCatalogExtension extends Extension
 
         $loader->load('services.xml');
 
+        /** @var array $bundles */
         $bundles = $container->getParameter('kernel.bundles');
 
         if (array_key_exists('BitBagSyliusElasticsearchPlugin', $bundles)) {
@@ -68,7 +69,9 @@ final class BitBagSyliusCatalogExtension extends Extension
 
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
     {
-        return new Configuration($container->getParameter('kernel.project_dir'));
+        /** @var string $result */
+        $result = $container->getParameter('kernel.project_dir');
+        return new Configuration($result);
     }
 
     public function prepend(ContainerBuilder $container): void

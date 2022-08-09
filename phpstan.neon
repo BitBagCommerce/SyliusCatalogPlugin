@@ -12,3 +12,44 @@ parameters:
 
     ignoreErrors:
         - '/Parameter #1 \$configuration of method Symfony\\Component\\DependencyInjection\\Extension\\Extension::processConfiguration\(\) expects Symfony\\Component\\Config\\Definition\\ConfigurationInterface, Symfony\\Component\\Config\\Definition\\ConfigurationInterface\|null given\./'
+        -
+            message: '/Property [a-zA-Z\\]+::\$[a-zA-Z]+ has unknown class FOS\\ElasticaBundle\\[a-zA-Z\\]+ as its type./'
+            paths:
+                - *
+        -
+            message: '/Call to method [a-zA-Z()]+ on an unknown class FOS\\ElasticaBundle\\[a-zA-Z\\]+\./'
+            paths:
+                - *
+        -
+            message: '/Instantiated class Elastica\\[a-zA-Z()\\]+ not found./'
+            paths:
+                - *
+        -
+            message: '/Call to method [a-zA-Z\(\)]+\(\) on an unknown class Elastica\\[a-zA-Z()\\]+./'
+            paths:
+                - *
+        -
+            message: '/Parameter \$[a-zA-Z\(\)]+ of method [a-zA-Z\\]+::__construct\(\) has invalid type FOS\\ElasticaBundle\\[a-zA-Z\\]+./'
+            paths:
+                - *
+        -
+            message: '/Method [a-zA-Z\\]+::[a-zA-Z\\]+\(\) has invalid return type Elastica\\[a-zA-Z\\]+./'
+            paths:
+                - *
+        -
+            message: '/Parameter \$[a-zA-Z\\]+ of method [a-zA-Z\\]+::[a-zA-Z\\]+\(\) has invalid type Elastica\\[a-zA-Z\\]+./'
+            paths:
+                - *
+        -
+            message: '/Property [a-zA-Z\\]+::\$[a-zA-Z]+ has unknown class BitBag\\SyliusElasticsearchPlugin\\[a-zA-Z\\]+ as its type./'
+            paths:
+                - *
+        -
+            message: '/Parameter \$[a-zA-Z\(\)]+ of method [a-zA-Z\\]+::__construct\(\) has invalid type BitBag\\\SyliusElasticsearchPlugin\\[a-zA-Z\\]+./'
+            paths:
+                - *
+        -
+            message: '/Call to method [a-zA-Z\(\)]+\(\) on an unknown class BitBag\\SyliusElasticsearchPlugin\\[a-zA-Z()\\]+./'
+            paths:
+                - *
+
