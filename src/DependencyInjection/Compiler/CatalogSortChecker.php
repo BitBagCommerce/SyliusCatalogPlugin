@@ -40,6 +40,7 @@ final class CatalogSortChecker implements CompilerPassInterface
             return false;
         }
 
+        /** @phpstan-ignore-next-line */
         return isset(class_implements($objectOrClass)[$sortInterface]);
     }
 

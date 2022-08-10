@@ -10,9 +10,16 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\QueryBuilder;
 
+use BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface;
 use Doctrine\Common\Collections\Collection;
+use Elastica\Query\BoolQuery;
 
 interface ProductQueryBuilderInterface
 {
-    public function findMatchingProductsQuery(string $connectingRules, Collection $rules): array;
+    /**
+     * @param string $connectingRules
+     * @param Collection<int, CatalogRuleInterface> $rules
+     * @return BoolQuery
+     */
+    public function findMatchingProductsQuery(string $connectingRules, Collection $rules): BoolQuery;
 }

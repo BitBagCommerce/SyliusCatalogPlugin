@@ -28,9 +28,7 @@ final class CompleteCatalogsForProductResolver implements CatalogsForProductReso
     }
 
 
-    /**
-     * @return array|CatalogInterface[]
-     */
+
     public function resolveProductCatalogs(ProductInterface $product, \DateTimeImmutable $dataTime): array
     {
         return
