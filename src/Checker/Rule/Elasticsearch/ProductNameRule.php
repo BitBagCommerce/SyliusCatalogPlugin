@@ -29,7 +29,6 @@ final class ProductNameRule implements RuleInterface
         $this->productNameNameResolver = $productNameNameResolver;
     }
 
-    /* @phpstan-ignore-next-line Elastica\Query\MatchQuery Class extended by Elastica\Query\AbstractQuery*/
     public function createSubquery(array $configuration): AbstractQuery
     {
         $name = $configuration['catalogName'];
@@ -39,6 +38,7 @@ final class ProductNameRule implements RuleInterface
         $nameQuery = new MatchQuery($propertyName, $name);
         $nameQuery->setFieldQuery($propertyName, $name);
 
+        /* @phpstan-ignore-next-line Elastica\Query\MatchQuery Class extended by Elastica\Query\AbstractQuery*/
         return $nameQuery;
     }
 }

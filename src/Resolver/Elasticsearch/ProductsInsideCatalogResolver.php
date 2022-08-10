@@ -46,6 +46,7 @@ final class ProductsInsideCatalogResolver implements ProductsInsideCatalogResolv
         }
 
         if ((bool) $catalog->getRules()->count()) {
+            /** @var BoolQuery $query */
             $query = $this->productQueryBuilder->findMatchingProductsQuery($catalog->getConnectingRules(), $catalog->getRules());
         }
 
