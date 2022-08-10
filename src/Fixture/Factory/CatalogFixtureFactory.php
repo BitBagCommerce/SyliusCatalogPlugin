@@ -52,15 +52,15 @@ final class CatalogFixtureFactory
         $catalog = $this->catalogFactory->createNew();
         $catalog->setCode($code);
 
-        if (0 !== count($catalogData['starts_at'])) {
+        if (0 !== strlen(trim($catalogData['starts_at']))) {
             $catalog->setStartDate(new \DateTime($catalogData['starts_at']));
         }
 
-        if (0 !== count($catalogData['ends_at'])) {
+        if (0 !== strlen(trim($catalogData['ends_at']))) {
             $catalog->setEndDate(new \DateTime($catalogData['ends_at']));
         }
 
-        if (0 !== count($catalogData['template'])) {
+        if (0 !== strlen(trim($catalogData['template']))) {
             $catalog->setTemplate($catalogData['template']);
         }
 

@@ -23,7 +23,6 @@ final class TaxonRule implements RuleInterface
         $this->taxonsProperty = $taxonsProperty;
     }
 
-    /* @phpstan-ignore-next-line Elastica\Query\Terms Class extended by Elastica\Query\AbstractQuery*/
     public function createSubquery(array $configuration): AbstractQuery
     {
         $taxonsCodes = array_map(
@@ -33,6 +32,7 @@ final class TaxonRule implements RuleInterface
             $configuration['taxons']->toArray()
         );
 
+        /* @phpstan-ignore-next-line Elastica\Query\Terms Class extended by Elastica\Query\AbstractQuery*/
         return new Terms($this->taxonsProperty, $taxonsCodes);
     }
 }

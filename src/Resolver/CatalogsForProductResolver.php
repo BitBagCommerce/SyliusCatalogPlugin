@@ -55,8 +55,7 @@ final class CatalogsForProductResolver implements CatalogsForProductResolverInte
                 /** @var Collection<int, CatalogRuleInterface> $rules */
                 $rules = $activeCatalog->getProductAssociationRules();
 
-                /** @var QueryBuilder $qb */
-                $qb = $this->productRepository->createQueryBuilder('p')
+                $qb = $this->productRepository->createQueryBuilder('p') /** @phpstan-ignore-line ProductRepository inherits the createQueryBuilder method from EntityRepository*/
                     ->select('count(p.code)')
                     ->leftJoin('p.translations', 'name')
                     ->leftJoin('p.variants', 'variant')

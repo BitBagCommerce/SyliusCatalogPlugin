@@ -35,7 +35,6 @@ final class AttributeRule implements RuleInterface
         $this->attributeNameResolver = $attributeNameResolver;
     }
 
-    /* @phpstan-ignore-next-line Elastica\Query\Term Class extended by Elastica\Query\AbstractQuery*/
     public function createSubquery(array $configuration): AbstractQuery
     {
         /** @var AttributeInterface $attribute */
@@ -51,6 +50,7 @@ final class AttributeRule implements RuleInterface
         $term = new Term();
         $term->setTerm($paramName, $value);
 
+        /* @phpstan-ignore-next-line Elastica\Query\Term Class extended by Elastica\Query\AbstractQuery*/
         return $term;
     }
 }
