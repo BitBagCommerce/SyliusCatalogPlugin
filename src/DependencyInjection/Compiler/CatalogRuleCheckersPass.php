@@ -39,6 +39,7 @@ final class CatalogRuleCheckersPass implements CompilerPassInterface
         if (is_null($objectOrClass)) {
             return false;
         }
+        /** @phpstan-ignore-next-line */
         return isset(class_implements($objectOrClass)[$ruleInterface]);
     }
 

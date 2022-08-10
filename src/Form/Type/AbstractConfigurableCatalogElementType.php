@@ -91,6 +91,7 @@ abstract class AbstractConfigurableCatalogElementType extends AbstractResourceTy
         ]);
     }
 
+    /* @phpstan-ignore-next-line Parameter $data is mixed type */
     protected function getRegistryIdentifier(FormInterface $form, $data = null): ?string
     {
         if ($data instanceof ConfigurableCatalogElementInterface && null !== $data->getType()) {

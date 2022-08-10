@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace BitBag\SyliusCatalogPlugin\QueryBuilder;
 
 use BitBag\SyliusCatalogPlugin\Checker\Rule\Elasticsearch\RuleInterface;
+use BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface;
 use BitBag\SyliusElasticsearchPlugin\QueryBuilder\QueryBuilderInterface;
 use Doctrine\Common\Collections\Collection;
 use Elastica\Query\BoolQuery;
@@ -28,11 +29,16 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
         $this->hasChannelQueryBuilder = $hasChannelQueryBuilder;
     }
 
+    /**
+     * @param string $connectingRules
+     * @param Collection<int, CatalogRuleInterface> $rules
+     * @return BoolQuery
+     */
     public function findMatchingProductsQuery(string $connectingRules, Collection $rules): BoolQuery
     {
         $subQueries = $this->getQueries($rules->toArray());
 
-        if (empty($subQueries)) {
+        if (0 === count($subQueries)) {
             return new BoolQuery();
         }
         $query = new BoolQuery();

@@ -34,7 +34,7 @@ class Catalog implements CatalogInterface
 
     protected ?string $connectingRules;
 
-    /** @var CatalogRuleInterface[]|Collection<int, CatalogRuleInterface> */
+    /* @phpstan-ignore-next-line Property is a type Collection*/
     protected $productAssociationRules;
 
     protected string $productAssociationConnectingRules;
