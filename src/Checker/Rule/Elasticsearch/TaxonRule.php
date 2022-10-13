@@ -33,6 +33,6 @@ final class TaxonRule implements RuleInterface
         );
 
         /* @phpstan-ignore-next-line Elastica\Query\Terms Class extended by Elastica\Query\AbstractQuery*/
-        return new Terms($this->taxonsProperty, $taxonsCodes);
+        return new Terms($this->taxonsProperty . '.keyword', $taxonsCodes);
     }
 }
