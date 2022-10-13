@@ -12,6 +12,7 @@ namespace BitBag\SyliusCatalogPlugin\QueryBuilder;
 
 use BitBag\SyliusCatalogPlugin\Checker\Rule\Elasticsearch\RuleInterface;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface;
+use BitBag\SyliusElasticsearchPlugin\QueryBuilder\IsEnabledQueryBuilder;
 use BitBag\SyliusElasticsearchPlugin\QueryBuilder\QueryBuilderInterface;
 use Doctrine\Common\Collections\Collection;
 use Elastica\Query\BoolQuery;
@@ -23,10 +24,16 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
 
     private QueryBuilderInterface $hasChannelQueryBuilder;
 
-    public function __construct(ServiceRegistry $serviceRegistry, QueryBuilderInterface $hasChannelQueryBuilder)
-    {
+    private IsEnabledQueryBuilder $isEnabledQueryBuilder;
+
+    public function __construct(
+        ServiceRegistry $serviceRegistry,
+        QueryBuilderInterface $hasChannelQueryBuilder,
+        IsEnabledQueryBuilder $isEnabledQueryBuilder
+    ) {
         $this->serviceRegistry = $serviceRegistry;
         $this->hasChannelQueryBuilder = $hasChannelQueryBuilder;
+        $this->isEnabledQueryBuilder = $isEnabledQueryBuilder;
     }
 
     /**
@@ -41,8 +48,10 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
         if (0 === count($subQueries)) {
             return new BoolQuery();
         }
+
         $query = new BoolQuery();
         $query->addFilter($this->hasChannelQueryBuilder->buildQuery([]));
+        $query->addFilter($this->isEnabledQueryBuilder->buildQuery([]));
 
         switch ($connectingRules) {
             case RuleInterface::AND:
