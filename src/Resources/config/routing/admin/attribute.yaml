@@ -2,7 +2,7 @@ bitbag_admin_ajax_attribute_by_code:
     path: /attribute-search-by-code
     methods: [GET]
     defaults:
-        _controller: sylius.controller.product_attribute:indexAction
+        _controller: sylius.controller.product_attribute::indexAction
         _format: json
         _sylius:
             permission: true
@@ -16,7 +16,7 @@ bitbag_admin_ajax_attribute_by_id:
     path: /attribute-search-by-id
     methods: [GET]
     defaults:
-        _controller: sylius.controller.product_attribute:indexAction
+        _controller: sylius.controller.product_attribute::indexAction
         _format: json
         _sylius:
             permission: true

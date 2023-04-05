@@ -50,8 +50,8 @@ class ProductsInsideCatalogResolver implements ProductsInsideCatalogResolverInte
         $rules = $catalog->getRules();
 
         $qb = $this->productRepository->createQueryBuilder('p')
-            ->addSelect('min(price) AS HIDDEN min_price')
-            ->addSelect('max(price) AS HIDDEN max_price')
+            ->addSelect('min(price.price) AS HIDDEN min_price')
+            ->addSelect('max(price.price) AS HIDDEN max_price')
             ->addGroupBy('p')
             ->leftJoin('p.translations', 'name')
             ->leftJoin('p.variants', 'variant')

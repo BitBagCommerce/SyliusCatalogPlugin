@@ -16,6 +16,6 @@ final class CheapestSort implements SortInterface
 {
     public function modifyQueryBuilder(QueryBuilder $queryBuilder): void
     {
-        $queryBuilder->orderBy('price', self::ASC);
+        $queryBuilder->orderBy('min_price', self::ASC);
     }
 }
