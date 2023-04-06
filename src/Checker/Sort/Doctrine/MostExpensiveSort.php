@@ -16,6 +16,6 @@ final class MostExpensiveSort implements SortInterface
 {
     public function modifyQueryBuilder(QueryBuilder $queryBuilder): void
     {
-        $queryBuilder->orderBy('price', self::DESC);
+        $queryBuilder->orderBy('max_price', self::DESC);
     }
 }
