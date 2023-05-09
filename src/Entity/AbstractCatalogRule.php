@@ -22,6 +22,8 @@ abstract class AbstractCatalogRule
 
     protected ?string $target;
 
+    protected bool $isNegation = false;
+
     public function __construct()
     {
         $this->id = null;
@@ -73,5 +75,15 @@ abstract class AbstractCatalogRule
     public function setTarget(?string $target): void
     {
         $this->target = $target;
+    }
+
+    public function isNegation(): bool
+    {
+        return $this->isNegation;
+    }
+
+    public function setIsNegation(bool $isNegation): void
+    {
+        $this->isNegation = $isNegation;
     }
 }

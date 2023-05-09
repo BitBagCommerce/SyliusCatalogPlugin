@@ -15,6 +15,7 @@ bitbag_sylius_catalog_plugin:
         number_of_products: Number of products
         configuration_view: Configuration view
         sorting_type: Sorting by
+        is_negation: "Is negation ?"
         desc_asc: Desc/Asc
         form:
             catalog_rule:
