@@ -15,5 +15,6 @@
 
     <field name="type" column="type" type="string" nullable="true" />
     <field name="configuration" column="configuration" type="array" />
+    <field name="isNegation" column="is_negation" type="boolean" />
 </entity>
 </doctrine-mapping>

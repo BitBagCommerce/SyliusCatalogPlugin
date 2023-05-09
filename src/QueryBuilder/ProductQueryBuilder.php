@@ -55,14 +55,35 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
 
         switch ($connectingRules) {
             case RuleInterface::AND:
-                foreach ($subQueries as $subQuery) {
-                    $query->addFilter($subQuery);
+                if ($subQueries[self::MUST] ?? false) {
+                    foreach ($subQueries[self::MUST] as $subQuery) {
+                        $query->addFilter($subQuery);
+                    }
+                }
+
+                if ($subQueries[self::MUST_NOT] ?? false) {
+                    foreach ($subQueries[self::MUST_NOT] as $subQuery) {
+                        $query->addMustNot($subQuery);
+                    }
                 }
 
                 break;
             case RuleInterface::OR:
-                foreach ($subQueries as $subQuery) {
-                    $query->addShould($subQuery);
+                if ($subQueries[self::MUST] ?? false) {
+                    foreach ($subQueries[self::MUST] as $subQuery) {
+                        $query->addShould($subQuery);
+                        $query->setMinimumShouldMatch(1);
+                    }
+                }
+
+                if ($subQueries[self::MUST_NOT] ?? false) {
+                    $mustNotQuery = new BoolQuery();
+
+                    foreach ($subQueries[self::MUST] as $subQuery) {
+                        $mustNotQuery->addMustNot($subQuery);
+                    }
+
+                    $query->addShould($mustNotQuery);
                     $query->setMinimumShouldMatch(1);
                 }
 
@@ -74,6 +95,7 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
         return $query;
     }
 
+    /** @param CatalogRuleInterface[] $rules */
     private function getQueries(array $rules): array
     {
         $queries = [];
@@ -85,7 +107,7 @@ final class ProductQueryBuilder implements ProductQueryBuilderInterface
 
             $ruleConfiguration = $rule->getConfiguration();
 
-            $queries[] = $ruleChecker->createSubquery($ruleConfiguration);
+            $queries[$rule->isNegation() ? self::MUST_NOT : self::MUST][] = $ruleChecker->createSubquery($ruleConfiguration);
         }
 
         return $queries;

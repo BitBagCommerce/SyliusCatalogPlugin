@@ -27,4 +27,8 @@ interface CatalogRuleInterface extends ResourceInterface, ConfigurableCatalogEle
     public function getTarget(): ?string;
 
     public function setTarget(?string $target): void;
+
+    public function isNegation(): bool;
+
+    public function setIsNegation(bool $isNegation): void;
 }

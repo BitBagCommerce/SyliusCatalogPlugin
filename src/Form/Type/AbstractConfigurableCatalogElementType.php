@@ -13,6 +13,7 @@ namespace BitBag\SyliusCatalogPlugin\Form\Type;
 use BitBag\SyliusCatalogPlugin\Entity\ConfigurableCatalogElementInterface;
 use Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistryInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -86,9 +87,14 @@ abstract class AbstractConfigurableCatalogElementType extends AbstractResourceTy
 
     protected function addConfigurationFields(FormInterface $form, string $configurationType): void
     {
-        $form->add('configuration', $configurationType, [
-            'label' => false,
-        ]);
+        $form
+            ->add('configuration', $configurationType, [
+                'label' => false,
+            ])
+            ->add('isNegation', CheckboxType::class, [
+                'label' => 'bitbag_sylius_catalog_plugin.ui.negation'
+            ])
+        ;
     }
 
     /* @phpstan-ignore-next-line Parameter $data is mixed type */
