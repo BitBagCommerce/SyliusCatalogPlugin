@@ -92,7 +92,7 @@ abstract class AbstractConfigurableCatalogElementType extends AbstractResourceTy
                 'label' => false,
             ])
             ->add('isNegation', CheckboxType::class, [
-                'label' => 'bitbag_sylius_catalog_plugin.ui.negation'
+                'label' => 'bitbag_sylius_catalog_plugin.ui.is_negation'
             ])
         ;
     }
