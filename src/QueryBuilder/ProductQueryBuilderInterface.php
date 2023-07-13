@@ -19,6 +19,7 @@ interface ProductQueryBuilderInterface
     public const MUST_NOT = 0;
 
     public const MUST = 1;
+
     /**
      * @param string $connectingRules
      * @param Collection<int, CatalogRuleInterface> $rules
