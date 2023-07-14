@@ -9,6 +9,15 @@ sylius_grid:
         name:
           type: string
           label: sylius.ui.name
+        code:
+          type: string
+          label: sylius.ui.code
+        startDate:
+          type: datetime
+          label: sylius.ui.starts_at
+        endDate:
+          type: datetime
+          label: sylius.ui.ends_at
       actions:
         main:
           create:
@@ -18,3 +27,14 @@ sylius_grid:
             type: update
           delete:
             type: delete
+      filters:
+        code:
+          type: string
+          label: sylius.ui.code
+          options:
+            fields: [ customer.email ]
+        name:
+          type: string
+          label: sylius.ui.search
+          options:
+            fields: [translations.name]
