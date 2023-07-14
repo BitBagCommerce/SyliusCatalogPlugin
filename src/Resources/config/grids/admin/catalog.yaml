@@ -32,9 +32,9 @@ sylius_grid:
           type: string
           label: sylius.ui.code
           options:
-            fields: [ customer.email ]
+            fields: [ code ]
         name:
           type: string
-          label: sylius.ui.search
+          label: sylius.ui.name
           options:
             fields: [translations.name]
