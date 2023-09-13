@@ -1,6 +1,6 @@
 ## Installation
 ```bash
-$ composer require bitbag/catalog-plugin
+$ composer require bitbag/catalog-plugin --no-scripts
 ```
 
 Add plugin dependencies to your `config/bundles.php` file:
@@ -71,30 +71,31 @@ Default template for product catalog is `@BitBagSyliusCatalogPlugin/Catalog/Temp
 
 Finish the installation by updating the database schema and installing assets:
 ```
-$ symfony console doctrine:migrations:diff
-$ symfony console doctrine:migrations:migrate
-$ symfony console assets:install --symlink
-$ symfony console sylius:theme:assets:install --symlink
+$ bin/console cache:clear
+$ bin/console doctrine:migrations:diff
+$ bin/console doctrine:migrations:migrate
+$ bin/console assets:install --symlink
+$ bin/console sylius:theme:assets:install --symlink
 ```
 
 ### Parameters and Services which can be overridden
 ```yml
-$ symfony console debug:container --parameters | grep bitbag_sylius_catalog_plugin
-$ symfony console debug:container bitbag_sylius_catalog_plugin
+$ bin/console debug:container --parameters | grep bitbag_sylius_catalog_plugin
+$ bin/console debug:container bitbag_sylius_catalog_plugin
 ```
 
 ## Testing & running the plugin
 ```bash
-$ symfony composer install
+$ composer install
 $ APP_ENV=test symfony server:start --port=8080 --dir=tests/Application/public --daemon
 $ cd ./tests/Application/
-$ symfony run yarn install
-$ symfony run yarn build
-$ symfony run yarn encore dev
-$ symfony console doctrine:database:create --env=test
-$ symfony console doctrine:schema:create --env=test
-$ symfony console assets:install --env=test
-$ symfony console sylius:fixtures:load --env=test
+$ yarn install
+$ yarn build
+$ yarn encore dev
+$ bin/console doctrine:database:create --env=test
+$ bin/console doctrine:schema:create --env=test
+$ bin/console assets:install --env=test
+$ bin/console sylius:fixtures:load --env=test
 $ symfony open:local
 $ cd ../../
 $ vendor/bin/behat
