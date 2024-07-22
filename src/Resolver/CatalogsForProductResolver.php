@@ -1,22 +1,21 @@
 <?php
 
 /*
- * This file was created by developers working at BitBag
- * Do you need more information about us and what we do? Visit our https://bitbag.io website!
- * We are hiring developers from all over the world. Join us and start your new, exciting adventure and become part of us: https://bitbag.io/career
-*/
+ * This file has been created by developers from BitBag.
+ * Feel free to contact us once you face any issues or want to start
+ * You can find more information about us on https://bitbag.io and write us
+ * an email on hello@bitbag.io.
+ */
 
 declare(strict_types=1);
 
 namespace BitBag\SyliusCatalogPlugin\Resolver;
 
 use BitBag\SyliusCatalogPlugin\Checker\Rule\Doctrine\RuleInterface;
-use BitBag\SyliusCatalogPlugin\Entity\AbstractCatalogRule;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogInterface;
 use BitBag\SyliusCatalogPlugin\Entity\CatalogRuleInterface;
 use BitBag\SyliusCatalogPlugin\Repository\CatalogRepositoryInterface;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\QueryBuilder;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
 use Sylius\Component\Registry\ServiceRegistry;
@@ -32,7 +31,7 @@ final class CatalogsForProductResolver implements CatalogsForProductResolverInte
     public function __construct(
         CatalogRepositoryInterface $catalogRepository,
         ProductRepositoryInterface $productRepository,
-        ServiceRegistry $serviceRegistry
+        ServiceRegistry $serviceRegistry,
     ) {
         $this->catalogRepository = $catalogRepository;
         $this->serviceRegistry = $serviceRegistry;
@@ -68,8 +67,8 @@ final class CatalogsForProductResolver implements CatalogsForProductResolverInte
                 foreach ($rules as $rule) {
                     $type = $rule->getType();
 
-                    if (is_null($type)
-                        ||is_null($connectingRules)) {
+                    if (null === $type ||
+                        null === $connectingRules) {
                         continue;
                     }
 

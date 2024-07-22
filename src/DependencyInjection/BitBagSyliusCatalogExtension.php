@@ -1,10 +1,11 @@
 <?php
 
 /*
- * This file was created by developers working at BitBag
- * Do you need more information about us and what we do? Visit our https://bitbag.io website!
- * We are hiring developers from all over the world. Join us and start your new, exciting adventure and become part of us: https://bitbag.io/career
-*/
+ * This file has been created by developers from BitBag.
+ * Feel free to contact us once you face any issues or want to start
+ * You can find more information about us on https://bitbag.io and write us
+ * an email on hello@bitbag.io.
+ */
 
 declare(strict_types=1);
 
@@ -43,25 +44,25 @@ final class BitBagSyliusCatalogExtension extends Extension
         $container->setDefinition(
             'bitbag_sylius_catalog_plugin.form.type.catalog_rule.choice',
             $container->getDefinition('bitbag_sylius_catalog_plugin.form.type.catalog_rule.choice')
-                ->setArgument(0, sprintf('%%bitbag_sylius_catalog_plugin.catalog_rules.%s%%', $config['driver']))
+                ->setArgument(0, sprintf('%%bitbag_sylius_catalog_plugin.catalog_rules.%s%%', $config['driver'])),
         );
 
         $container->setDefinition(
             'bitbag_sylius_catalog_plugin.form.type.channel_pricing',
             $container->getDefinition('bitbag_sylius_catalog_plugin.form.type.channel_pricing')
-                ->setArgument(0, sprintf('%%bitbag_sylius_catalog_plugin.catalog_rules.%s%%', $config['driver']))
+                ->setArgument(0, sprintf('%%bitbag_sylius_catalog_plugin.catalog_rules.%s%%', $config['driver'])),
         );
 
         $container->setDefinition(
             'bitbag_sylius_catalog_plugin.form.type.product_association_rule.choice',
             $container->getDefinition('bitbag_sylius_catalog_plugin.form.type.product_association_rule.choice')
-                ->setArgument(0, sprintf('%%bitbag_sylius_catalog_plugin.product_association_rules.%s%%', $config['driver']))
+                ->setArgument(0, sprintf('%%bitbag_sylius_catalog_plugin.product_association_rules.%s%%', $config['driver'])),
         );
 
         $container->setDefinition(
             'bitbag_sylius_catalog_plugin.form.type.catalog',
             $container->getDefinition('bitbag_sylius_catalog_plugin.form.type.catalog')
-                ->setArgument(1, sprintf('%%bitbag_sylius_catalog_plugin.catalog_sorts.%s%%', $config['driver']))
+                ->setArgument(1, sprintf('%%bitbag_sylius_catalog_plugin.catalog_sorts.%s%%', $config['driver'])),
         );
 
         $container->setParameter('bitbag_sylius_catalog_plugin.parameters.templates_dir', $config['templates_dir']);
@@ -71,6 +72,7 @@ final class BitBagSyliusCatalogExtension extends Extension
     {
         /** @var string $result */
         $result = $container->getParameter('kernel.project_dir');
+
         return new Configuration($result);
     }
 
