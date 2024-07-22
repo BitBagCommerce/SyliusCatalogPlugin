@@ -30,7 +30,7 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^4.0.0",
     "node-sass": "^4.14",
-    "sass-loader": "^7.0.1",
+    "sass-loader": "^12.1.0",
     "upath": "^1.1.0",
     "yargs": "^6.4.0"
   },
