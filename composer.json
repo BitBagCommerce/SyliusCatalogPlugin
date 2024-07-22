@@ -48,6 +48,9 @@
             "symfony/thanks": true
         }
     },
+    "conflict": {
+      "doctrine/persistence": "<3.0"
+    },
     "autoload": {
         "psr-4": {
             "BitBag\\SyliusCatalogPlugin\\": "src/",
